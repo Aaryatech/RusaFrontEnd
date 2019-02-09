@@ -1,7 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%><%@ taglib
 	uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
- 
+	<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
+	
+
+
  <%
 //allow access only if session exists
 String user = null;
@@ -118,28 +122,34 @@ if(session.getAttribute("menuList") == null){
 	                    
                     <c:set var="find" value="1"></c:set>   
                 </c:if>
-                
-                <%-- <c:if test="${pageContent.gallaryDetailList.size()>0}">
+        
+                 <c:if test="${pageContent.detailNewsList.size()>0}">
                   
 	                <div class="row">
-	                 <c:forEach items="${pageContent.gallaryDetailList}" var="gallaryDetailList">
-	                       <div class="col-12 col-sm-3 col-lg-3"> 
-                        <a href="${gallryImageURL}${gallaryDetailList.fileName}" data-toggle="lightbox" data-gallery="plan" data-title="${gallaryDetailList.title}" class="thumbnail">
-                        <img src="${gallryImageURL}thumbnail${gallaryDetailList.fileName}" class="img-responsive"></a>
+	                 <c:forEach items="${pageContent.detailNewsList}" var="detailNewsList">
+                 <div class="row row-eq-height">
+                        <div class="col-12">
+                        <img src="${url}${detailNewsList.featuredImage}">
+                          <c:set var = "string1" value = "${detailNewsList.descriptions}"/>
+ 						 <c:set var = "string2" value = "${fn:substring(string1, 0, 256)}" />
+                        <h2> ${detailNewsList.heading}</h2>
+                        <p>${string2}</p>
+                         <a  href="${pageContext.request.contextPath}/NewsDetails" >more </a>
+                       </div> 
                     </div>
-	                     </c:forEach>
+                    </c:forEach>
 	                </div>
-	                    
+                             
                     <c:set var="find" value="1"></c:set>   
-                </c:if> --%>
-                 
-            	<div class="row"> 
+                </c:if>
+                    
+            	<!-- <div class="row"> 
 				      <div class="col-12 col-sm-3 col-lg-3">
 				        <a href="http://www.youtube.com/watch?v=k6mFF3VmVAs" data-toggle="lightbox" data-gallery="mixedgallery" class="col-sm-4">
 				    <img src="http://i1.ytimg.com/vi/yP11r5n5RNg/mqdefault.jpg" class="img-fluid">
 				</a>
 				</div>
-                </div>
+                </div> -->
             
              
                
