@@ -1,7 +1,7 @@
 package com.ats.rusafronend.model;
 
 import java.util.List;
- 
+
 
 public class PageContent {
 	
@@ -14,6 +14,8 @@ public class PageContent {
 	List<DocumentUpload> documentUploadList;
 	List<TestImonial> testImonialList;
 	List<GallaryDetail> gallaryDetailList;
+	List<NewsDetails> detailNewsList;
+	
 	
 	public int getPageId() {
 		return pageId;
@@ -70,12 +72,27 @@ public class PageContent {
 	public void setGallaryDetailList(List<GallaryDetail> gallaryDetailList) {
 		this.gallaryDetailList = gallaryDetailList;
 	}
+	
+	
+	public List<NewsDetails> getDetailNewsList() {
+		return detailNewsList;
+	}
+	public void setDetailNewsList(List<NewsDetails> detailNewsList) {
+		this.detailNewsList = detailNewsList;
+	}
 	@Override
 	public String toString() {
 		return "PageContent [pageId=" + pageId + ", pageName=" + pageName + ", slugName=" + slugName + ", sectioinId="
 				+ sectioinId + ", cmsContentList=" + cmsContentList + ", faqContentList=" + faqContentList
 				+ ", documentUploadList=" + documentUploadList + ", testImonialList=" + testImonialList
-				+ ", gallaryDetailList=" + gallaryDetailList + "]";
+				+ ", gallaryDetailList=" + gallaryDetailList + ", detailNewsList=" + detailNewsList + ", getPageId()="
+				+ getPageId() + ", getPageName()=" + getPageName() + ", getCmsContentList()=" + getCmsContentList()
+				+ ", getFaqContentList()=" + getFaqContentList() + ", getSlugName()=" + getSlugName()
+				+ ", getDocumentUploadList()=" + getDocumentUploadList() + ", getSectioinId()=" + getSectioinId()
+				+ ", getTestImonialList()=" + getTestImonialList() + ", getGallaryDetailList()="
+				+ getGallaryDetailList() + ", getDetailNewsList()=" + getDetailNewsList() + ", getClass()=" + getClass()
+				+ ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
 	}
+	
 
 }
