@@ -125,7 +125,7 @@ if(session.getAttribute("menuList") == null){
         
                  <c:if test="${pageContent.detailNewsList.size()>0}">
                   
-	                <div class="row">
+	                 
 	                 <c:forEach items="${pageContent.detailNewsList}" var="detailNewsList">
                  <div class="row row-eq-height">
                         <div class="col-12">
@@ -138,8 +138,7 @@ if(session.getAttribute("menuList") == null){
                        </div> 
                     </div>
                     </c:forEach>
-	                </div>
-                             
+	                   
                     <c:set var="find" value="1"></c:set>   
                 </c:if>
                     

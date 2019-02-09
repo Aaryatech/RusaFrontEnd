@@ -30,7 +30,7 @@ public class CmsController {
 	RestTemplate rest = new RestTemplate();
 	
 	@RequestMapping(value = "/info/{slugName}", method = RequestMethod.GET)
-	public ModelAndView getSectionTreeStructure(@PathVariable("slugName") String slugName,HttpServletRequest request, HttpServletResponse response) {
+	public ModelAndView info(@PathVariable("slugName") String slugName,HttpServletRequest request, HttpServletResponse response) {
 
 		ModelAndView model = new ModelAndView("content/cmsContent");
 		try {
@@ -63,6 +63,24 @@ public class CmsController {
 		 
 			HttpSession session = request.getSession();
 			session.setAttribute("mapping","faqContent");
+			 
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return model;
+	}
+	
+	@RequestMapping(value = "/siteMap", method = RequestMethod.GET)
+	public ModelAndView siteMap(HttpServletRequest request, HttpServletResponse response) {
+
+		ModelAndView model = new ModelAndView("content/siteMap");
+		try {
+		 
+			HttpSession session = request.getSession();
+			session.setAttribute("mapping","siteMap");
 			 
 			
 			
