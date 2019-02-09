@@ -47,7 +47,7 @@ public class CmsController {
 			pageContent.setSlugName(slugName);
 			model.addObject("pageContent", pageContent); 
 			model.addObject("url", Constant.cmsPdf);
-			 
+			model.addObject("gallryImageURL", Constant.gallryImageURL);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

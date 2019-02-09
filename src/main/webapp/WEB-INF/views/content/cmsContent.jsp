@@ -105,8 +105,43 @@ if(session.getAttribute("menuList") == null){
                     <c:set var="find" value="1"></c:set>   
                 </c:if>
                 
-               
+                <c:if test="${pageContent.gallaryDetailList.size()>0}">
+                  
+	                <div class="row">
+	                 <c:forEach items="${pageContent.gallaryDetailList}" var="gallaryDetailList">
+	                       <div class="col-12 col-sm-3 col-lg-3">
+                        <a href="http://www.webtreeindia.com/projectdemo/bppatilcollege/webadmin//../../uploads/gallery/20190123/gallery_0eGf.png" data-toggle="lightbox" data-gallery="plan" data-title="" class="thumbnail">
+                        <img src="http://www.webtreeindia.com/projectdemo/bppatilcollege/webadmin//../../uploads/gallery/20190123/gallery_0eGf.png" class="img-responsive"></a>
+                    </div>
+	                     </c:forEach>
+	                </div>
+	                    
+                    <c:set var="find" value="1"></c:set>   
+                </c:if>
                 
+                <%-- <c:if test="${pageContent.gallaryDetailList.size()>0}">
+                  
+	                <div class="row">
+	                 <c:forEach items="${pageContent.gallaryDetailList}" var="gallaryDetailList">
+	                       <div class="col-12 col-sm-3 col-lg-3"> 
+                        <a href="${gallryImageURL}${gallaryDetailList.fileName}" data-toggle="lightbox" data-gallery="plan" data-title="${gallaryDetailList.title}" class="thumbnail">
+                        <img src="${gallryImageURL}thumbnail${gallaryDetailList.fileName}" class="img-responsive"></a>
+                    </div>
+	                     </c:forEach>
+	                </div>
+	                    
+                    <c:set var="find" value="1"></c:set>   
+                </c:if> --%>
+                 
+            	<div class="row"> 
+				      <div class="col-12 col-sm-3 col-lg-3">
+				        <a href="http://www.youtube.com/watch?v=k6mFF3VmVAs" data-toggle="lightbox" data-gallery="mixedgallery" class="col-sm-4">
+				    <img src="http://i1.ytimg.com/vi/yP11r5n5RNg/mqdefault.jpg" class="img-fluid">
+				</a>
+				</div>
+                </div>
+            
+             
                
                  
                  <c:if test="${find==0}">
@@ -130,5 +165,10 @@ if(session.getAttribute("menuList") == null){
           <jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
         <!-- JavaScript-->
        <jsp:include page="/WEB-INF/views/include/footerJs.jsp"></jsp:include> 
+       
+       
+
+
+       
     </body>
 </html>

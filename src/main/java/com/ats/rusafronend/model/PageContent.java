@@ -13,6 +13,8 @@ public class PageContent {
 	List<FaqContent> faqContentList;
 	List<DocumentUpload> documentUploadList;
 	List<TestImonial> testImonialList;
+	List<GallaryDetail> gallaryDetailList;
+	
 	public int getPageId() {
 		return pageId;
 	}
@@ -62,11 +64,18 @@ public class PageContent {
 	public void setTestImonialList(List<TestImonial> testImonialList) {
 		this.testImonialList = testImonialList;
 	}
+	public List<GallaryDetail> getGallaryDetailList() {
+		return gallaryDetailList;
+	}
+	public void setGallaryDetailList(List<GallaryDetail> gallaryDetailList) {
+		this.gallaryDetailList = gallaryDetailList;
+	}
 	@Override
 	public String toString() {
 		return "PageContent [pageId=" + pageId + ", pageName=" + pageName + ", slugName=" + slugName + ", sectioinId="
 				+ sectioinId + ", cmsContentList=" + cmsContentList + ", faqContentList=" + faqContentList
-				+ ", documentUploadList=" + documentUploadList + ", testImonialList=" + testImonialList + "]";
+				+ ", documentUploadList=" + documentUploadList + ", testImonialList=" + testImonialList
+				+ ", gallaryDetailList=" + gallaryDetailList + "]";
 	}
 
 }

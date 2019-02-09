@@ -12,5 +12,8 @@
         <title>Rashtriya Uchchatar Shiksha Abhiyan Government of Maharashtra</title>
         <!-- Bootstrap core CSS -->
         <link href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
+        <link href="${pageContext.request.contextPath}/resources/css/ekko-lightbox.css" rel="stylesheet" type="text/css">
         <link href="${pageContext.request.contextPath}/resources/css/style.css" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800|Playfair+Display:400,700,900" rel="stylesheet">
+        
+        
