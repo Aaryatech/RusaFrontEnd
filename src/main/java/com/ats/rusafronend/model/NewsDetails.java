@@ -50,6 +50,12 @@ public class NewsDetails {
 	
 	private String descriptions;
 	
+	private String pageMetaTitle;
+
+	private String pageMetaDescription;
+	
+	private String pageMetaKeyword;
+	
 	private int languageId;
 
 	
@@ -245,6 +251,30 @@ public class NewsDetails {
 		this.descriptions = descriptions;
 	}
 
+	public String getPageMetaTitle() {
+		return pageMetaTitle;
+	}
+
+	public void setPageMetaTitle(String pageMetaTitle) {
+		this.pageMetaTitle = pageMetaTitle;
+	}
+
+	public String getPageMetaDescription() {
+		return pageMetaDescription;
+	}
+
+	public void setPageMetaDescription(String pageMetaDescription) {
+		this.pageMetaDescription = pageMetaDescription;
+	}
+
+	public String getPageMetaKeyword() {
+		return pageMetaKeyword;
+	}
+
+	public void setPageMetaKeyword(String pageMetaKeyword) {
+		this.pageMetaKeyword = pageMetaKeyword;
+	}
+
 	public int getLanguageId() {
 		return languageId;
 	}
@@ -263,21 +293,10 @@ public class NewsDetails {
 				+ ", isActive=" + isActive + ", delStatus=" + delStatus + ", addDate=" + addDate + ", editDate="
 				+ editDate + ", addedByUserId=" + addedByUserId + ", editByUserId=" + editByUserId + ", exInt1="
 				+ exInt1 + ", exInt2=" + exInt2 + ", exVar1=" + exVar1 + ", exVar2=" + exVar2 + ", heading=" + heading
-				+ ", descriptions=" + descriptions + ", languageId=" + languageId + ", getNewsblogsId()="
-				+ getNewsblogsId() + ", getPageId()=" + getPageId() + ", getNewsSourceUrlName()="
-				+ getNewsSourceUrlName() + ", getEventLocation()=" + getEventLocation() + ", getEventDateFrom()="
-				+ getEventDateFrom() + ", getEventDateTo()=" + getEventDateTo() + ", getEventContactPerson()="
-				+ getEventContactPerson() + ", getEventContactNumber()=" + getEventContactNumber() + ", getPageOrder()="
-				+ getPageOrder() + ", getFeaturedImage()=" + getFeaturedImage() + ", getFeaturedImageAlignment()="
-				+ getFeaturedImageAlignment() + ", getDownloadPdf()=" + getDownloadPdf() + ", getIsActive()="
-				+ getIsActive() + ", getDelStatus()=" + getDelStatus() + ", getAddDate()=" + getAddDate()
-				+ ", getEditDate()=" + getEditDate() + ", getAddedByUserId()=" + getAddedByUserId()
-				+ ", getEditByUserId()=" + getEditByUserId() + ", getExInt1()=" + getExInt1() + ", getExInt2()="
-				+ getExInt2() + ", getExVar1()=" + getExVar1() + ", getExVar2()=" + getExVar2() + ", getHeading()="
-				+ getHeading() + ", getDescriptions()=" + getDescriptions() + ", getLanguageId()=" + getLanguageId()
-				+ ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString()
-				+ "]";
+				+ ", descriptions=" + descriptions + ", pageMetaTitle=" + pageMetaTitle + ", pageMetaDescription="
+				+ pageMetaDescription + ", pageMetaKeyword=" + pageMetaKeyword + ", languageId=" + languageId + "]";
 	}
+
 
 	
 }

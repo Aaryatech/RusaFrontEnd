@@ -59,10 +59,12 @@ if(session.getAttribute("menuList") == null){
            
                <div class="row row-eq-height">
                         <div class="col-12">
-                        <img src="${url}${image.featuredImage}" width="500" height="500">
+                        <img src="${getGallryImageURL}${image.featuredImage}" width="500" height="500">
                         <h2> ${image.heading}</h2>
                         <p>${image.descriptions}</p>
-                         
+                        <h3>Meta Title</h3><p> ${image.pageMetaTitle}</p>
+                        <h3>Meta Description</h3> <p>${image.pageMetaDescription}</p>
+                        <h3>KeyWords:</h3> <p>${image.pageMetaKeyword}</p>
                        </div> 
                     </div>     
                 </div>
