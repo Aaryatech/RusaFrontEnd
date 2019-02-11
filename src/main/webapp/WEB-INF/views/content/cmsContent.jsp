@@ -134,7 +134,7 @@ if(session.getAttribute("menuList") == null){
  						 <c:set var = "string2" value = "${fn:substring(string1, 0, 256)}" />
                         <h2> ${detailNewsList.heading}</h2>
                         <p>${string2}</p>
-                         <a  href="${pageContext.request.contextPath}/NewsDetails" >more </a>
+                         <a  href="${pageContext.request.contextPath}/NewsDetails/${detailNewsList.languageId}/${detailNewsList.pageId}/${detailNewsList.newsblogsId}" >more </a>
                        </div> 
                     </div>
                     </c:forEach>
