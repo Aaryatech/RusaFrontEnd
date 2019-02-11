@@ -46,8 +46,8 @@ public class CmsController {
 			PageContent pageContent = rest.postForObject(Constant.url + "/getDataBySlugName",map,  PageContent.class);
 			pageContent.setSlugName(slugName);
 			model.addObject("pageContent", pageContent); 
-			model.addObject("url", Constant.cmsPdf);
-			model.addObject("gallryImageURL", Constant.gallryImageURL);
+			model.addObject("url", Constant.getCmsPdf);
+			model.addObject("gallryImageURL", Constant.getGallryImageURL);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
