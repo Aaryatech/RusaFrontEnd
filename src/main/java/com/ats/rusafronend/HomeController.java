@@ -65,7 +65,7 @@ public class HomeController {
 			List<ImageLink> imagList = new ArrayList<ImageLink>(Arrays.asList(image));
 			  
 			session.setAttribute("image", imagList); 
-			session.setAttribute("url", Constant.getGallryImageURL);
+			session.setAttribute("url", Constant.getBannerImageURL);
 			session.setAttribute("mapping","/");
 		session.setAttribute("menuList",list);
 		
