@@ -28,7 +28,7 @@ if(session.getAttribute("menuList") == null){
         </div>
         <div class="bridcrumb">
             <div class="container">
-                <a href="index.html">Home</a> > <a href="${pageContext.request.contextPath}/info/${pageContent.slugName}">${pageContent.pageName}</a> >
+                <a href="/">Home</a> > <a href="${pageContext.request.contextPath}/info/${pageContent.slugName}">${pageContent.pageName}</a> >
             </div>
         </div>
         <div class="container" id="main-content">
@@ -60,6 +60,10 @@ if(session.getAttribute("menuList") == null){
                 
                 <c:if test="${pageContent.cmsContentList.size()>0}">
                 <c:forEach items="${pageContent.cmsContentList}" var="cmsContentList">
+                 <c:if test="${not empty cmsContentList.featuredImage}">
+                 <img src="${gallryImageURL}${cmsContentList.featuredImage}" alt="" style="float:${cmsContentList.featuredImageAlignment}; padding-left:20px; padding-right:20px; padding-bottom:20px;" height="" width="" >
+                 </c:if>
+                
                 	 <h2>${cmsContentList.heading}</h2>
                     ${cmsContentList.pageDesc}
                     </c:forEach> 
@@ -114,8 +118,8 @@ if(session.getAttribute("menuList") == null){
 	                <div class="row">
 	                 <c:forEach items="${pageContent.gallaryDetailList}" var="gallaryDetailList">
 	                       <div class="col-12 col-sm-3 col-lg-3">
-                        <a href="http://www.webtreeindia.com/projectdemo/bppatilcollege/webadmin//../../uploads/gallery/20190123/gallery_0eGf.png" data-toggle="lightbox" data-gallery="plan" data-title="" class="thumbnail">
-                        <img src="http://www.webtreeindia.com/projectdemo/bppatilcollege/webadmin//../../uploads/gallery/20190123/gallery_0eGf.png" class="img-responsive"></a>
+                        <a href="${gallryImageURL}${gallaryDetailList.fileName}" data-toggle="lightbox" data-gallery="plan" data-title="" class="thumbnail">
+                        <img src="${gallryImageURL}thumbnail${gallaryDetailList.fileName}" class="img-responsive"></a>
                     </div>
 	                     </c:forEach>
 	                </div>
@@ -129,7 +133,7 @@ if(session.getAttribute("menuList") == null){
 	                 <c:forEach items="${pageContent.detailNewsList}" var="detailNewsList">
                  <div class="row row-eq-height">
                         <div class="col-12">
-                        <img src="${url}${detailNewsList.featuredImage}">
+                        <img src="${gallryImageURL}${detailNewsList.featuredImage}">
                           <c:set var = "string1" value = "${detailNewsList.descriptions}"/>
  						 <c:set var = "string2" value = "${fn:substring(string1, 0, 256)}" />
                         <h2> ${detailNewsList.heading}</h2>

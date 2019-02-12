@@ -17,7 +17,7 @@
                             <li><a href="#">About Us</a></li>
                             <li><a href="#">Terms & Conditions</a></li>
                             <li><a href="#">Feedback</a></li>
-                            <li><a href="#">Site Map</a></li>
+                            <li><a href="${pageContext.request.contextPath}/siteMap">Site Map</a></li>
                             <li><a href="#">Associate with</a></li>
                             <li><a href="#">FAQ</a></li>
                             <li><a href="#">MyGov in Media</a></li>

@@ -7,7 +7,7 @@
             <div class="container">
               <c:forEach items="${sessionScope.image}" var="imageList" varStatus="count">
               
-			  <img src="${pageContext.request.contextPath}/${sessionScope.url}${imageList.sliderImage}" alt="" width="150" height="50">
+			  <img src="${sessionScope.url}${imageList.sliderImage}" alt="" width="100" height="50">
 								  
 				</c:forEach>  
               
