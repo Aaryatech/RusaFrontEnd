@@ -63,7 +63,7 @@ public class HomeController {
 		  
 			ImageLink[] image = rest.getForObject(Constant.url + "/getAllImageLinkList", ImageLink[].class);
 			List<ImageLink> imagList = new ArrayList<ImageLink>(Arrays.asList(image));
-			  
+			  System.out.println(list);
 			session.setAttribute("image", imagList); 
 			session.setAttribute("url", Constant.getBannerImageURL);
 			session.setAttribute("mapping","/");

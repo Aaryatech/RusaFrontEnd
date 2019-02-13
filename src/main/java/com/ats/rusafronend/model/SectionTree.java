@@ -2,6 +2,7 @@ package com.ats.rusafronend.model;
 
 import java.util.List;
  
+ 
 
 public class SectionTree {
 	
@@ -11,6 +12,8 @@ public class SectionTree {
 	private String sectionDesc; 
 	private int pageId; 
 	private int secSortNo; 
+	private String externalUrl; 
+	private String externalUrlTarget;
 	List<CategoryList> catList;
 	public int getSectionId() {
 		return sectionId;
@@ -54,11 +57,24 @@ public class SectionTree {
 	public void setCatList(List<CategoryList> catList) {
 		this.catList = catList;
 	}
+	public String getExternalUrl() {
+		return externalUrl;
+	}
+	public void setExternalUrl(String externalUrl) {
+		this.externalUrl = externalUrl;
+	}
+	public String getExternalUrlTarget() {
+		return externalUrlTarget;
+	}
+	public void setExternalUrlTarget(String externalUrlTarget) {
+		this.externalUrlTarget = externalUrlTarget;
+	}
 	@Override
 	public String toString() {
 		return "SectionTree [sectionId=" + sectionId + ", sectionName=" + sectionName + ", sectionSlugname="
 				+ sectionSlugname + ", sectionDesc=" + sectionDesc + ", pageId=" + pageId + ", secSortNo=" + secSortNo
-				+ ", catList=" + catList + "]";
+				+ ", externalUrl=" + externalUrl + ", externalUrlTarget=" + externalUrlTarget + ", catList=" + catList
+				+ "]";
 	}
 
 }

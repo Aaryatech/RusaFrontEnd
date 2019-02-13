@@ -67,7 +67,15 @@
 	                          	 	 <c:choose>
 	                      				<c:when test="${catList.subCatList.size()>0}">
 				                      		<li class="dropdown-submenu">
-				                                  <a class="test" tabindex="-1" href="${pageContext.request.contextPath}/info/${catList.slugName}">${catList.catName}<span class="caret"></span></a>
+				                      			<c:choose>
+				                      				<c:when test="${not empty catList.externalUrl}">
+				                      				 			<a class="test" tabindex="-1" href="${pageContext.request.contextPath}/${catList.externalUrl}">${catList.catName}<span class="caret"></span></a>
+				                      				</c:when>
+				                      				<c:otherwise>
+				                      						 <a class="test" tabindex="-1" href="${pageContext.request.contextPath}/info/${catList.slugName}">${catList.catName}<span class="caret"></span></a>
+				                      				</c:otherwise>
+				                      			</c:choose>
+				                                  
 				                                  <ul class="dropdown-menu">
 					                                  <c:forEach items="${catList.subCatList}" var="subCatList" >
 					                                      <li class="dropdown-item">
@@ -78,7 +86,17 @@
 				                              </li>
 	                      				</c:when>
 	                      				<c:otherwise>
-	                      				<li class="dropdown-item"><a class="test" href="${pageContext.request.contextPath}/info/${catList.slugName}">${catList.catName}</a></li>
+	                      				<li class="dropdown-item"> 
+	                      				<c:choose>
+				                      				<c:when test="${not empty catList.externalUrl}">
+				                      				 			<a class="test" tabindex="-1" href="${pageContext.request.contextPath}/${catList.externalUrl}">${catList.catName}<span class="caret"></span></a>
+				                      				</c:when>
+				                      				<c:otherwise>
+				                      						 <a class="test" tabindex="-1" href="${pageContext.request.contextPath}/info/${catList.slugName}">${catList.catName}<span class="caret"></span></a>
+				                      				</c:otherwise>
+				                      			</c:choose>
+	                      				
+	                      				</li>
 	                      				</c:otherwise>
 	                      			</c:choose> 
 	                              </c:forEach>

@@ -11,6 +11,8 @@ public class CategoryList {
 	private String slugName; 
 	private int pageId; 
 	private int catSortNo; 
+	private String externalUrl; 
+	private String externalUrlTarget;
 	List<SubCategoryList> subCatList;
 	public int getCatId() {
 		return catId;
@@ -54,10 +56,23 @@ public class CategoryList {
 	public void setSubCatList(List<SubCategoryList> subCatList) {
 		this.subCatList = subCatList;
 	}
+	public String getExternalUrl() {
+		return externalUrl;
+	}
+	public void setExternalUrl(String externalUrl) {
+		this.externalUrl = externalUrl;
+	}
+	public String getExternalUrlTarget() {
+		return externalUrlTarget;
+	}
+	public void setExternalUrlTarget(String externalUrlTarget) {
+		this.externalUrlTarget = externalUrlTarget;
+	}
 	@Override
 	public String toString() {
 		return "CategoryList [catId=" + catId + ", catName=" + catName + ", catDesc=" + catDesc + ", slugName="
-				+ slugName + ", pageId=" + pageId + ", catSortNo=" + catSortNo + ", subCatList=" + subCatList + "]";
+				+ slugName + ", pageId=" + pageId + ", catSortNo=" + catSortNo + ", externalUrl=" + externalUrl
+				+ ", externalUrlTarget=" + externalUrlTarget + ", subCatList=" + subCatList + "]";
 	}
 
 }
