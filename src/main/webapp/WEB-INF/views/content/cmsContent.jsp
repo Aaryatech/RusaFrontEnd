@@ -66,6 +66,7 @@ if(session.getAttribute("menuList") == null){
                 
                 	 <h2>${cmsContentList.heading}</h2>
                     ${cmsContentList.pageDesc}
+                    <h6 style="text-align: right;"> Last Updated on <c:choose><c:when test="${not empty cmsContentList.editDate}">${cmsContentList.editDate}</c:when><c:otherwise>${cmsContentList.addDate}</c:otherwise> </c:choose> </h6>
                     </c:forEach> 
                     <c:set var="find" value="1"></c:set> 
                 </c:if>
@@ -82,6 +83,7 @@ if(session.getAttribute("menuList") == null){
                     	  ${faqContentList.faqAns}
                     </li>
                     </ul>
+                    <h6 style="text-align: right;"> Last Updated on <c:choose><c:when test="${not empty faqContentList.editDate}">${faqContentList.editDate}</c:when><c:otherwise>${faqContentList.addDate}</c:otherwise> </c:choose> </h6>
                     </c:forEach>
                     <c:set var="find" value="1"></c:set>   
                 </c:if>
@@ -141,6 +143,7 @@ if(session.getAttribute("menuList") == null){
                          <a  href="${pageContext.request.contextPath}/NewsDetails/${detailNewsList.languageId}/${detailNewsList.pageId}/${detailNewsList.newsblogsId}" >more </a>
                        </div> 
                     </div>
+                     <h6 style="text-align: right;"> Last Updated on <c:choose><c:when test="${not empty detailNewsList.editDate}">${detailNewsList.editDate}</c:when><c:otherwise>${detailNewsList.addDate}</c:otherwise> </c:choose> </h6>
                     </c:forEach>
 	                   
                     <c:set var="find" value="1"></c:set>   
