@@ -20,8 +20,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.client.RestTemplate;
+ 
 import com.ats.rusafronend.common.Constant;
 import com.ats.rusafronend.model.ImageLink;
+import com.ats.rusafronend.model.Logo;
 import com.ats.rusafronend.model.SectionTree;
  
 
@@ -63,7 +65,13 @@ public class HomeController {
 		  
 			ImageLink[] image = rest.getForObject(Constant.url + "/getAllImageLinkList", ImageLink[].class);
 			List<ImageLink> imagList = new ArrayList<ImageLink>(Arrays.asList(image));
-			  System.out.println(list);
+			
+			map = new LinkedMultiValueMap<String, Object>();
+			map.add("id", 1); 
+			Logo logo = rest.postForObject(Constant.url + "/getLogoListById", map, Logo.class);
+			session.setAttribute("logo", logo);
+			session.setAttribute("logoUrl", Constant.getLgogImageURL);
+			 
 			session.setAttribute("image", imagList); 
 			session.setAttribute("url", Constant.getBannerImageURL);
 			session.setAttribute("mapping","/");

@@ -20,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.ats.rusafronend.common.Constant;
 import com.ats.rusafronend.model.PageContent;
+import com.ats.rusafronend.model.SearchData;
 import com.ats.rusafronend.model.SectionTree;
  
 
@@ -83,6 +84,29 @@ public class CmsController {
 			session.setAttribute("mapping","siteMap");
 			 
 			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return model;
+	}
+	
+	@RequestMapping(value = "/searchData", method = RequestMethod.GET)
+	public ModelAndView searchData(HttpServletRequest request, HttpServletResponse response) {
+
+		ModelAndView model = new ModelAndView("searchData");
+		try {
+		 
+			HttpSession session = request.getSession();
+			session.setAttribute("mapping","searchData");
+			 
+			String word = request.getParameter("word");
+			MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
+			map.add("word", word);  
+			SearchData searchData = rest.postForObject(Constant.url + "/serchWordFromTable",map,  SearchData.class);
+			model.addObject("searchData", searchData);
+		 
 			
 		} catch (Exception e) {
 			e.printStackTrace();
