@@ -12,6 +12,7 @@ public class SectionTree {
 	private String sectionDesc; 
 	private int pageId; 
 	private int secSortNo; 
+	private int catCount;
 	private String externalUrl; 
 	private String externalUrlTarget;
 	List<CategoryList> catList;
@@ -69,12 +70,19 @@ public class SectionTree {
 	public void setExternalUrlTarget(String externalUrlTarget) {
 		this.externalUrlTarget = externalUrlTarget;
 	}
+	public int getCatCount() {
+		return catCount;
+	}
+	public void setCatCount(int catCount) {
+		this.catCount = catCount;
+	}
 	@Override
 	public String toString() {
 		return "SectionTree [sectionId=" + sectionId + ", sectionName=" + sectionName + ", sectionSlugname="
 				+ sectionSlugname + ", sectionDesc=" + sectionDesc + ", pageId=" + pageId + ", secSortNo=" + secSortNo
-				+ ", externalUrl=" + externalUrl + ", externalUrlTarget=" + externalUrlTarget + ", catList=" + catList
-				+ "]";
+				+ ", catCount=" + catCount + ", externalUrl=" + externalUrl + ", externalUrlTarget=" + externalUrlTarget
+				+ ", catList=" + catList + "]";
 	}
+	 
 
 }

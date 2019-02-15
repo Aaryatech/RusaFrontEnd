@@ -101,9 +101,11 @@ public class CmsController {
 			HttpSession session = request.getSession();
 			session.setAttribute("mapping","searchData");
 			 
+			 int langId = (Integer) session.getAttribute("langId");
 			String word = request.getParameter("word");
 			MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
-			map.add("word", word);  
+			map.add("word", word);
+			map.add("langId", langId); 
 			SearchData searchData = rest.postForObject(Constant.url + "/serchWordFromTable",map,  SearchData.class);
 			model.addObject("searchData", searchData);
 		 

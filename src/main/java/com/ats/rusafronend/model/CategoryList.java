@@ -2,18 +2,28 @@ package com.ats.rusafronend.model;
 
 import java.util.List;
  
-
 public class CategoryList {
-	
+	 
 	private int catId; 
 	private String catName; 
 	private String catDesc; 
 	private String slugName; 
 	private int pageId; 
+	private int parentId; 
+	private int sectionId; 
+	private int subCatCount; 
 	private int catSortNo; 
 	private String externalUrl; 
-	private String externalUrlTarget;
+	private String externalUrlTarget; 
 	List<SubCategoryList> subCatList;
+	
+	
+	public int getParentId() {
+		return parentId;
+	}
+	public void setParentId(int parentId) {
+		this.parentId = parentId;
+	}
 	public int getCatId() {
 		return catId;
 	}
@@ -68,10 +78,23 @@ public class CategoryList {
 	public void setExternalUrlTarget(String externalUrlTarget) {
 		this.externalUrlTarget = externalUrlTarget;
 	}
+	public int getSubCatCount() {
+		return subCatCount;
+	}
+	public void setSubCatCount(int subCatCount) {
+		this.subCatCount = subCatCount;
+	}
+	public int getSectionId() {
+		return sectionId;
+	}
+	public void setSectionId(int sectionId) {
+		this.sectionId = sectionId;
+	}
 	@Override
 	public String toString() {
 		return "CategoryList [catId=" + catId + ", catName=" + catName + ", catDesc=" + catDesc + ", slugName="
-				+ slugName + ", pageId=" + pageId + ", catSortNo=" + catSortNo + ", externalUrl=" + externalUrl
+				+ slugName + ", pageId=" + pageId + ", parentId=" + parentId + ", sectionId=" + sectionId
+				+ ", subCatCount=" + subCatCount + ", catSortNo=" + catSortNo + ", externalUrl=" + externalUrl
 				+ ", externalUrlTarget=" + externalUrlTarget + ", subCatList=" + subCatList + "]";
 	}
 

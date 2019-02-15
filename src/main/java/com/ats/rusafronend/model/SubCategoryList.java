@@ -1,15 +1,20 @@
 package com.ats.rusafronend.model;
+ 
 
 public class SubCategoryList {
-	
+	 
 	private int subCatId; 
 	private String subCatName; 
 	private String subCatDesc; 
 	private String subSlugName; 
 	private int pageId; 
-	private int subSortNo;
+	private int parentId; 
+	private int sectionId; 
+	private int subSortNo; 
 	private String externalUrl; 
 	private String externalUrlTarget;
+	
+	
 	public int getSubCatId() {
 		return subCatId;
 	}
@@ -58,11 +63,24 @@ public class SubCategoryList {
 	public void setExternalUrlTarget(String externalUrlTarget) {
 		this.externalUrlTarget = externalUrlTarget;
 	}
+	public int getParentId() {
+		return parentId;
+	}
+	public void setParentId(int parentId) {
+		this.parentId = parentId;
+	}
+	public int getSectionId() {
+		return sectionId;
+	}
+	public void setSectionId(int sectionId) {
+		this.sectionId = sectionId;
+	}
 	@Override
 	public String toString() {
 		return "SubCategoryList [subCatId=" + subCatId + ", subCatName=" + subCatName + ", subCatDesc=" + subCatDesc
-				+ ", subSlugName=" + subSlugName + ", pageId=" + pageId + ", subSortNo=" + subSortNo + ", externalUrl="
-				+ externalUrl + ", externalUrlTarget=" + externalUrlTarget + "]";
+				+ ", subSlugName=" + subSlugName + ", pageId=" + pageId + ", parentId=" + parentId + ", sectionId="
+				+ sectionId + ", subSortNo=" + subSortNo + ", externalUrl=" + externalUrl + ", externalUrlTarget="
+				+ externalUrlTarget + "]";
 	}
 	
 	

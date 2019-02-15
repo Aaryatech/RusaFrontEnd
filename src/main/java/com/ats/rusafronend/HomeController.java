@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -25,6 +26,7 @@ import com.ats.rusafronend.common.Constant;
 import com.ats.rusafronend.model.ImageLink;
 import com.ats.rusafronend.model.Logo;
 import com.ats.rusafronend.model.SectionTree;
+import com.ats.rusafronend.model.TopMenuList; 
  
 
 /**
@@ -60,8 +62,8 @@ public class HomeController {
 			MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
 			map.add("langId", langId);
 			 
-			SectionTree[] sectionTree = rest.postForObject(Constant.url + "/getSectionListByLangId",map,  SectionTree[].class);
-			List<SectionTree> list = new ArrayList<SectionTree>(Arrays.asList(sectionTree));
+			TopMenuList sectionTree = rest.postForObject(Constant.url + "/getTopMenuList",map,  TopMenuList.class);
+			 
 		  
 			ImageLink[] image = rest.getForObject(Constant.url + "/getAllImageLinkList", ImageLink[].class);
 			List<ImageLink> imagList = new ArrayList<ImageLink>(Arrays.asList(image));
@@ -75,7 +77,7 @@ public class HomeController {
 			session.setAttribute("image", imagList); 
 			session.setAttribute("url", Constant.getBannerImageURL);
 			session.setAttribute("mapping","/");
-		session.setAttribute("menuList",list);
+		session.setAttribute("menuList",sectionTree);
 		
 		}catch (Exception e) {
 			e.printStackTrace();
@@ -99,11 +101,11 @@ public class HomeController {
 			MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
 			map.add("langId", arry[0]);
 			RestTemplate rest = new RestTemplate();
-			SectionTree[] sectionTree = rest.postForObject(Constant.url + "/getSectionListByLangId",map,  SectionTree[].class);
-			List<SectionTree> list = new ArrayList<SectionTree>(Arrays.asList(sectionTree));
-			   
-			session.setAttribute("menuList",list);
+			TopMenuList sectionTree = rest.postForObject(Constant.url + "/getTopMenuList",map,  TopMenuList.class);
 			 
+			   
+			session.setAttribute("menuList",sectionTree);
+		 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -125,6 +127,5 @@ public class HomeController {
 		}catch(Exception e) {
 			return "redirect:/";
 		}
-	}
- 
+	} 
 }
