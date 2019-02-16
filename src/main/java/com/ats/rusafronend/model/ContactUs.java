@@ -1,7 +1,5 @@
 package com.ats.rusafronend.model;
 
-
-
 public class ContactUs {
 
 	private int id;
@@ -22,6 +20,10 @@ public class ContactUs {
 	
 	private int status;
 	
+	
+	private String remark;
+	
+	private int statusByAdmin;
 	private int delStatus;
 	
 	private String ipAddress;
@@ -107,6 +109,23 @@ public class ContactUs {
 		this.status = status;
 	}
 
+	
+	public String getRemark() {
+		return remark;
+	}
+
+	public void setRemark(String remark) {
+		this.remark = remark;
+	}
+
+	public int getStatusByAdmin() {
+		return statusByAdmin;
+	}
+
+	public void setStatusByAdmin(int statusByAdmin) {
+		this.statusByAdmin = statusByAdmin;
+	}
+
 	public String getIpAddress() {
 		return ipAddress;
 	}
@@ -160,8 +179,9 @@ public class ContactUs {
 	public String toString() {
 		return "ContactUs [id=" + id + ", contactName=" + contactName + ", emailId=" + emailId + ", mobileNo="
 				+ mobileNo + ", message=" + message + ", topic=" + topic + ", userAgent=" + userAgent + ", addDate="
-				+ addDate + ", status=" + status + ", delStatus=" + delStatus + ", ipAddress=" + ipAddress + ", exInt1="
-				+ exInt1 + ", exInt2=" + exInt2 + ", exVar1=" + exVar1 + ", exVar2=" + exVar2 + "]";
+				+ addDate + ", status=" + status + ", remark=" + remark + ", statusByAdmin=" + statusByAdmin
+				+ ", delStatus=" + delStatus + ", ipAddress=" + ipAddress + ", exInt1=" + exInt1 + ", exInt2=" + exInt2
+				+ ", exVar1=" + exVar1 + ", exVar2=" + exVar2 + "]";
 	}
 
 	

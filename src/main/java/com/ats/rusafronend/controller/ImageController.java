@@ -77,14 +77,14 @@ ContactUs contactUs=new ContactUs();
 		return model;
 	}
 	@RequestMapping(value = "/insertContactUs", method = RequestMethod.POST)
-	public String insertBannerImage(HttpServletRequest request,HttpServletResponse response) {
+	public String insertContactUs(HttpServletRequest request,HttpServletResponse response) {
 
 		 try {
 			 	String name = request.getParameter("name");
 			 	String email = request.getParameter("email");
 			 	String message = request.getParameter("message");
 			 	String mobileNo = request.getParameter("mobileNo");
-			 		
+			
 				Date date = new Date(); // your date
 				SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
 				SimpleDateFormat dateTimeInGMT = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
@@ -104,8 +104,8 @@ ContactUs contactUs=new ContactUs();
 							contactUs.setEmailId(email);
 							contactUs.setMessage(message);
 							contactUs.setMobileNo(mobileNo);
-							contactUs.setStatus(1);
-							contactUs.setDelStatus(1);
+							contactUs.setStatusByAdmin(0);;
+							//contactUs.setRemark(null);
 							
           	ContactUs res = rest.postForObject(Constant.url + "/saveContactUs", contactUs, ContactUs.class);
 						
