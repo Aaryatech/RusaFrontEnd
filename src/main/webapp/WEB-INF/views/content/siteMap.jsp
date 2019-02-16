@@ -39,7 +39,8 @@
 				<div class="leftColm">
 					<h3>Site Map</h3>
 					<ul class="menu">
-						<c:forEach items="${sessionScope.menuList}" var="menuList">
+						<c:forEach items="${sessionScope.menuList.sectionlist}"
+							var="menuList">
 
 							<li><c:choose>
 									<c:when test="${not empty menuList.externalUrl}">
@@ -65,44 +66,54 @@
 				<div id="site-map">
 					<div class="site-map-menus">
 
-						<c:forEach items="${sessionScope.menuList}" var="menuList">
+						<c:forEach items="${sessionScope.menuList.sectionlist}"
+							var="menuList">
 							<div
 								class="site-map-box-menu site-map-box-menu-menu-about-mhrd-menu site-map-box-menu site-map-box-menu-menu-accessibility-statement site-map-box">
 								<h2 class="title">${menuList.sectionName}</h2>
 								<div class="content">
-									<c:forEach items="${menuList.catList}" var="catList">
-										<ul class="site-map-menu list">
+									<c:forEach items="${sessionScope.menuList.categoryList}"
+										var="catList">
 
-											<li class="first leaf"><c:choose>
-													<c:when test="${not empty catList.externalUrl}">
-														<a
-															href="${pageContext.request.contextPath}/${catList.externalUrl}"
-															title="Accessibility Features">${catList.catName}</a>
-													</c:when>
-													<c:otherwise>
-														<a
-															href="${pageContext.request.contextPath}/info/${catList.slugName}"
-															title="Accessibility Features">${catList.catName}</a>
-													</c:otherwise>
-												</c:choose></li>
+										<c:if test="${catList.sectionId==menuList.sectionId}">
+											<ul class="site-map-menu list">
 
-											<c:forEach items="${catList.subCatList}" var="subCatList">
-												<li class="leaf"><c:choose>
-														<c:when test="${not empty subCatList.externalUrl}">
+
+
+												<li class="first leaf"><c:choose>
+														<c:when test="${not empty catList.externalUrl}">
 															<a
-																href="${pageContext.request.contextPath}/${subCatList.externalUrl}"
-																title="Screen Reader Access ">${subCatList.subCatName}
-															</a>
+																href="${pageContext.request.contextPath}/${catList.externalUrl}"
+																title="Accessibility Features">${catList.catName}</a>
 														</c:when>
 														<c:otherwise>
 															<a
-																href="${pageContext.request.contextPath}/info/${subCatList.subSlugName}"
-																title="Screen Reader Access ">${subCatList.subCatName}
-															</a>
+																href="${pageContext.request.contextPath}/info/${catList.slugName}"
+																title="Accessibility Features">${catList.catName}</a>
 														</c:otherwise>
 													</c:choose></li>
-											</c:forEach>
-										</ul>
+
+												<c:forEach items="${sessionScope.menuList.subCatList}"
+													var="subCatList">
+													<c:if test="${subCatList.parentId==catList.catId}">
+													<li class="leaf"><c:choose>
+															<c:when test="${not empty subCatList.externalUrl}">
+																<a
+																	href="${pageContext.request.contextPath}/${subCatList.externalUrl}"
+																	title="Screen Reader Access ">${subCatList.subCatName}
+																</a>
+															</c:when>
+															<c:otherwise>
+																<a
+																	href="${pageContext.request.contextPath}/info/${subCatList.subSlugName}"
+																	title="Screen Reader Access ">${subCatList.subCatName}
+																</a>
+															</c:otherwise>
+														</c:choose></li>
+														</c:if>
+												</c:forEach>
+											</ul>
+										</c:if>
 									</c:forEach>
 								</div>
 							</div>

@@ -43,7 +43,7 @@ if(session.getAttribute("menuList") == null){
             
                 <div class="col-12 col-sm-3 col-lg-3">
                     <div class="leftColm">
-                    <c:forEach items="${sessionScope.menuList}" var="menuList" >
+                    <c:forEach items="${sessionScope.menuList.sectionlist}" var="menuList" >
                          <c:if test="${menuList.sectionId==pageContent.sectioinId}">
                          	<h3>${menuList.sectionName}</h3>
                          	  <ul class="menu">
