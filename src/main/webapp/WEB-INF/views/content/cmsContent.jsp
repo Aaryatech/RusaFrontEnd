@@ -103,12 +103,13 @@
 					<h2>FAQ's</h2>
 
 					<c:forEach items="${pageContent.faqContentList}"
-						var="faqContentList">
+						var="faqContentList" varStatus="loop">
 
 						<ul>
 							<li><strong>${faqContentList.faqQue}</strong><br>
 								<div class="clearfix"></div> ${faqContentList.faqAns}</li>
 						</ul>
+						<c:if test="${loop.last}">
 						<h6 style="text-align: right;">
 							Last Updated on
 							<c:choose>
@@ -116,6 +117,7 @@
 								<c:otherwise>${faqContentList.addDate}</c:otherwise>
 							</c:choose>
 						</h6>
+						 </c:if>
 					</c:forEach>
 					<c:set var="find" value="1"></c:set>
 				</c:if>
