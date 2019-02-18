@@ -10,7 +10,10 @@
 //allow access only if session exists
 String user = null;
 	if (session.getAttribute("menuList") == null) {
-		response.sendRedirect("changeLangage//");
+		String mapping = (String) session.getAttribute("mapping");
+		String contextPath = request.getContextPath();
+		contextPath=contextPath+"/retriveSession/"+mapping;
+		response.sendRedirect(contextPath); 
 	}else{
 		if (session.getAttribute("maintainance") != null) {
 			Maintainance main = (Maintainance) session.getAttribute("maintainance");
