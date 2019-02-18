@@ -3,15 +3,24 @@
 	uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 	<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
-	
+<%@ page import="com.ats.rusafronend.model.Maintainance"%>
 
 
  <%
 //allow access only if session exists
 String user = null;
-if(session.getAttribute("menuList") == null){
-	response.sendRedirect("changeLangage//");
-} 
+	if (session.getAttribute("menuList") == null) {
+		response.sendRedirect("changeLangage//");
+	}else{
+		if (session.getAttribute("maintainance") != null) {
+			Maintainance main = (Maintainance) session.getAttribute("maintainance");
+			if (main.getMaintenanceStatus()==1) { 
+				String contextPath = request.getContextPath();
+				contextPath=contextPath+"/siteInMaintainance";
+				response.sendRedirect(contextPath);
+			}
+		}
+	}
 %>
  <!DOCTYPE html>
 <html lang="en">

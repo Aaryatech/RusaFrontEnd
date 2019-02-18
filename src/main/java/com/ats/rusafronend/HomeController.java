@@ -20,11 +20,14 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
- 
+import org.springframework.web.servlet.ModelAndView;
+
 import com.ats.rusafronend.common.Constant;
 import com.ats.rusafronend.model.ImageLink;
 import com.ats.rusafronend.model.Logo;
+import com.ats.rusafronend.model.Maintainance;
 import com.ats.rusafronend.model.SectionTree;
 import com.ats.rusafronend.model.TopMenuList; 
  
@@ -105,6 +108,9 @@ public class HomeController {
 			 
 			   
 			session.setAttribute("menuList",sectionTree);
+			
+			Maintainance maintainance = rest.getForObject(Constant.url + "/checkIsMaintenance", Maintainance.class); 
+			session.setAttribute("maintainance",maintainance);
 		 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -128,4 +134,40 @@ public class HomeController {
 			return "redirect:/";
 		}
 	} 
+	
+	@RequestMapping(value = "/checkMaintainance", method = RequestMethod.GET)
+	public@ResponseBody Maintainance checkMaintainance(HttpServletRequest request, HttpServletResponse response) {
+
+	 
+		RestTemplate rest = new RestTemplate();
+		Maintainance maintainance = new Maintainance();
+		
+		try {
+			 System.out.println("in Maintainance ");
+			HttpSession session = request.getSession();
+			 
+			 maintainance = rest.getForObject(Constant.url + "/checkIsMaintenance",  Maintainance.class); 
+			session.setAttribute("maintainance",maintainance);
+		 
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return maintainance; 
+	}
+	
+	@RequestMapping(value = "/siteInMaintainance", method = RequestMethod.GET)
+	public ModelAndView siteInMaintainance(HttpServletRequest request, HttpServletResponse response) {
+
+	 
+		 
+		ModelAndView model = new ModelAndView("maintainance");
+		
+		try {
+			 
+		 
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return model; 
+	}
 }
