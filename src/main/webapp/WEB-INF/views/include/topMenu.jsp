@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%><%@ taglib
 	uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
-
+<c:url var="checkMaintainance" value="/checkMaintainance" />
 <div class="top-menu" id="top-menu">
 	<div>
 		<div class="navbar navbar-expand-md ">
@@ -119,8 +119,8 @@
 										<a
 											href="${pageContext.request.contextPath}/info/${menuList.sectionSlugname}"
 											class="dropdown-toggle nav-link dropdown-toggle"
-											data-toggle="dropdown">${menuList.sectionName} <span
-											class="caret"></span></a>
+											data-toggle="dropdown" title="${menuList.sectionName}">${menuList.sectionName} <span
+											class="caret" ></span></a>
 										<ul class="dropdown-menu">
 											<c:forEach items="${sessionScope.menuList.categoryList}"
 												var="catList">
@@ -134,12 +134,12 @@
 															<li class="dropdown-submenu"><c:choose>
 																	<c:when test="${not empty catList.externalUrl}">
 																		<a class="test" tabindex="-1"
-																			href="${pageContext.request.contextPath}/${catList.externalUrl}">${catList.catName}<span
+																			onclick="checkMaintainance()" title="${catList.catName}" href="${pageContext.request.contextPath}/${catList.externalUrl}">${catList.catName}<span
 																			class="caret"></span></a>
 																	</c:when>
 																	<c:otherwise>
 																		<a class="test" tabindex="-1"
-																			href="${pageContext.request.contextPath}/info/${catList.slugName}">${catList.catName}<span
+																			onclick="checkMaintainance()" title="${catList.catName}" href="${pageContext.request.contextPath}/info/${catList.slugName}">${catList.catName}<span
 																			class="caret"></span></a>
 																	</c:otherwise>
 																</c:choose>
@@ -154,12 +154,12 @@
 																			<li class="dropdown-item"><c:choose>
 																					<c:when test="${not empty catList.externalUrl}">
 																						<a class="test"
-																							href="${pageContext.request.contextPath}/${subCatList.externalUrl}">${subCatList.subCatName}
+																							onclick="checkMaintainance()" title="${subCatList.subCatName}" href="${pageContext.request.contextPath}/${subCatList.externalUrl}">${subCatList.subCatName}
 																						</a>
 																					</c:when>
 																					<c:otherwise>
 																						<a class="test"
-																							href="${pageContext.request.contextPath}/info/${subCatList.subSlugName}">${subCatList.subCatName}
+																							onclick="checkMaintainance()" title="${subCatList.subCatName}" href="${pageContext.request.contextPath}/info/${subCatList.subSlugName}">${subCatList.subCatName}
 																						</a>
 																					</c:otherwise>
 																				</c:choose></li>
@@ -175,12 +175,12 @@
 															<li class="dropdown-item"><c:choose>
 																	<c:when test="${not empty catList.externalUrl}">
 																		<a class="test" tabindex="-1"
-																			href="${pageContext.request.contextPath}/${catList.externalUrl}">${catList.catName}<span
+																			onclick="checkMaintainance()" title="${catList.catName}" href="${pageContext.request.contextPath}/${catList.externalUrl}">${catList.catName}<span
 																			class="caret"></span></a>
 																	</c:when>
 																	<c:otherwise>
 																		<a class="test" tabindex="-1"
-																			href="${pageContext.request.contextPath}/info/${catList.slugName}">${catList.catName}<span
+																			onclick="checkMaintainance()" title="${catList.catName}" href="${pageContext.request.contextPath}/info/${catList.slugName}">${catList.catName}<span
 																			class="caret"></span></a>
 																	</c:otherwise>
 																</c:choose></li>
@@ -192,7 +192,7 @@
 									</c:when>
 									<c:otherwise>
 										<a class="nav-link"
-											href="${pageContext.request.contextPath}/info/${menuList.sectionSlugname}">${menuList.sectionName}</a>
+										 onclick="checkMaintainance()"	title="${menuList.sectionName}" href="${pageContext.request.contextPath}/info/${menuList.sectionSlugname}">${menuList.sectionName}</a>
 									</c:otherwise>
 								</c:choose></li>
 						</c:forEach>
@@ -203,3 +203,11 @@
 
 	</div>
 </div>
+<script>
+			function checkMaintainance() {
+
+				$.getJSON('${checkMaintainance}', {
+					 ajax : 'true'
+				});
+			}
+		</script>
