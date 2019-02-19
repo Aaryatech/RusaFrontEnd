@@ -8,6 +8,7 @@
    Date date = new Date();
 	SimpleDateFormat sf = new SimpleDateFormat("dd MMM, yyyy | hh:mm a z", Locale.ENGLISH);	
    out.print( "<div class=\"date\">" +sf.format(date)+"</div>");
+    
 %>
     	<!--  <div class="date">09 Dec, 2018 | 12:38 PM IST</div> -->
         <div class="top-right-menu">
