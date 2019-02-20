@@ -194,7 +194,13 @@
 						var="detailNewsList">
 						<div class="row row-eq-height">
 							<div class="col-12">
-								<img src="${gallryImageURL}${detailNewsList.featuredImage}">
+							<c:if test="${not empty detailNewsList.featuredImage}">
+							<img src="${gallryImageURL}${detailNewsList.featuredImage}"
+								alt=""
+								style="float:${detailNewsList.featuredImageAlignment}; padding-left:20px; padding-right:20px; padding-bottom:20px;"
+								height="" width="">
+						</c:if>
+							<%-- 	<img src="${gallryImageURL}${detailNewsList.featuredImage}"> --%>
 								<c:set var="string1" value="${detailNewsList.descriptions}" />
 								<c:set var="string2" value="${fn:substring(string1, 0, 256)}" />
 								<h2>${detailNewsList.heading}</h2>

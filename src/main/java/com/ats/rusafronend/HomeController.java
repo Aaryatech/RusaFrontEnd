@@ -25,6 +25,8 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ats.rusafronend.common.Constant;
+import com.ats.rusafronend.model.BannerImages;
+import com.ats.rusafronend.model.GallaryDetail;
 import com.ats.rusafronend.model.ImageLink;
 import com.ats.rusafronend.model.Logo;
 import com.ats.rusafronend.model.Maintainance;
@@ -65,10 +67,21 @@ public class HomeController {
 
 			ImageLink[] image = rest.getForObject(Constant.url + "/getAllImageLinkList", ImageLink[].class);
 			List<ImageLink> imagList = new ArrayList<ImageLink>(Arrays.asList(image));
-
+			map.add("id", 3); 
+			BannerImages editbanner = rest.postForObject(Constant.url + "/getSliderImagesById", map, BannerImages.class);
+			session.setAttribute("editbanner", editbanner);
 			map = new LinkedMultiValueMap<String, Object>();
 			map.add("id", 1);
 			Logo logo = rest.postForObject(Constant.url + "/getLogoListById", map, Logo.class);
+		
+			 
+			GallaryDetail[] editGalleryDetail = rest.getForObject(Constant.url + "/getLastTenVideos",GallaryDetail[].class);
+			List<GallaryDetail> editGallery = new ArrayList<GallaryDetail>(Arrays.asList(editGalleryDetail));
+			GallaryDetail[] editPhotoDetail = rest.getForObject(Constant.url + "/getLastTenPhotos",GallaryDetail[].class);
+			List<GallaryDetail> editPhoto = new ArrayList<GallaryDetail>(Arrays.asList(editPhotoDetail));
+			System.out.println(editPhoto.toString());
+			session.setAttribute("editPhoto", editPhoto);
+			session.setAttribute("editGalleryDetail", editGallery);
 			session.setAttribute("logo", logo);
 			session.setAttribute("logoUrl", Constant.getLgogImageURL);
 
@@ -76,7 +89,7 @@ public class HomeController {
 			session.setAttribute("url", Constant.getBannerImageURL);
 			session.setAttribute("mapping", "/");
 			session.setAttribute("menuList", sectionTree);
-
+			session.setAttribute("gallryImageURL", Constant.getGallryImageURL);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

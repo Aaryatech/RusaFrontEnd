@@ -1,6 +1,30 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ page import="com.ats.rusafronend.model.Maintainance"%>
+
+
+<%
+	//allow access only if session exists
+	String user = null;
+	if (session.getAttribute("menuList") == null) {
+		String mapping = (String) session.getAttribute("mapping");
+		String contextPath = request.getContextPath();
+		contextPath=contextPath+"/retriveSession/"+mapping;
+		response.sendRedirect(contextPath); 
+	}else{
+		if (session.getAttribute("maintainance") != null) {
+			Maintainance main = (Maintainance) session.getAttribute("maintainance");
+			if (main.getMaintenanceStatus()==1) { 
+				String contextPath = request.getContextPath();
+				contextPath=contextPath+"/siteInMaintainance";
+				response.sendRedirect(contextPath);
+				 
+			}
+		}
+	}
+%>
 <html>
 <head>
 	<title>Home</title>
@@ -16,17 +40,17 @@
          
          <jsp:include page="/WEB-INF/views/include/topBar.jsp"></jsp:include>
          <jsp:include page="/WEB-INF/views/include/topMenu.jsp"></jsp:include>
-         <div class="slider">
+         <div class="slider" id="slider">
             <div class="container">
-                <h1>Rashtriya Uchchatar Shiksha Abhiyan<br>
-                    <span>Government of Maharashtra</span>
+                <h1>${editbanner.sliderName}<br>
+                    <span>${editbanner.text1}</span>
                 </h1>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
-                <a href="#" class="btn button "><span>Read More</span></a>
+                <p> ${editbanner.text2}</p>
+                <a href="/readMore" class="btn button "><span>${editbanner.linkName}</span></a>
             </div>
         </div>
        
-        <div class="container">
+        <div class="container" id="main-content"">
             <div class="card sub-link">
                 <div class="row">
                     <div class="col-12 col-sm-3 col-lg-3">
@@ -55,20 +79,9 @@
                 <div class="col-12 col-sm-6 col-lg-6">
                     <ul class="nav nav-tabs" role="tablist">
                         <li class="nav-item nutrition-task-bar-item">
-                            <a class="nav-link active" data-toggle="tab" href="#update">Update</a>
+                            <a class="nav-link active" data-toggle="tab" href="#update">News and Notification</a>
                         </li>
-                        <li class="nav-item nutrition-task-bar-item">
-                            <a class="nav-link" data-toggle="tab" href="#circular">Circular</a>
-                        </li>
-                        <li class="nav-item nutrition-task-bar-item">
-                            <a class="nav-link" data-toggle="tab" href="#press-releases">Press Releases</a>
-                        </li>
-                        <li class="nav-item nutrition-task-bar-item">
-                            <a class="nav-link" data-toggle="tab" href="#advertisment">Advertisment</a>
-                        </li>
-                        <li class="nav-item nutrition-task-bar-item">
-                            <a class="nav-link" data-toggle="tab" href="#achievements">Achievements</a>
-                        </li>
+                       
                     </ul>
                     <div class="tab-content">
                         <div id="update" class="tab-pane active">
@@ -91,11 +104,18 @@
                     <div class="row gallery">
                         <div class="col-12 col-sm-6 col-lg-6">
                             <h3>Award Gallery</h3>
-                            <img src="${pageContext.request.contextPath}/resources/images/gallery.jpg" alt="">
+                              <img src="${sessionScope.gallryImageURL}${editPhoto[2].fileName}" width="250" height="228">
+                            <%--  <c:forEach items="${editPhoto}" var="editPhotoDetail" varStatus="count">
+              				</c:forEach>  --%>
+                          
+                           
                         </div>
                         <div class="col-12 col-sm-6 col-lg-6">
-                            <h3>Teacher's Day 2018</h3>
-                            <img src="${pageContext.request.contextPath}/resources/images/video.jpg" alt="">
+                          <h3>Video</h3>
+                           ${editGalleryDetail[0].fileName}
+                         
+                            <i class="icon-arrow-point-to-right icon"></i> 
+                        
                         </div>
                     </div>
                 </div>

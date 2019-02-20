@@ -12,8 +12,14 @@
 %>
     	<!--  <div class="date">09 Dec, 2018 | 12:38 PM IST</div> -->
         <div class="top-right-menu">
-        	<a href="#main-content" class="dropdown-arrow"><span>Skip to main content</span></a>
+        	
+            <a href="#main-content" class="dropdown-arrow"><span>Skip to main content</span></a>
             <a href="#slider" class="dropdown-arrow"><span>Skip to navigation</span></a>
+            <a href="#" class="accbl style-switcher style-" data-rel="." title=".">A</a>
+            <a href="#" class="accbl style-switcher style-" data-rel="," title=",">A</a>
+            <a href="#" title="Text Size: Decrease -6%" class="r">A+</a>
+            <a href="#" title="Text Size: Normal =100%" class="ts_normal_fix text_display_hidden ts_rollover">A</a>
+            <a href="#" title="Text Size: Increase +6%" class="ts_increase_fix text_display_hidden ts_rollover">A-</a>
         	<a href="#">Login</a>
                 <a href="#">Register</a>
                 <a href="${pageContext.request.contextPath}/changeLangage/1-${mapping}">English</a>
