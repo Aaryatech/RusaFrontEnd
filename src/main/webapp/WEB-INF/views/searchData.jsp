@@ -3,7 +3,7 @@
 	uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
-
+<%@ page import="com.ats.rusafronend.model.Maintainance"%>
 
 
 <%
@@ -14,6 +14,17 @@
 		String contextPath = request.getContextPath();
 		contextPath=contextPath+"/retriveSession/"+mapping;
 		response.sendRedirect(contextPath); 
+	}
+	else{
+		if (session.getAttribute("maintainance") != null) {
+			Maintainance main = (Maintainance) session.getAttribute("maintainance");
+			if (main.getMaintenanceStatus()==1) { 
+				String contextPath = request.getContextPath();
+				contextPath=contextPath+"/siteInMaintainance";
+				response.sendRedirect(contextPath);
+				 
+			}
+		}
 	}
 %>
 <!DOCTYPE html>
