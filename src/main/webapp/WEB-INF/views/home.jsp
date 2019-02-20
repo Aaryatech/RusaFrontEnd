@@ -71,8 +71,12 @@
 						<c:set var="string1" value="${getCMSDesc.pageDesc}" />
 						<c:set var="string2" value="${fn:substring(string1, 0, 256)}" />
 						<h2>${getCMSDesc.heading}</h2>
-						<p>${string2}</p>
-						<a href="">more... </a>
+						<p>${string2}
+						
+						</p>
+						<div class="more" style="clear:both">
+						<a href="#">more... </a>
+						</div>
 					</div>
 
 				</c:forEach>
@@ -198,33 +202,35 @@
 		</div>
 		<div class="row bottom-section">
 			<div class="col-12 col-sm-3 col-lg-3">
-				<p>
-					<strong>Schemes</strong>
-				</p>
-				<p>Lorem Ipsum is simply dummy text of the printing and
-					typesetting industry. Lorem Ipsum is simply dummy text of the
-					printing and typesetting industry. Lorem Ipsum is simply dummy text
-					of the printing and typesetting industry.</p>
-				<div class="divider"></div>
-				<p>
-					<strong>Forms</strong>
-				</p>
-				<p>Lorem Ipsum is simply dummy text of the printing and
-					typesetting industry.</p>
-				<a href="#" class="btn download-form"><span>Download
-						Forms</span></a>
+				      <div class="twitter">
+                        <a class="twitter-timeline" data-chrome="nofooter" data-widget-id="634609273125732352" href="https://twitter.com/HRDMinistry" tabindex="-1">Tweets by @HRDMinistry</a> 
+                        <script>window.twttr = (function(d, s, id) {
+                                var js, fjs = d.getElementsByTagName(s)[0],
+                                  t = window.twttr || {};
+                                if (d.getElementById(id)) return t;
+                                js = d.createElement(s);
+                                js.id = id;
+                                js.src = "https://platform.twitter.com/widgets.js";
+                                fjs.parentNode.insertBefore(js, fjs);
+                              
+                                t._e = [];
+                                t.ready = function(f) {
+                                  t._e.push(f);
+                                };
+                              
+                                return t;
+                              }(document, "script", "twitter-wjs"));</script>
+                    </div>
 			</div>
 			<div class="col-12 col-sm-3 col-lg-3">
-				<p>
-					<strong>Fundamental Core Values</strong>
-				</p>
-				<br> <img
-					src="${pageContext.request.contextPath}/resources/images/news.jpg"
-					alt="" class="new-img">
-				<p>Lorem Ipsum is simply dummy text of the printing and
-					typesetting industry. Lorem Ipsum has been the industry's ...</p>
-				<a href="#" class="btn download-form read-more"><span>Read
-						More</span></a>
+				  <div class="twitter">
+                            <div class="fb-page" data-adapt-container-width="false" data-height="270" data-hide-cover="false" data-href="https://www.facebook.com/HRDMinistry/" data-show-facepile="false" data-small-header="true" data-tabs="timeline" data-width="262">
+                                <div class="fb-xfbml-parse-ignore">
+                                <blockquote cite="https://www.facebook.com/HRDMinistry/"><p>
+                                            <a href="https://www.facebook.com/HRDMinistry/">Ministry of Human Resource Development, Government of India</a></p></blockquote>
+                                </div>
+                    </div>
+                    </div>
 			</div> 
 			<div class="col-12 col-sm-6 col-lg-6">
 				<div class="testimonials">

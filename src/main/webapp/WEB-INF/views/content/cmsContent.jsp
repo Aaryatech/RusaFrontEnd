@@ -269,14 +269,17 @@
 				</a>
 				</div>
                 </div> -->
-
-
-
-
+                
+                <c:if test="${find==1}"> 
+					<a href="javascript:void(0)" onclick="window.print()" style="text-align: right;"> print</a>
+				</c:if>
+ 
+ 
 				<c:if test="${find==0}">
 
 					<h2 style="text-align: center;">No Record Found</h2>
 				</c:if>
+
 
 			</div>
 

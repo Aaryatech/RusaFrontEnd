@@ -14,4 +14,10 @@
 	 var strMsg = "This link will take you to extneranl web site.";
      var strMsgPdf = "PDF file that opens in a new window.";
 	</script>
-         
+          <script>(function(d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) return;
+                js = d.createElement(s); js.id = id;
+                js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5&appId=809225772483402";
+                fjs.parentNode.insertBefore(js, fjs);
+              }(document, 'script', 'facebook-jssdk'));</script>
