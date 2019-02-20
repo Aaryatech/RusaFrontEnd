@@ -749,3 +749,15 @@ textarea {
 	border:1px solid #ccc !important;
 	padding:20px;
 }
+
+
+.bg-dark_new {
+	background-color: #21316c;
+}
+a.bg-dark_new:focus, a.bg-dark_new:hover, button.bg-dark_new:focus, button.bg-dark_new:hover {
+	background-color: #1d2124;
+}
+
+
+
+ 

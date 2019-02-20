@@ -15,11 +15,11 @@
         	
             <a href="#main-content" class="dropdown-arrow"><span>Skip to main content</span></a>
             <a href="#slider" class="dropdown-arrow"><span>Skip to navigation</span></a>
-            <a href="#" class="accbl style-switcher style-" data-rel="." title=".">A</a>
-            <a href="#" class="accbl style-switcher style-" data-rel="," title=",">A</a>
-            <a href="#" title="Text Size: Decrease -6%" class="r">A+</a>
-            <a href="#" title="Text Size: Normal =100%" class="ts_normal_fix text_display_hidden ts_rollover">A</a>
-            <a href="#" title="Text Size: Increase +6%" class="ts_increase_fix text_display_hidden ts_rollover">A-</a>
+            <a href="javascript:void(0);" class="black" data-rel="." title=".">A</a>
+            <a href="javascript:void(0);" class="white" data-rel="," title=",">A</a>
+            <a href="javascript:void(0);" title="Text Size: Decrease" id="btn-decrease" class="decrease">A-</a>
+            <a href="javascript:void(0);" title="Text Size: Normal" id="btn-orig" class="reset">A</a>
+            <a href="javascript:void(0);" title="Text Size: Increase" id="btn-increase" class="increase">A+</a>
         	<a href="#">Login</a>
                 <a href="#">Register</a>
                 <a href="${pageContext.request.contextPath}/changeLangage/1-${mapping}">English</a>

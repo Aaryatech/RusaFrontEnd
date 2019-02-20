@@ -5,7 +5,7 @@
 <c:url var="checkMaintainance" value="/checkMaintainance" />
 <div class="top-menu" id="top-menu">
 	<div>
-		<div class="navbar navbar-expand-md ">
+		<div class="navbar navbar-expand-md menusats">
 			<div class="container">
 				<a class="navbar-brand" href="${pageContext.request.contextPath}/"><img
 					src="${logoUrl}${logo.logoMain}" alt=""></a>
@@ -25,7 +25,7 @@
 			</div>
 		</div>
 
-		<%-- <nav class="navbar navbar-expand-md bg-dark">
+		<%-- <nav class="navbar navbar-expand-md bg-dark_new">
 			<div class="container">
 				<div class="collapse navbar-collapse" id="navbarsExample01">
 					<ul class="navbar-nav mr-end">
@@ -107,7 +107,7 @@
 			</div>
 		</nav>  --%>
 
-		<nav class="navbar navbar-expand-md bg-dark">
+		<nav class="navbar navbar-expand-md bg-dark_new">
 			<div class="container">
 				<div class="collapse navbar-collapse" id="navbarsExample01">
 					<ul class="navbar-nav mr-end">

@@ -33,6 +33,7 @@ import com.ats.rusafronend.model.Logo;
 import com.ats.rusafronend.model.Maintainance;
 import com.ats.rusafronend.model.MetaData;
 import com.ats.rusafronend.model.SectionTree;
+import com.ats.rusafronend.model.TestImonial;
 import com.ats.rusafronend.model.TopMenuList;
 
 /**
@@ -87,7 +88,11 @@ public class HomeController {
 			CMSPageDescription[] getCMSDescList = rest.postForObject(Constant.url + "/getCMSDescByExInt1", map,CMSPageDescription[].class);
 			List<CMSPageDescription> getCMSDesc = new ArrayList<CMSPageDescription>(Arrays.asList(getCMSDescList));
 			
-			//System.out.println("List"+getCMSDesc.toString());
+			TestImonial[] testImonialList= rest.getForObject(Constant.url + "/getLastFiveTestImonials",TestImonial[].class);
+			List<TestImonial> testImonial = new ArrayList<TestImonial>(Arrays.asList(testImonialList));
+			
+			 
+			session.setAttribute("testImonial", testImonial);
 			session.setAttribute("getCMSDesc", getCMSDesc);
 			session.setAttribute("editPhoto", editPhoto);
 			session.setAttribute("editGalleryDetail", editGallery);

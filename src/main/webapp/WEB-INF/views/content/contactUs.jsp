@@ -64,7 +64,7 @@
 		</div>
 	</div>
 
-	<div class="container" id="main-content">
+	<div class="container main-content" id="main-content">
 		<div class="row">
 			<div class="col-12 col-sm-12 col-lg-12 ">
 				<iframe class="map"

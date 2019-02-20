@@ -24,7 +24,7 @@
         </div>
     </div>    
     
-    <div class="container" id="main-content">
+    <div class="container main-content" id="main-content">
         <div class="row row-eq-height">
         	<div class="col-12 col-sm-3 col-lg-3">
 				<div class="leftColm">

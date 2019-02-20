@@ -1,4 +1,5 @@
 .jcarousel-wrapper {
+    margin: 20px auto;
     position: relative;
 }
 
@@ -11,7 +12,7 @@
 }
 
 .jcarousel ul {
-    width: 10000em;
+    width: 20000em;
     position: relative;
     list-style: none;
     margin: 0;
@@ -21,7 +22,7 @@
 .jcarousel li {
     width: 200px;
     float: left;
-    border: 0px solid #fff;
+    border: 1px solid #fff;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
@@ -29,7 +30,7 @@
 
 .jcarousel img {
     display: block;
-    /*max-width: 100%;*/
+    max-width: 100%;
     height: auto !important;
 }
 
@@ -37,82 +38,73 @@
 
 .jcarousel-control-prev,
 .jcarousel-control-next {
-	position: absolute;
-	top:33%;
-	width:36px;
-	height:36px;
-	text-align: center;
-	color: #95a5a6;
-	border-radius: 4px;
-	display: block;
-	background: rgba(110,204,221,1);
-	background: -moz-linear-gradient(top, rgba(110,204,221,1) 0%, rgba(37,169,225,1) 100%);
-	background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(110,204,221,1)), color-stop(100%, rgba(37,169,225,1)));
-	background: -webkit-linear-gradient(top, rgba(110,204,221,1) 0%, rgba(37,169,225,1) 100%);
-	background: -o-linear-gradient(top, rgba(110,204,221,1) 0%, rgba(37,169,225,1) 100%);
-	background: -ms-linear-gradient(top, rgba(110,204,221,1) 0%, rgba(37,169,225,1) 100%);
-	background: linear-gradient(to bottom, rgba(110,204,221,1) 0%, rgba(37,169,225,1) 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6eccdd', endColorstr='#25a9e1', GradientType=0 );
-	line-height:37px;
+    position: absolute;
+    top: 50%;
+    margin-top: -15px;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    background: #4E443C;
+    color: #fff;
+    text-decoration: none;
+    text-shadow: 0 0 1px #000;
+    font: 24px/27px Arial, sans-serif;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    border-radius: 30px;
+    -webkit-box-shadow: 0 0 4px #F0EFE7;
+    -moz-box-shadow: 0 0 4px #F0EFE7;
+    box-shadow: 0 0 4px #F0EFE7;
 }
 
 .jcarousel-control-prev {
-	left:0px;
-}
-
-.jcarousel-control-prev span{
-  width: 0; 
-  height: 0; 
-  border-top: 6px solid transparent;
-  border-bottom: 6px solid transparent;
-  border-right: 6px solid #FFF;
-  display: inline-block;
-
+    left: -30px;
 }
 
 .jcarousel-control-next {
-  right:0px;
-}
-
-
-.jcarousel-control-next span{
-	width: 0; 
-	height: 0; 
-	border-top: 6px solid transparent;
-	border-bottom: 6px solid transparent;
-	border-left: 6px solid #FFF;
-	display: inline-block;
+    right: -30px;
 }
 
 /** Carousel Pagination **/
 
 .jcarousel-pagination {
     position: absolute;
-    top:10px;
-	right: 36.3%;
-/*    -webkit-transform: translate(-50%, 0);
+    bottom: -40px;
+    left: 50%;
+    -webkit-transform: translate(-50%, 0);
     -ms-transform: translate(-50%, 0);
     transform: translate(-50%, 0);
-*/    margin: 0;
-	line-height: 0;
+    margin: 0;
 }
 
 .jcarousel-pagination a {
     text-decoration: none;
     display: inline-block;
+
     font-size: 11px;
-    height: 15px;
-    width: 15px;
+    height: 10px;
+    width: 10px;
     line-height: 10px;
-    background: #46eeaa;
-	border:2px solid #666666;
+
+    background: #fff;
     color: #4E443C;
     border-radius: 10px;
     text-indent: -9999px;
+
     margin-right: 7px;
+
+
+    -webkit-box-shadow: 0 0 2px #4E443C;
+    -moz-box-shadow: 0 0 2px #4E443C;
+    box-shadow: 0 0 2px #4E443C;
 }
 
 .jcarousel-pagination a.active {
-    background: #2cbfc7;
+    background: #4E443C;
     color: #fff;
+    opacity: 1;
+
+    -webkit-box-shadow: 0 0 2px #F0EFE7;
+    -moz-box-shadow: 0 0 2px #F0EFE7;
+    box-shadow: 0 0 2px #F0EFE7;
 }

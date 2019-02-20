@@ -5,9 +5,13 @@
         <link href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
         <link href="${pageContext.request.contextPath}/resources/css/ekko-lightbox.css" rel="stylesheet" type="text/css">
         <link href="${pageContext.request.contextPath}/resources/css/style.css" rel="stylesheet">
+         <link href="${pageContext.request.contextPath}/resources/css/jcarousel.responsive.css" rel="stylesheet" type="text/css" >
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800|Playfair+Display:400,700,900" rel="stylesheet">
         <script type="text/javascript">
-	var st_url = ${sessionScope.siteFrontEndUrl};
-	var dm_url = ${sessionScope.siteDomainUrl};
+	var st_url = "${sessionScope.siteFrontEndUrl}";
+	var dm_url = "${sessionScope.siteDomainUrl}";
+	
+	 var strMsg = "This link will take you to extneranl web site.";
+     var strMsgPdf = "PDF file that opens in a new window.";
 	</script>
-        
+         
