@@ -26,6 +26,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.ats.rusafronend.common.Constant;
 import com.ats.rusafronend.model.BannerImages;
+import com.ats.rusafronend.model.CMSPageDescription;
 import com.ats.rusafronend.model.GallaryDetail;
 import com.ats.rusafronend.model.ImageLink;
 import com.ats.rusafronend.model.Logo;
@@ -67,19 +68,26 @@ public class HomeController {
 
 			ImageLink[] image = rest.getForObject(Constant.url + "/getAllImageLinkList", ImageLink[].class);
 			List<ImageLink> imagList = new ArrayList<ImageLink>(Arrays.asList(image));
-			map.add("id", 3); 
-			BannerImages editbanner = rest.postForObject(Constant.url + "/getSliderImagesById", map, BannerImages.class);
+			
+			MultiValueMap<String, Object> map1 = new LinkedMultiValueMap<String, Object>();
+			map1.add("id", 3); 
+			BannerImages editbanner = rest.postForObject(Constant.url + "/getSliderImagesById", map1, BannerImages.class);
 			session.setAttribute("editbanner", editbanner);
-			map = new LinkedMultiValueMap<String, Object>();
-			map.add("id", 1);
-			Logo logo = rest.postForObject(Constant.url + "/getLogoListById", map, Logo.class);
+			MultiValueMap<String, Object> map2 = new LinkedMultiValueMap<String, Object>();
+			map2.add("id", 1);
+			Logo logo = rest.postForObject(Constant.url + "/getLogoListById", map2, Logo.class);
 		
 			 
 			GallaryDetail[] editGalleryDetail = rest.getForObject(Constant.url + "/getLastTenVideos",GallaryDetail[].class);
 			List<GallaryDetail> editGallery = new ArrayList<GallaryDetail>(Arrays.asList(editGalleryDetail));
 			GallaryDetail[] editPhotoDetail = rest.getForObject(Constant.url + "/getLastTenPhotos",GallaryDetail[].class);
 			List<GallaryDetail> editPhoto = new ArrayList<GallaryDetail>(Arrays.asList(editPhotoDetail));
-			System.out.println(editPhoto.toString());
+			
+			CMSPageDescription[] getCMSDescList = rest.postForObject(Constant.url + "/getCMSDescByExInt1", map,CMSPageDescription[].class);
+			List<CMSPageDescription> getCMSDesc = new ArrayList<CMSPageDescription>(Arrays.asList(getCMSDescList));
+			
+			//System.out.println("List"+getCMSDesc.toString());
+			session.setAttribute("getCMSDesc", getCMSDesc);
 			session.setAttribute("editPhoto", editPhoto);
 			session.setAttribute("editGalleryDetail", editGallery);
 			session.setAttribute("logo", logo);

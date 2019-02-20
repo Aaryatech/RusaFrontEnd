@@ -53,12 +53,19 @@
         <div class="container" id="main-content"">
             <div class="card sub-link">
                 <div class="row">
+               <c:forEach items="${getCMSDesc}" var="getCMSDesc" varStatus="count">
+              				
                     <div class="col-12 col-sm-3 col-lg-3">
                         <div class="sub-link-icon"><img src="${pageContext.request.contextPath}/resources/images/icon.jpg" alt=""></div>
-                        <h2>Autonomy</h2>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's ...</p>
+                       <c:set var="string1" value="${getCMSDesc.pageDesc}" />
+						<c:set var="string2" value="${fn:substring(string1, 0, 256)}" />
+                        <h2> ${getCMSDesc.heading}</h2>
+                        <p> ${string2}</p>
+                        <a
+							href="">more...
+							</a>
                     </div>
-                    <div class="col-12 col-sm-3 col-lg-3">
+                <%--     <div class="col-12 col-sm-3 col-lg-3">
                         <div class="sub-link-icon"><img src="${pageContext.request.contextPath}/resources/images/icon.jpg" alt=""></div>
                         <h2>Naac  Accreditation</h2>
                         <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's ...</p>
@@ -72,7 +79,8 @@
                         <div class="sub-link-icon"><img src="${pageContext.request.contextPath}/resources/images/icon.jpg" alt=""></div>
                         <h2>Grants</h2>
                         <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's ...</p>
-                    </div>
+                    </div> --%>
+                   </c:forEach> 
                 </div>
             </div>
             <div class="row">
