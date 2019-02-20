@@ -31,6 +31,7 @@ import com.ats.rusafronend.model.GallaryDetail;
 import com.ats.rusafronend.model.ImageLink;
 import com.ats.rusafronend.model.Logo;
 import com.ats.rusafronend.model.Maintainance;
+import com.ats.rusafronend.model.MetaData;
 import com.ats.rusafronend.model.SectionTree;
 import com.ats.rusafronend.model.TopMenuList;
 
@@ -98,6 +99,15 @@ public class HomeController {
 			session.setAttribute("mapping", "/");
 			session.setAttribute("menuList", sectionTree);
 			session.setAttribute("gallryImageURL", Constant.getGallryImageURL);
+			
+			session.setAttribute("siteFrontEndUrl", Constant.siteFrontEndUrl);
+			session.setAttribute("siteDomainUrl", Constant.siteDomainUrl);
+			
+			MetaData metaData = rest.postForObject(Constant.url + "/getHomePageMetaDataByLangId", map,MetaData.class);
+			session.setAttribute("homePageMetaData", metaData);
+			
+			System.out.println(metaData);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -212,11 +222,16 @@ public class HomeController {
 			session.setAttribute("image", imagList);
 			session.setAttribute("url", Constant.getBannerImageURL);
 			
-			if (ArrayUtils.contains(arry, "info")) {
-
-			}
+			session.setAttribute("siteFrontEndUrl", Constant.siteFrontEndUrl);
+			session.setAttribute("siteDomainUrl", Constant.siteDomainUrl);
+			
 			Maintainance maintainance = rest.getForObject(Constant.url + "/checkIsMaintenance", Maintainance.class);
 			session.setAttribute("maintainance", maintainance);
+			
+			map = new LinkedMultiValueMap<String, Object>();
+			map.add("langId", 1);
+			MetaData metaData = rest.postForObject(Constant.url + "/getHomePageMetaDataByLangId", map,MetaData.class);
+			session.setAttribute("homePageMetaData", metaData);
 
 		} catch (Exception e) {
 			e.printStackTrace();

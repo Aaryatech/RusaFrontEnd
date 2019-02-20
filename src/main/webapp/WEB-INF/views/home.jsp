@@ -25,15 +25,20 @@
 		}
 	}
 %>
-<html>
-<head>
-	<title>Home</title>
-</head>
-<body>
+ 
  <!DOCTYPE html>
 <html lang="en">
     <head>
-       
+      
+  		<meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <meta name="description" content="${sessionScope.homePageMetaData.metaDescription}">
+        <meta name="author" content="${sessionScope.homePageMetaData.metaAuthor}">
+        <link rel="icon" href="../../favicon.ico">
+        <title>${sessionScope.homePageMetaData.siteTitle}</title>
        <jsp:include page="/WEB-INF/views/include/meta.jsp"></jsp:include>
     </head>
     <body>
@@ -65,21 +70,7 @@
 							href="">more...
 							</a>
                     </div>
-                <%--     <div class="col-12 col-sm-3 col-lg-3">
-                        <div class="sub-link-icon"><img src="${pageContext.request.contextPath}/resources/images/icon.jpg" alt=""></div>
-                        <h2>Naac  Accreditation</h2>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's ...</p>
-                    </div>
-                    <div class="col-12 col-sm-3 col-lg-3">
-                        <div class="sub-link-icon"><img src="${pageContext.request.contextPath}/resources/images/icon.jpg" alt=""></div>
-                        <h2>Excellence</h2>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's ...</p>
-                    </div>
-                    <div class="col-12 col-sm-3 col-lg-3">
-                        <div class="sub-link-icon"><img src="${pageContext.request.contextPath}/resources/images/icon.jpg" alt=""></div>
-                        <h2>Grants</h2>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's ...</p>
-                    </div> --%>
+                 
                    </c:forEach> 
                 </div>
             </div>
