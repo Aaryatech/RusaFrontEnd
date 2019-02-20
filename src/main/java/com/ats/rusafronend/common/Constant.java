@@ -9,4 +9,6 @@ public class Constant {
 	public static final String getUploadDocURL = "http://192.168.10.226:8080/media/pdf/";
 	public static final String getGallryImageURL = "http://192.168.10.226:8080/media/gallery/";
 	public static final String getCmsPdf = "http://192.168.10.226:8080/media/pdf/";
+	public static final String siteFrontEndUrl = "http://192.168.10.226:8080/RusaFontEnd/";
+	public static final String siteDomainUrl = "http://192.168.10.226:8080/";
 }

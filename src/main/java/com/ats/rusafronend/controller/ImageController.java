@@ -27,6 +27,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.ats.rusafronend.common.Constant;
 import com.ats.rusafronend.model.ImageLink;
 import com.ats.rusafronend.model.NewsDetails;
+import com.ats.rusafronend.model.PageMetaData;
 import com.ats.rusafronend.model.ContactUs;
 
 @Controller
@@ -68,7 +69,14 @@ ContactUs contactUs=new ContactUs();
 
 		ModelAndView model = new ModelAndView("content/contactUs");
 		try {
-	
+			
+			HttpSession session = request.getSession();
+			session.setAttribute("mapping","ContactUs");
+			
+			MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
+			map.add("slugName", "ContactUs");
+			PageMetaData pageMetaData = rest.postForObject(Constant.url + "/getPageMetaData",map,  PageMetaData.class);
+			model.addObject("pageMetaData", pageMetaData);
 				 
 		} catch (Exception e) {
 			e.printStackTrace();

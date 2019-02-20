@@ -28,6 +28,15 @@ String user = null;
  <!DOCTYPE html>
 <html lang="en">
     <head>
+    <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <meta name="description" content="${sessionScope.homePageMetaData.metaDescription}">
+        <meta name="author" content="${sessionScope.homePageMetaData.metaAuthor}">
+        <link rel="icon" href="../../favicon.ico">
+        <title>${sessionScope.homePageMetaData.siteTitle}</title>
           <jsp:include page="/WEB-INF/views/include/meta.jsp"></jsp:include>
     </head>
     <body>

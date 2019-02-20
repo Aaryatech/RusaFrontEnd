@@ -28,9 +28,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <meta name="description" content="${sessionScope.homePageMetaData.metaDescription}">
+        <meta name="author" content="${sessionScope.homePageMetaData.metaAuthor}">
+        <link rel="icon" href="../../favicon.ico">
+        <title>${sessionScope.homePageMetaData.siteTitle}</title>
 <jsp:include page="/WEB-INF/views/include/meta.jsp"></jsp:include>
 </head>
 <body>
+<c:url var="checkMaintainance" value="/checkMaintainance" />
 	<jsp:include page="/WEB-INF/views/include/topBar.jsp"></jsp:include>
 	<jsp:include page="/WEB-INF/views/include/topMenu.jsp"></jsp:include>
 	<div class="inner-slider" id="slider">
@@ -40,9 +50,9 @@
 	</div>
 	<div class="bridcrumb">
 		<div class="container">
-			<a href="index.html">Home</a> > <a
-				href="${pageContext.request.contextPath}/info/${pageContent.slugName}">${pageContent.pageName}</a>
-			>
+			<a href="${pageContext.request.contextPath}/">Home</a> > <a
+				href="${pageContext.request.contextPath}/siteMap">Site Map</a>
+			 
 		</div>
 	</div>
 	<div class="container" id="main-content">
@@ -56,14 +66,14 @@
 
 							<li><c:choose>
 									<c:when test="${not empty menuList.externalUrl}">
-										<a
+										<a onclick="checkMaintainance()"
 											href="${pageContext.request.contextPath}/${menuList.externalUrl}"
 											href="cyber-security-courses.html">${menuList.sectionName}
 										</a>
 									</c:when>
 									<c:otherwise>
 										<a
-											href="${pageContext.request.contextPath}/info/${menuList.sectionSlugname}"
+											onclick="checkMaintainance()" href="${pageContext.request.contextPath}/info/${menuList.sectionSlugname}"
 											href="cyber-security-courses.html">${menuList.sectionName}
 										</a>
 
@@ -95,12 +105,12 @@
 												<li class="first leaf"><c:choose>
 														<c:when test="${not empty catList.externalUrl}">
 															<a
-																href="${pageContext.request.contextPath}/${catList.externalUrl}"
+																onclick="checkMaintainance()" href="${pageContext.request.contextPath}/${catList.externalUrl}"
 																title="Accessibility Features">${catList.catName}</a>
 														</c:when>
 														<c:otherwise>
 															<a
-																href="${pageContext.request.contextPath}/info/${catList.slugName}"
+																onclick="checkMaintainance()" href="${pageContext.request.contextPath}/info/${catList.slugName}"
 																title="Accessibility Features">${catList.catName}</a>
 														</c:otherwise>
 													</c:choose></li>
@@ -111,13 +121,13 @@
 													<li class="leaf"><c:choose>
 															<c:when test="${not empty subCatList.externalUrl}">
 																<a
-																	href="${pageContext.request.contextPath}/${subCatList.externalUrl}"
+																	onclick="checkMaintainance()" href="${pageContext.request.contextPath}/${subCatList.externalUrl}"
 																	title="Screen Reader Access ">${subCatList.subCatName}
 																</a>
 															</c:when>
 															<c:otherwise>
 																<a
-																	href="${pageContext.request.contextPath}/info/${subCatList.subSlugName}"
+																	onclick="checkMaintainance()" href="${pageContext.request.contextPath}/info/${subCatList.subSlugName}"
 																	title="Screen Reader Access ">${subCatList.subCatName}
 																</a>
 															</c:otherwise>
@@ -146,7 +156,14 @@
 
 
 
+<script>
+			function checkMaintainance() {
 
+				$.getJSON('${checkMaintainance}', {
+					 ajax : 'true'
+				});
+			}
+		</script>
 
 </body>
 </html>

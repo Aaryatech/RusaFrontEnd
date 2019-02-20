@@ -20,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.ats.rusafronend.common.Constant;
 import com.ats.rusafronend.model.PageContent;
+import com.ats.rusafronend.model.PageMetaData;
 import com.ats.rusafronend.model.SearchData;
 import com.ats.rusafronend.model.SectionTree;
  
@@ -49,6 +50,12 @@ public class CmsController {
 			model.addObject("pageContent", pageContent); 
 			model.addObject("url", Constant.getCmsPdf);
 			model.addObject("gallryImageURL", Constant.getGallryImageURL);
+			
+			map = new LinkedMultiValueMap<String, Object>();
+			map.add("slugName", slugName);
+			PageMetaData pageMetaData = rest.postForObject(Constant.url + "/getPageMetaData",map,  PageMetaData.class);
+			model.addObject("pageMetaData", pageMetaData);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

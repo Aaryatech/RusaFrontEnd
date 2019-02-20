@@ -12,16 +12,16 @@
 	if (session.getAttribute("menuList") == null) {
 		String mapping = (String) session.getAttribute("mapping");
 		String contextPath = request.getContextPath();
-		contextPath=contextPath+"/retriveSession/"+mapping;
-		response.sendRedirect(contextPath); 
-	}else{
+		contextPath = contextPath + "/retriveSession/" + mapping;
+		response.sendRedirect(contextPath);
+	} else {
 		if (session.getAttribute("maintainance") != null) {
 			Maintainance main = (Maintainance) session.getAttribute("maintainance");
-			if (main.getMaintenanceStatus()==1) { 
+			if (main.getMaintenanceStatus() == 1) {
 				String contextPath = request.getContextPath();
-				contextPath=contextPath+"/siteInMaintainance";
+				contextPath = contextPath + "/siteInMaintainance";
 				response.sendRedirect(contextPath);
-				 
+
 			}
 		}
 	}
@@ -29,9 +29,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+<c:choose>
+	<c:when test="${not empty pageMetaData.pageMetaTitle}">
+		<meta name="description" content="${pageMetaData.pageMetaDescription}">
+		<link rel="icon" href="../../favicon.ico">
+		<title>${pageMetaData.pageMetaTitle}</title>
+	</c:when>
+	<c:otherwise>
+		<meta name="description"
+			content="${sessionScope.homePageMetaData.metaDescription}">
+		<link rel="icon" href="../../favicon.ico">
+		<title>${sessionScope.homePageMetaData.siteTitle}</title>
+	</c:otherwise>
+</c:choose>
+
 <jsp:include page="/WEB-INF/views/include/meta.jsp"></jsp:include>
 </head>
 <body>
+<c:url var="checkMaintainance" value="/checkMaintainance" />
 	<jsp:include page="/WEB-INF/views/include/topBar.jsp"></jsp:include>
 	<jsp:include page="/WEB-INF/views/include/topMenu.jsp"></jsp:include>
 	<div class="inner-slider" id="slider">
@@ -61,17 +82,36 @@
 
 									<c:if test="${catList.sectionId==menuList.sectionId}">
 
-										<li><a
-											href="${pageContext.request.contextPath}/info/${catList.slugName}"
-											href="cyber-security-courses.html">${catList.catName} </a></li>
+										<li><c:choose>
+												<c:when test="${not empty catList.externalUrl}">
+													<a onclick="checkMaintainance()" title="${catList.catName}"
+														href="${pageContext.request.contextPath}/${catList.externalUrl}">${catList.catName}<span
+														class="caret"></span></a>
+												</c:when>
+												<c:otherwise>
+													<a onclick="checkMaintainance()" title="${catList.catName}"
+														href="${pageContext.request.contextPath}/info/${catList.slugName}">${catList.catName}<span
+														class="caret"></span></a>
+												</c:otherwise>
+											</c:choose></li>
 
 										<c:forEach items="${sessionScope.menuList.subCatList}"
 											var="subCatList">
 											<c:if test="${subCatList.parentId==catList.catId}">
-												<li><a
-													href="${pageContext.request.contextPath}/info/${subCatList.subSlugName}"
-													href="cyber-security-courses.html">${subCatList.subCatName}
-												</a></li>
+												<li><c:choose>
+														<c:when test="${not empty catList.externalUrl}">
+															<a  onclick="checkMaintainance()"
+																title="${subCatList.subCatName}"
+																href="${pageContext.request.contextPath}/${subCatList.externalUrl}">${subCatList.subCatName}
+															</a>
+														</c:when>
+														<c:otherwise>
+															<a   onclick="checkMaintainance()"
+																title="${subCatList.subCatName}"
+																href="${pageContext.request.contextPath}/info/${subCatList.subSlugName}">${subCatList.subCatName}
+															</a>
+														</c:otherwise>
+													</c:choose> </li>
 											</c:if>
 										</c:forEach>
 
@@ -123,14 +163,14 @@
 								<div class="clearfix"></div> ${faqContentList.faqAns}</li>
 						</ul>
 						<c:if test="${loop.last}">
-						<h6 style="text-align: right;">
-							Last Updated on
-							<c:choose>
-								<c:when test="${not empty faqContentList.editDate}">${faqContentList.editDate}</c:when>
-								<c:otherwise>${faqContentList.addDate}</c:otherwise>
-							</c:choose>
-						</h6>
-						 </c:if>
+							<h6 style="text-align: right;">
+								Last Updated on
+								<c:choose>
+									<c:when test="${not empty faqContentList.editDate}">${faqContentList.editDate}</c:when>
+									<c:otherwise>${faqContentList.addDate}</c:otherwise>
+								</c:choose>
+							</h6>
+						</c:if>
 					</c:forEach>
 					<c:set var="find" value="1"></c:set>
 				</c:if>
@@ -194,13 +234,13 @@
 						var="detailNewsList">
 						<div class="row row-eq-height">
 							<div class="col-12">
-							<c:if test="${not empty detailNewsList.featuredImage}">
-							<img src="${gallryImageURL}${detailNewsList.featuredImage}"
-								alt=""
-								style="float:${detailNewsList.featuredImageAlignment}; padding-left:20px; padding-right:20px; padding-bottom:20px;"
-								height="" width="">
-						</c:if>
-							<%-- 	<img src="${gallryImageURL}${detailNewsList.featuredImage}"> --%>
+								<c:if test="${not empty detailNewsList.featuredImage}">
+									<img src="${gallryImageURL}${detailNewsList.featuredImage}"
+										alt=""
+										style="float:${detailNewsList.featuredImageAlignment}; padding-left:20px; padding-right:20px; padding-bottom:20px;"
+										height="" width="">
+								</c:if>
+								<%-- 	<img src="${gallryImageURL}${detailNewsList.featuredImage}"> --%>
 								<c:set var="string1" value="${detailNewsList.descriptions}" />
 								<c:set var="string2" value="${fn:substring(string1, 0, 256)}" />
 								<h2>${detailNewsList.heading}</h2>
@@ -255,7 +295,14 @@
 	<!-- JavaScript-->
 	<jsp:include page="/WEB-INF/views/include/footerJs.jsp"></jsp:include>
 
+<script>
+			function checkMaintainance() {
 
+				$.getJSON('${checkMaintainance}', {
+					 ajax : 'true'
+				});
+			}
+		</script>
 
 
 
