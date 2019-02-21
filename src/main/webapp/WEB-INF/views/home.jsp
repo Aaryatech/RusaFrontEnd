@@ -224,7 +224,7 @@
 			</div>
 			<div class="col-12 col-sm-3 col-lg-3">
 				  <div class="twitter">
-                            <div class="fb-page" data-adapt-container-width="false" data-height="270" data-hide-cover="false" data-href="https://www.facebook.com/HRDMinistry/" data-show-facepile="false" data-small-header="true" data-tabs="timeline" data-width="262">
+                            <div class="fb-page" data-adapt-container-width="false" data-height="290" data-hide-cover="false" data-href="https://www.facebook.com/HRDMinistry/" data-show-facepile="false" data-small-header="true" data-tabs="timeline" data-width="262">
                                 <div class="fb-xfbml-parse-ignore">
                                 <blockquote cite="https://www.facebook.com/HRDMinistry/"><p>
                                             <a href="https://www.facebook.com/HRDMinistry/">Ministry of Human Resource Development, Government of India</a></p></blockquote>

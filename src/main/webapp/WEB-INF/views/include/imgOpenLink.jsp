@@ -10,11 +10,14 @@
                 <ul>
               <c:forEach items="${sessionScope.image}" var="imageList" varStatus="count">
               
-			  <li><img src="${sessionScope.url}${imageList.sliderImage}" alt="" width="100" height="50"></li>
+			  <li><img src="${sessionScope.url}${imageList.sliderImage}" alt="${imageList.titleName}"   height="51"></li>
 								  
 				</c:forEach>  
               </ul>
               </div>
+                <a href="#" class="jcarousel-control-prev pegination-control"><i class="icon-arrowhead-thin-outline-to-the-left icon"></i></a>
+            <a href="#" class="jcarousel-control-next pegination-control"><i class="icon-arrow-point-to-right icon"></i></a>
+
               </div>
               
             </div>
