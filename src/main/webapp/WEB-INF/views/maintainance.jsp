@@ -17,9 +17,25 @@ if(session.getAttribute("menuList") == null){
 <html lang="en">
     <head>
           <jsp:include page="/WEB-INF/views/include/meta.jsp"></jsp:include>
+         
     </head>
     <body>
-         
+         <div class="top-menu" id="top-menu">
+	<div>
+        <div class="navbar navbar-expand-md ">
+         <div class="container">	
+          <a class="navbar-brand justify-content-md-center" style="margin:0 auto;" ><img src="images/logo1.jpg" alt=""></a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample01" aria-controls="navbarsExample01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          
+          
+        	</div>
+        </div>
+
+        
+	</div>
+</div>	
         <div class="inner-slider" id="slider">
             <div class="container">
                 
@@ -33,8 +49,9 @@ if(session.getAttribute("menuList") == null){
     
         <div class="container" id="main-content">
         <div class="row">
+        <h2>${sessionScope.maintainance.exVar2}</h2>
         	<div class="col-12 col-sm-12 col-lg-12 ">
-            	<h1 style="text-align: center;">${sessionScope.maintainance.message}</h1>
+            	<p style="text-align: center;">${sessionScope.maintainance.message}</p>
             </div>
         </div>
             

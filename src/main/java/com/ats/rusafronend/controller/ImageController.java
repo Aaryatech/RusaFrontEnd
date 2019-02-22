@@ -26,8 +26,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.ats.rusafronend.common.Constant;
 import com.ats.rusafronend.model.ImageLink;
+import com.ats.rusafronend.model.NewsBlog;
 import com.ats.rusafronend.model.NewsDetails;
 import com.ats.rusafronend.model.PageMetaData;
+import com.ats.rusafronend.model.TestImonial;
 import com.ats.rusafronend.model.ContactUs;
 
 @Controller
@@ -77,6 +79,31 @@ ContactUs contactUs=new ContactUs();
 			map.add("slugName", "ContactUs");
 			PageMetaData pageMetaData = rest.postForObject(Constant.url + "/getPageMetaData",map,  PageMetaData.class);
 			model.addObject("pageMetaData", pageMetaData);
+				 
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return model;
+	}
+	@RequestMapping(value = "/teamDetails", method = RequestMethod.GET)
+	public ModelAndView teamDetails(HttpServletRequest request, HttpServletResponse response) {
+
+		ModelAndView model = new ModelAndView("content/teamDetails");
+		try {
+			
+			HttpSession session = request.getSession();
+			session.setAttribute("mapping","teamDetails");
+			
+			TestImonial[] getTeamList= rest.getForObject(Constant.url + "/getTeamList",TestImonial[].class);
+			List<TestImonial> teamList = new ArrayList<TestImonial>(Arrays.asList(getTeamList));
+			model.addObject("teamList", teamList);
+			
+			System.out.println("Team List: "+teamList);
+			/*MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
+			map.add("slugName", "ContactUs");
+			PageMetaData pageMetaData = rest.postForObject(Constant.url + "/getPageMetaData",map,  PageMetaData.class);
+			model.addObject("pageMetaData", pageMetaData);*/
 				 
 		} catch (Exception e) {
 			e.printStackTrace();

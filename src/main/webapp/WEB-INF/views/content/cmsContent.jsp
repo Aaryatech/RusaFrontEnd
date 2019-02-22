@@ -279,17 +279,8 @@
 
 					<h2 style="text-align: center;">No Record Found</h2>
 				</c:if>
-
-
+				</div>
 			</div>
-
-
-
-
-
-
-
-		</div>
 	</div>
 
 	<jsp:include page="/WEB-INF/views/include/imgOpenLink.jsp"></jsp:include>
