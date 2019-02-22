@@ -32,7 +32,7 @@ import com.ats.rusafronend.model.ImageLink;
 import com.ats.rusafronend.model.Logo;
 import com.ats.rusafronend.model.Maintainance;
 import com.ats.rusafronend.model.MetaData;
-import com.ats.rusafronend.model.SectionTree;
+import com.ats.rusafronend.model.NewsDetails;
 import com.ats.rusafronend.model.TestImonial;
 import com.ats.rusafronend.model.TopMenuList;
 
@@ -80,10 +80,11 @@ public class HomeController {
 			Logo logo = rest.postForObject(Constant.url + "/getLogoListById", map2, Logo.class);
 		
 			 
-			GallaryDetail[] editGalleryDetail = rest.getForObject(Constant.url + "/getLastTenVideos",GallaryDetail[].class);
-			List<GallaryDetail> editGallery = new ArrayList<GallaryDetail>(Arrays.asList(editGalleryDetail));
-			GallaryDetail[] editPhotoDetail = rest.getForObject(Constant.url + "/getLastTenPhotos",GallaryDetail[].class);
-			List<GallaryDetail> editPhoto = new ArrayList<GallaryDetail>(Arrays.asList(editPhotoDetail));
+			GallaryDetail[] galleryDetail = rest.getForObject(Constant.url + "/getLastTenVideos",GallaryDetail[].class);
+			List<GallaryDetail> gerGalleryList = new ArrayList<GallaryDetail>(Arrays.asList(galleryDetail));
+			
+			GallaryDetail[] photoDetail = rest.getForObject(Constant.url + "/getLastTenPhotos",GallaryDetail[].class);
+			List<GallaryDetail> photoList = new ArrayList<GallaryDetail>(Arrays.asList(photoDetail));
 			
 			CMSPageDescription[] getCMSDescList = rest.postForObject(Constant.url + "/getCMSDescByExInt1", map,CMSPageDescription[].class);
 			List<CMSPageDescription> getCMSDesc = new ArrayList<CMSPageDescription>(Arrays.asList(getCMSDescList));
@@ -91,11 +92,14 @@ public class HomeController {
 			TestImonial[] testImonialList= rest.getForObject(Constant.url + "/getLastFiveTestImonials",TestImonial[].class);
 			List<TestImonial> testImonial = new ArrayList<TestImonial>(Arrays.asList(testImonialList));
 			
-			 
+			NewsDetails[] getPagesModule = rest.postForObject(Constant.url + "/getNewsBlogsByLangId",map, NewsDetails[].class);			
+			List<NewsDetails> newsBlogsList = new ArrayList<NewsDetails>(Arrays.asList(getPagesModule));
+			
+			session.setAttribute("newsBlogsList", newsBlogsList);	 
 			session.setAttribute("testImonial", testImonial);
 			session.setAttribute("getCMSDesc", getCMSDesc);
-			session.setAttribute("editPhoto", editPhoto);
-			session.setAttribute("editGalleryDetail", editGallery);
+			session.setAttribute("photoList", photoList);
+			session.setAttribute("videoGalleryDetail", gerGalleryList);
 			session.setAttribute("logo", logo);
 			session.setAttribute("logoUrl", Constant.getLgogImageURL);
 

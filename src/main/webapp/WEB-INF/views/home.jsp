@@ -86,26 +86,24 @@
 			<div class="col-12 col-sm-6 col-lg-6">
 				<ul class="nav nav-tabs" role="tablist">
 					<li class="nav-item nutrition-task-bar-item"><a
-						class="nav-link active" data-toggle="tab" href="#update">News
-							and Notification</a></li>
+						class="nav-link active" data-toggle="tab" href="#update">Notification</a></li>
 
 				</ul>
 				<div class="tab-content">
 					<div id="update" class="tab-pane active">
 						<div class="tab-content-section">
-							<h5>Lorem Ipsum is simply</h5>
-							<p>Lorem Ipsum is simply dummy text of the printing and
-								typesetting industry. Lorem Ipsum has been the industry's ...</p>
+							<h5>Digital Launch of Rashtriya Uchchatar Shiksha Abhiyan (RUSA) Projects</h5>
+							<p>Digital Launch of Rashtriya Uchchatar Shiksha Abhiyan (RUSA) Projects by Hon’ble Prime Minister on 3rd February 2019 ...</p>
 						</div>
 						<div class="tab-content-section">
-							<h5>Lorem Ipsum is simply</h5>
-							<p>Lorem Ipsum is simply dummy text of the printing and
-								typesetting industry. Lorem Ipsum has been the industry's ...</p>
+							<h5>15th Meeting of the Project Approval Board</h5>
+							<p> 
+							PAB meeting to be held on 24th January 2019.  
+							Click here to view the minutes of the 15th PAB Meeting Presentation of proposals by institutions approved under component.   ...</p>
 						</div>
 						<div class="tab-content-section">
-							<h5>Lorem Ipsum is simply</h5>
-							<p>Lorem Ipsum is simply dummy text of the printing and
-								typesetting industry. Lorem Ipsum has been the industry's ...</p>
+							<h5>RUSA Meeting on Preparedness of Digital Launch</h5>
+							<p></p>
 						</div>
 					</div>
 				</div>
@@ -113,14 +111,14 @@
 			<div class="col-12 col-sm-6 col-lg-6">
 				<div class="row gallery">
 
-					<c:if test="${editPhoto.size()>0}">
+					<c:if test="${photoList.size()>0}">
 						<div class="col-12 col-sm-6 col-lg-6">
 							<h3>Award Gallery</h3>
 							<div id="carouselExampleControls" class="carousel slide"
 								data-ride="carousel">
 								<div class="carousel-inner">
 
-									<c:forEach items="${editPhoto}" var="editPhotoDetail"
+									<c:forEach items="${photoList}" var="editPhotoDetail"
 										varStatus="count">
 
 										<c:choose>
@@ -160,7 +158,7 @@
 
 					<div class="col-12 col-sm-6 col-lg-6">
 						<h3>Video</h3>
-						${editGalleryDetail[0].fileName} <i
+						${videoGalleryDetail[0].fileName} <i
 							class="icon-arrow-point-to-right icon"></i>
 
 					</div>
@@ -171,7 +169,18 @@
 			<h2>
 				<span>News</span>
 			</h2>
-			<div class="col-12 col-sm-3 col-lg-3">
+			
+			<c:forEach items="${newsBlogsList}" var="newsBlogsList"
+										varStatus="count">
+										<div class="col-12 col-sm-3 col-lg-3">
+				<img src="${sessionScope.gallryImageURL}${newsBlogsList.featuredImage}" width="250" height="228">
+				<c:set var="string4" value="${newsBlogsList.descriptions}" />
+				<c:set var="string3" value="${fn:substring(string4, 0, 100)}" />
+				<p>${string3}</p>
+		</div>
+		</c:forEach>
+			
+			<%-- <div class="col-12 col-sm-3 col-lg-3">
 				<img
 					src="${pageContext.request.contextPath}/resources/images/news.jpg"
 					alt="" class="new-img">
@@ -191,19 +200,12 @@
 					alt="" class="new-img">
 				<p>Lorem Ipsum is simply dummy text of the printing and
 					typesetting industry. Lorem Ipsum has been the industry's ...</p>
-			</div>
-			<div class="col-12 col-sm-3 col-lg-3">
-				<img
-					src="${pageContext.request.contextPath}/resources/images/news.jpg"
-					alt="" class="new-img">
-				<p>Lorem Ipsum is simply dummy text of the printing and
-					typesetting industry. Lorem Ipsum has been the industry's ...</p>
-			</div>
+			</div> --%>
 		</div>
 		<div class="row bottom-section">
 			<div class="col-12 col-sm-3 col-lg-3">
 				      <div class="twitter">
-                        <a class="twitter-timeline" data-chrome="nofooter" data-widget-id="634609273125732352" href="https://twitter.com/HRDMinistry" tabindex="-1">Tweets by @HRDMinistry</a> 
+                        <a class="twitter-timeline" data-chrome="nofooter" data-widget-id="634609273125732352" data-adapt-container-width="false" data-height="290" href="https://twitter.com/HRDMinistry" tabindex="-1">Tweets by @HRDMinistry</a> 
                         <script>window.twttr = (function(d, s, id) {
                                 var js, fjs = d.getElementsByTagName(s)[0],
                                   t = window.twttr || {};
@@ -294,11 +296,10 @@
 
 	<jsp:include page="/WEB-INF/views/include/imgOpenLink.jsp"></jsp:include>
 
-	<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
+ 	<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 	<!-- JavaScript-->
 
-	<jsp:include page="/WEB-INF/views/include/footerJs.jsp"></jsp:include>
-
+	<jsp:include page="/WEB-INF/views/include/footerJs.jsp"></jsp:include> 
 </body>
 </html>
 
