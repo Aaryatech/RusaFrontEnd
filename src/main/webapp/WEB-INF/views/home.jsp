@@ -174,9 +174,10 @@
 										varStatus="count">
 										<div class="col-12 col-sm-3 col-lg-3">
 				<img src="${sessionScope.gallryImageURL}${newsBlogsList.featuredImage}" width="250" height="228">
+				<h5>${newsBlogsList.heading}</h5>
 				<c:set var="string4" value="${newsBlogsList.descriptions}" />
 				<c:set var="string3" value="${fn:substring(string4, 0, 100)}" />
-				<p>${string3}</p>
+				<p>${string3}...</p>
 		</div>
 		</c:forEach>
 			
