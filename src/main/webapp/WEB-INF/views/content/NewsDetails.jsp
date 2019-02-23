@@ -56,7 +56,7 @@ String user = null;
             <div class="row row-eq-height">
                 <div class="col-12 col-sm-3 col-lg-3">
                     <div class="leftColm">
-                    <%-- <c:forEach items="${sessionScope.menuList}" var="menuList" >
+                    <%--  <c:forEach items="${menuList}" var="menuList" >
                          <c:if test="${menuList.sectionId==pageContent.sectioinId}">
                          	<h3>${menuList.sectionName}</h3>
                          	  <ul class="menu">
@@ -72,7 +72,7 @@ String user = null;
                             </ul>
                             
                          </c:if>
-                        </c:forEach> --%>
+                        </c:forEach>  --%>
                          
                     </div>
                 </div>
@@ -84,9 +84,9 @@ String user = null;
                         <br><br>
                         <h2>${image.heading}</h2>
                         <p>${image.descriptions}</p>
-                        <h3>Meta Title</h3><p> ${image.pageMetaTitle}</p>
-                        <h3>Meta Description</h3> <p>${image.pageMetaDescription}</p>
-                        <h3>KeyWords:</h3> <p>${image.pageMetaKeyword}</p>
+                        <h4>Meta Title :</h4><p> ${image.pageMetaTitle}</p>
+                        <h4>Meta Description :</h4> <p>${image.pageMetaDescription}</p>
+                        <h4>KeyWords :</h4> <p>${image.pageMetaKeyword}</p>
                      </div> 
                    </div>     
                 </div>

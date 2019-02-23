@@ -24,21 +24,16 @@ if(session.getAttribute("menuList") == null){
 	<div>
         <div class="navbar navbar-expand-md ">
          <div class="container">	
-          <a class="navbar-brand justify-content-md-center" style="margin:0 auto;" ><img src="images/logo1.jpg" alt=""></a>
+          <a class="navbar-brand justify-content-md-center" style="margin:0 auto;" ><img src="${pageContext.request.contextPath}/resources/images/logo1.jpg" alt="Rusa-Logo"></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample01" aria-controls="navbarsExample01" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-          
-          
         	</div>
-        </div>
-
-        
+        </div> 
 	</div>
 </div>	
         <div class="inner-slider" id="slider">
             <div class="container">
-                
             </div>
         </div>
         <div class="bridcrumb">
@@ -49,8 +44,9 @@ if(session.getAttribute("menuList") == null){
     
         <div class="container" id="main-content">
         <div class="row">
-        <h2>${sessionScope.maintainance.exVar2}</h2>
         	<div class="col-12 col-sm-12 col-lg-12 ">
+        <h2>${sessionScope.maintainance.exVar1}</h2>
+        
             	<p style="text-align: center;">${sessionScope.maintainance.message}</p>
             </div>
         </div>

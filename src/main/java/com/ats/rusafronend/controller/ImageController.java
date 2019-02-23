@@ -30,6 +30,7 @@ import com.ats.rusafronend.model.NewsBlog;
 import com.ats.rusafronend.model.NewsDetails;
 import com.ats.rusafronend.model.PageMetaData;
 import com.ats.rusafronend.model.TestImonial;
+import com.ats.rusafronend.model.TopMenuList;
 import com.ats.rusafronend.model.ContactUs;
 
 @Controller
@@ -48,12 +49,16 @@ ContactUs contactUs=new ContactUs();
 			int langId = (Integer) session.getAttribute("langId");
 			System.out.println(slugName);
 			*/
-			
 			MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
-			map.add("langId", langId);
-			map.add("pageId", pageId);
-			map.add("newsblogsId", newsblogsId);
-			NewsDetails image = rest.postForObject(Constant.url + "/getNewsBlogById",map, NewsDetails.class);
+			map.add("langId",langId);
+			TopMenuList sectionTree = rest.postForObject(Constant.url + "/getTopMenuList", map, TopMenuList.class);
+			model.addObject("menuList", sectionTree);
+			
+			MultiValueMap<String, Object> map1 = new LinkedMultiValueMap<String, Object>();
+			map1.add("langId", langId);
+			map1.add("pageId", pageId);
+			map1.add("newsblogsId", newsblogsId);
+			NewsDetails image = rest.postForObject(Constant.url + "/getNewsBlogById",map1, NewsDetails.class);
 			//List<ImageLink> imagList = new ArrayList<ImageLink>(Arrays.asList(image));
 			System.out.println("list_new: "+image.toString());
 			model.addObject("image", image); 
@@ -99,10 +104,11 @@ ContactUs contactUs=new ContactUs();
 			List<TestImonial> teamList = new ArrayList<TestImonial>(Arrays.asList(getTeamList));
 			model.addObject("teamList", teamList);
 			model.addObject("gallryImageURL", Constant.getGallryImageURL);
+
 			
-			MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
-			map.add("slugName", "teamDetails");
-			PageMetaData pageMetaData = rest.postForObject(Constant.url + "/getPageMetaData",map,  PageMetaData.class);
+			MultiValueMap<String, Object> map1 = new LinkedMultiValueMap<String, Object>();
+			map1.add("slugName", "teamDetails");
+			PageMetaData pageMetaData = rest.postForObject(Constant.url + "/getPageMetaData",map1,  PageMetaData.class);
 			model.addObject("pageMetaData", pageMetaData);
 				 
 		} catch (Exception e) {
