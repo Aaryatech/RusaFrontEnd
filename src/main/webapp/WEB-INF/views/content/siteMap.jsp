@@ -121,13 +121,13 @@
  
 												 <c:choose>
 														<c:when test="${not empty catList.externalUrl}">
-															<span style="padding-right: 20px;"></span>-<a
+															<span style="padding-right: 20px;"></span>><a
 																onclick="checkMaintainance()"
 																href="${pageContext.request.contextPath}/${catList.externalUrl}"
 																title="${catList.catName}">${catList.catName}</a><br>
 														</c:when>
 														<c:otherwise>
-															<span style="padding-right: 20px;"></span>-<a
+															<span style="padding-right: 20px;"></span>><a
 																onclick="checkMaintainance()"
 																href="${pageContext.request.contextPath}/info/${catList.slugName}"
 																title="${catList.catName}">${catList.catName}</a><br>
@@ -139,14 +139,14 @@
 													<c:if test="${subCatList.parentId==catList.catId}">
 														<!-- <li class="leaf"> --><c:choose>
 																<c:when test="${not empty subCatList.externalUrl}">
-																	<span style="padding-right: 40px;"></span>--<a
+																	<span style="padding-right: 40px;"></span>><a
 																		onclick="checkMaintainance()"
 																		href="${pageContext.request.contextPath}/${subCatList.externalUrl}"
 																		title="${subCatList.subCatName}">${subCatList.subCatName}
 																	</a>
 																</c:when>
 																<c:otherwise>
-																	<span style="padding-right: 40px;"></span>--<a
+																	<span style="padding-right: 40px;"></span>><a
 																		onclick="checkMaintainance()"
 																		href="${pageContext.request.contextPath}/info/${subCatList.subSlugName}"
 																		title="${subCatList.subCatName}">${subCatList.subCatName}
