@@ -126,14 +126,14 @@
 												<div class="carousel-item active">
 													<img
 														src="${sessionScope.gallryImageURL}${editPhotoDetail.fileName}"
-														width="250" height="228">
+														width="250" height="228" alt="${editPhotoDetail.title}">
 												</div>
 											</c:when>
 											<c:otherwise>
 												<div class="carousel-item">
 													<img
 														src="${sessionScope.gallryImageURL}${editPhotoDetail.fileName}"
-														width="250" height="228">
+														width="250" height="228" alt="${editPhotoDetail.title}" >
 												</div>
 											</c:otherwise>
 										</c:choose>
@@ -173,11 +173,13 @@
 			<c:forEach items="${newsBlogsList}" var="newsBlogsList"
 										varStatus="count">
 										<div class="col-12 col-sm-3 col-lg-3">
-				<img src="${sessionScope.gallryImageURL}${newsBlogsList.featuredImage}" width="250" height="228">
+				<img src="${sessionScope.gallryImageURL}${newsBlogsList.featuredImage}" width="250" height="228" alt="${newsBlogsList.heading}">
 				<h5>${newsBlogsList.heading}</h5>
 				<c:set var="string4" value="${newsBlogsList.descriptions}" />
 				<c:set var="string3" value="${fn:substring(string4, 0, 100)}" />
-				<p>${string3}...</p>
+				<p>${string3}</p>
+				<a href="${pageContext.request.contextPath}/NewsDetails/${newsBlogsList.languageId}/${newsBlogsList.pageId}/${newsBlogsList.newsblogsId}">more
+								</a>
 		</div>
 		</c:forEach>
 			
@@ -250,7 +252,7 @@
 											<c:if test="${not empty testImonial.imageName}">
 												<img
 													src="${sessionScope.gallryImageURL}${testImonial.imageName}"
-													width="100" height="100" alt="" class="user">
+													width="100" height="100" alt="${testImonial.fromName}" class="user">
 
 											</c:if>
 											<p>
@@ -265,7 +267,7 @@
 											<c:if test="${not empty testImonial.imageName}">
 												<img
 													src="${sessionScope.gallryImageURL}${testImonial.imageName}"
-													width="100" height="100" alt="" class="user">
+													width="100" height="100" alt="${testImonial.fromName}" class="user">
 
 											</c:if>
 											<p>

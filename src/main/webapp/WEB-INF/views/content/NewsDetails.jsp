@@ -56,7 +56,7 @@ String user = null;
             <div class="row row-eq-height">
                 <div class="col-12 col-sm-3 col-lg-3">
                     <div class="leftColm">
-                    <c:forEach items="${sessionScope.menuList}" var="menuList" >
+                    <%-- <c:forEach items="${sessionScope.menuList}" var="menuList" >
                          <c:if test="${menuList.sectionId==pageContent.sectioinId}">
                          	<h3>${menuList.sectionName}</h3>
                          	  <ul class="menu">
@@ -72,25 +72,25 @@ String user = null;
                             </ul>
                             
                          </c:if>
-                        </c:forEach>
+                        </c:forEach> --%>
                          
                     </div>
                 </div>
                 <div class="col-12 col-sm-9 col-lg-9 right-Colm">
            
                <div class="row row-eq-height">
-                        <div class="col-12">
-                        <img src="${getGallryImageURL}${image.featuredImage}" width="500" height="500">
-                        <h2> ${image.heading}</h2>
+                     <div class="col-12">
+                        <img src="${getGallryImageURL}${image.featuredImage}" width="700" height="400" alt="${image.heading}">
+                        <br><br>
+                        <h2>${image.heading}</h2>
                         <p>${image.descriptions}</p>
                         <h3>Meta Title</h3><p> ${image.pageMetaTitle}</p>
                         <h3>Meta Description</h3> <p>${image.pageMetaDescription}</p>
                         <h3>KeyWords:</h3> <p>${image.pageMetaKeyword}</p>
-                       </div> 
-                    </div>     
+                     </div> 
+                   </div>     
                 </div>
-                
-            </div>
+              </div>
             </div>
          
        <jsp:include page="/WEB-INF/views/include/imgOpenLink.jsp"></jsp:include>

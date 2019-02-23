@@ -95,15 +95,15 @@ ContactUs contactUs=new ContactUs();
 			HttpSession session = request.getSession();
 			session.setAttribute("mapping","teamDetails");
 			
-			TestImonial[] getTeamList= rest.getForObject(Constant.url + "/getTeamList",TestImonial[].class);
+			TestImonial[] getTeamList= rest.getForObject(Constant.url + "/getTeamDetail",TestImonial[].class);
 			List<TestImonial> teamList = new ArrayList<TestImonial>(Arrays.asList(getTeamList));
 			model.addObject("teamList", teamList);
+			model.addObject("gallryImageURL", Constant.getGallryImageURL);
 			
-			System.out.println("Team List: "+teamList);
-			/*MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
-			map.add("slugName", "ContactUs");
+			MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
+			map.add("slugName", "teamDetails");
 			PageMetaData pageMetaData = rest.postForObject(Constant.url + "/getPageMetaData",map,  PageMetaData.class);
-			model.addObject("pageMetaData", pageMetaData);*/
+			model.addObject("pageMetaData", pageMetaData);
 				 
 		} catch (Exception e) {
 			e.printStackTrace();

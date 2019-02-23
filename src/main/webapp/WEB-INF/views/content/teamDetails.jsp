@@ -59,7 +59,7 @@
 	</div>
 	<div class="bridcrumb">
 		<div class="container">
-			<a href="index.html">Home</a> > <a href="${pageContext.request.contextPath}/info/${pageContent.slugName}">${pageContent.pageName}</a> >
+			<a href="${pageContext.request.contextPath}/">Home</a> > <a href="${pageContext.request.contextPath}/info/${pageContent.slugName}">${pageContent.pageName}</a> >
 		</div>
 	</div>
 	
@@ -93,7 +93,7 @@
 														href="${pageContext.request.contextPath}/info/${catList.slugName}">${catList.catName}<span
 														class="caret"></span></a>
 												</c:otherwise>
-											</c:choose> </li>
+											</c:choose></li>
 									</c:if>
 
 								</c:forEach>
@@ -106,21 +106,26 @@
 			</div>
 			 <div class="col-12 col-sm-9 col-lg-9 right-Colm">
 				<div class="row team">
-					<div class="col-6 col-sm-4 col-lg-3">
-                    	  <c:forEach items="${sessionScope.teamList}" var="teamList"
-								varStatus="count">
-                    	<c:if test="${not empty teamList.imageName}">
-							<img src="${gallryImageURL}${teamList.imageName}"
-								alt=""
-								style="padding-left:20px; padding-right:20px; padding-bottom:20px;"
-								height="" width="">
-						</c:if>
+				 <c:forEach items="${teamList}" var="teamList"	varStatus="count">
+                    	  	<div class="col-6 col-sm-4 col-lg-3">
+                    	  	<c:choose>
+								<c:when test="${not empty teamList.imageName}">
+                    
+							          <img src="${gallryImageURL}${teamList.imageName}"
+							        	width="200" height="200" alt="">
+						       </c:when>
+						      <c:otherwise>
+						              <img src="${pageContext.request.contextPath}/resources/images/noimage-team.png"
+							        	width="200" height="200" alt="">
+						      </c:otherwise>
+						  </c:choose>
                     	<c:set var="string1" value="${teamList.message}" />
 						<c:set var="string2" value="${fn:substring(string1, 0, 256)}" />
 					    <p><strong>${teamList.fromName}</strong> <br>
 						<span>${string2}</span></p>
+						   </div>
 						</c:forEach>
-                    </div>
+                 
                     
               
                                     	

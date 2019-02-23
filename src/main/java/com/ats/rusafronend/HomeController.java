@@ -92,7 +92,7 @@ public class HomeController {
 			TestImonial[] testImonialList= rest.getForObject(Constant.url + "/getLastFiveTestImonials",TestImonial[].class);
 			List<TestImonial> testImonial = new ArrayList<TestImonial>(Arrays.asList(testImonialList));
 			
-			NewsDetails[] getPagesModule = rest.postForObject(Constant.url + "/getNewsBlogsByLangId",map, NewsDetails[].class);			
+			NewsDetails[] getPagesModule = rest.postForObject(Constant.url + "/getLastFourNewsByLangId",map, NewsDetails[].class);			
 			List<NewsDetails> newsBlogsList = new ArrayList<NewsDetails>(Arrays.asList(getPagesModule));
 			
 			session.setAttribute("newsBlogsList", newsBlogsList);	 
