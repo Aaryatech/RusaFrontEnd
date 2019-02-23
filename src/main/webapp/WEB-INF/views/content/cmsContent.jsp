@@ -217,8 +217,8 @@
 							<div class="col-12 col-sm-3 col-lg-3">
 								<a href="${gallryImageURL}${gallaryDetailList.fileName}"
 									data-toggle="lightbox" data-gallery="plan" data-title=""
-									class="thumbnail"> <img src="${gallryImageURL}thumbnail${gallaryDetailList.fileName}" alt="${gallaryDetailList.}"
-									class="img-responsive"></a>
+									class="thumbnail"> <img src="${gallryImageURL}thumbnail${gallaryDetailList.fileName}" alt="${gallaryDetailList.title}"
+								 title="${gallaryDetailList.title}" class="img-responsive"></a>
 							</div>
 						</c:forEach>
 					</div>
