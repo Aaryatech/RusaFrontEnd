@@ -12,14 +12,14 @@
 	if (session.getAttribute("menuList") == null) {
 		String mapping = (String) session.getAttribute("mapping");
 		String contextPath = request.getContextPath();
-		contextPath=contextPath+"/retriveSession/"+mapping;
-		response.sendRedirect(contextPath); 
-	}else{
+		contextPath = contextPath + "/retriveSession/" + mapping;
+		response.sendRedirect(contextPath);
+	} else {
 		if (session.getAttribute("maintainance") != null) {
 			Maintainance main = (Maintainance) session.getAttribute("maintainance");
-			if (main.getMaintenanceStatus()==1) { 
+			if (main.getMaintenanceStatus() == 1) {
 				String contextPath = request.getContextPath();
-				contextPath=contextPath+"/siteInMaintainance";
+				contextPath = contextPath + "/siteInMaintainance";
 				response.sendRedirect(contextPath);
 			}
 		}
@@ -29,18 +29,21 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-        <meta name="description" content="${sessionScope.homePageMetaData.metaDescription}">
-        <meta name="author" content="${sessionScope.homePageMetaData.metaAuthor}">
-        <link rel="icon" href="../../favicon.ico">
-        <title>${sessionScope.homePageMetaData.siteTitle}</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+<meta name="description"
+	content="${sessionScope.homePageMetaData.metaDescription}">
+<meta name="author"
+	content="${sessionScope.homePageMetaData.metaAuthor}">
+<link rel="icon" href="../../favicon.ico">
+<title>${sessionScope.homePageMetaData.siteTitle}</title>
 <jsp:include page="/WEB-INF/views/include/meta.jsp"></jsp:include>
 </head>
 <body>
-<c:url var="checkMaintainance" value="/checkMaintainance" />
+	<c:url var="checkMaintainance" value="/checkMaintainance" />
 	<jsp:include page="/WEB-INF/views/include/topBar.jsp"></jsp:include>
 	<jsp:include page="/WEB-INF/views/include/topMenu.jsp"></jsp:include>
 	<div class="inner-slider" id="slider">
@@ -52,7 +55,7 @@
 		<div class="container">
 			<a href="${pageContext.request.contextPath}/">Home</a> > <a
 				href="${pageContext.request.contextPath}/siteMap">Site Map</a>
-			 
+
 		</div>
 	</div>
 	<div class="container main-content" id="main-content">
@@ -72,8 +75,8 @@
 										</a>
 									</c:when>
 									<c:otherwise>
-										<a
-											onclick="checkMaintainance()" href="${pageContext.request.contextPath}/info/${menuList.sectionSlugname}"
+										<a onclick="checkMaintainance()"
+											href="${pageContext.request.contextPath}/info/${menuList.sectionSlugname}"
 											href="cyber-security-courses.html">${menuList.sectionName}
 										</a>
 
@@ -92,47 +95,65 @@
 							var="menuList">
 							<div
 								class="site-map-box-menu site-map-box-menu-menu-about-mhrd-menu site-map-box-menu site-map-box-menu-menu-accessibility-statement site-map-box">
-								<h2 class="title">${menuList.sectionName}</h2>
+								<h5 class="title">
+									<c:choose>
+										<c:when test="${not empty menuList.externalUrl}">
+											 <a
+												onclick="checkMaintainance()"
+												href="${pageContext.request.contextPath}/${menuList.externalUrl}"
+												title="${menuList.sectionName}">${menuList.sectionName}</a>
+										</c:when>
+										<c:otherwise>
+											 <a
+												onclick="checkMaintainance()"
+												href="${pageContext.request.contextPath}/info/${menuList.sectionSlugname}"
+												title="${menuList.sectionName}">${menuList.sectionName}</a>
+										</c:otherwise>
+									</c:choose>
+									 
+								</h5>
 								<div class="content">
 									<c:forEach items="${sessionScope.menuList.categoryList}"
 										var="catList">
 
 										<c:if test="${catList.sectionId==menuList.sectionId}">
 											<ul class="site-map-menu list">
-
-
-
-												<li class="first leaf"><c:choose>
+ 
+												 <c:choose>
 														<c:when test="${not empty catList.externalUrl}">
-															<a
-																onclick="checkMaintainance()" href="${pageContext.request.contextPath}/${catList.externalUrl}"
-																title="Accessibility Features">${catList.catName}</a>
+															<span style="padding-right: 20px;"></span>-<a
+																onclick="checkMaintainance()"
+																href="${pageContext.request.contextPath}/${catList.externalUrl}"
+																title="${catList.catName}">${catList.catName}</a><br>
 														</c:when>
 														<c:otherwise>
-															<a
-																onclick="checkMaintainance()" href="${pageContext.request.contextPath}/info/${catList.slugName}"
-																title="Accessibility Features">${catList.catName}</a>
+															<span style="padding-right: 20px;"></span>-<a
+																onclick="checkMaintainance()"
+																href="${pageContext.request.contextPath}/info/${catList.slugName}"
+																title="${catList.catName}">${catList.catName}</a><br>
 														</c:otherwise>
-													</c:choose></li>
+													</c:choose> 
 
 												<c:forEach items="${sessionScope.menuList.subCatList}"
 													var="subCatList">
 													<c:if test="${subCatList.parentId==catList.catId}">
-													<li class="leaf"><c:choose>
-															<c:when test="${not empty subCatList.externalUrl}">
-																<a
-																	onclick="checkMaintainance()" href="${pageContext.request.contextPath}/${subCatList.externalUrl}"
-																	title="Screen Reader Access ">${subCatList.subCatName}
-																</a>
-															</c:when>
-															<c:otherwise>
-																<a
-																	onclick="checkMaintainance()" href="${pageContext.request.contextPath}/info/${subCatList.subSlugName}"
-																	title="Screen Reader Access ">${subCatList.subCatName}
-																</a>
-															</c:otherwise>
-														</c:choose></li>
-														</c:if>
+														<!-- <li class="leaf"> --><c:choose>
+																<c:when test="${not empty subCatList.externalUrl}">
+																	<span style="padding-right: 40px;"></span>--<a
+																		onclick="checkMaintainance()"
+																		href="${pageContext.request.contextPath}/${subCatList.externalUrl}"
+																		title="${subCatList.subCatName}">${subCatList.subCatName}
+																	</a>
+																</c:when>
+																<c:otherwise>
+																	<span style="padding-right: 40px;"></span>--<a
+																		onclick="checkMaintainance()"
+																		href="${pageContext.request.contextPath}/info/${subCatList.subSlugName}"
+																		title="${subCatList.subCatName}">${subCatList.subCatName}
+																	</a>
+																</c:otherwise>
+															</c:choose><br><!-- </li> -->
+													</c:if>
 												</c:forEach>
 											</ul>
 										</c:if>
@@ -156,14 +177,14 @@
 
 
 
-<script>
-			function checkMaintainance() {
+	<script>
+		function checkMaintainance() {
 
-				$.getJSON('${checkMaintainance}', {
-					 ajax : 'true'
-				});
-			}
-		</script>
+			$.getJSON('${checkMaintainance}', {
+				ajax : 'true'
+			});
+		}
+	</script>
 
 </body>
 </html>
