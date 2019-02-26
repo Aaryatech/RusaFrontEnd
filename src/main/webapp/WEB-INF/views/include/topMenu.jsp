@@ -205,9 +205,6 @@
 </div>
 <script>
 			function checkMaintainance() {
-
-				$.getJSON('${checkMaintainance}', {
-					 ajax : 'true'
-				});
+ 
 			}
 		</script>

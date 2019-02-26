@@ -13,16 +13,7 @@
 		String contextPath = request.getContextPath();
 		contextPath = contextPath + "/retriveSession/" + mapping;
 		response.sendRedirect(contextPath);
-	} else {
-		if (session.getAttribute("maintainance") != null) {
-			Maintainance main = (Maintainance) session.getAttribute("maintainance");
-			if (main.getMaintenanceStatus() == 1) {
-				String contextPath = request.getContextPath();
-				contextPath = contextPath + "/siteInMaintainance";
-				response.sendRedirect(contextPath);
-			}
-		}
-	}
+	} 
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -141,10 +132,7 @@
 	<jsp:include page="/WEB-INF/views/include/footerJs.jsp"></jsp:include>
 <script>
 			function checkMaintainance() {
-
-				$.getJSON('${checkMaintainance}', {
-					 ajax : 'true'
-				});
+ 
 			}
 		</script>
 </body>

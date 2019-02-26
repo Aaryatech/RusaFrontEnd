@@ -19,78 +19,93 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ats.rusafronend.common.Constant;
+import com.ats.rusafronend.model.Maintainance;
 import com.ats.rusafronend.model.PageContent;
 import com.ats.rusafronend.model.PageMetaData;
 import com.ats.rusafronend.model.SearchData;
 import com.ats.rusafronend.model.SectionTree;
- 
 
 @Controller
 @Scope("session")
 public class CmsController {
-	
+
 	RestTemplate rest = new RestTemplate();
-	
+
 	@RequestMapping(value = "/info/{slugName}", method = RequestMethod.GET)
-	public ModelAndView info(@PathVariable("slugName") String slugName,HttpServletRequest request, HttpServletResponse response) {
+	public ModelAndView info(@PathVariable("slugName") String slugName, HttpServletRequest request,
+			HttpServletResponse response) {
 
 		ModelAndView model = new ModelAndView("content/cmsContent");
 		try {
 			HttpSession session = request.getSession();
-			session.setAttribute("mapping","info-"+slugName);
+			session.setAttribute("mapping", "info-" + slugName);
 			int langId = (Integer) session.getAttribute("langId");
 			System.out.println(slugName);
-			
-			
-			MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
-			map.add("slugName", slugName); 
-			map.add("langId", langId); 
-			PageContent pageContent = rest.postForObject(Constant.url + "/getDataBySlugName",map,  PageContent.class);
-			pageContent.setSlugName(slugName);
-			model.addObject("pageContent", pageContent); 
-			model.addObject("url", Constant.getCmsPdf);
-			model.addObject("gallryImageURL", Constant.getGallryImageURL);
-			
-			map = new LinkedMultiValueMap<String, Object>();
-			map.add("slugName", slugName);
-			PageMetaData pageMetaData = rest.postForObject(Constant.url + "/getPageMetaData",map,  PageMetaData.class);
-			model.addObject("pageMetaData", pageMetaData);
-			
+
+			Maintainance maintainance = rest.getForObject(Constant.url + "/checkIsMaintenance", Maintainance.class);
+
+			if (maintainance.getMaintenanceStatus() == 1) {
+
+				model = new ModelAndView("maintainance");
+				 model.addObject("maintainance", maintainance);
+			} else {
+
+				MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
+				map.add("slugName", slugName);
+				map.add("langId", langId);
+				PageContent pageContent = rest.postForObject(Constant.url + "/getDataBySlugName", map,
+						PageContent.class);
+				pageContent.setSlugName(slugName);
+				model.addObject("pageContent", pageContent);
+				model.addObject("url", Constant.getCmsPdf);
+				model.addObject("gallryImageURL", Constant.getGallryImageURL);
+
+				map = new LinkedMultiValueMap<String, Object>();
+				map.add("slugName", slugName);
+				PageMetaData pageMetaData = rest.postForObject(Constant.url + "/getPageMetaData", map,
+						PageMetaData.class);
+				model.addObject("pageMetaData", pageMetaData);
+			}
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
 		return model;
 	}
-	
+
 	@RequestMapping(value = "/faqContent", method = RequestMethod.GET)
 	public ModelAndView faqContent(HttpServletRequest request, HttpServletResponse response) {
 
 		ModelAndView model = new ModelAndView("content/faqContent");
 		try {
-		 
+
 			HttpSession session = request.getSession();
-			session.setAttribute("mapping","faqContent");
-			 
-			
-			
+			session.setAttribute("mapping", "faqContent");
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
 		return model;
 	}
-	
+
 	@RequestMapping(value = "/siteMap", method = RequestMethod.GET)
 	public ModelAndView siteMap(HttpServletRequest request, HttpServletResponse response) {
 
 		ModelAndView model = new ModelAndView("content/siteMap");
 		try {
-		 
+
 			HttpSession session = request.getSession();
-			session.setAttribute("mapping","siteMap");
-			 
-			
+			session.setAttribute("mapping", "siteMap");
+
+			Maintainance maintainance = rest.getForObject(Constant.url + "/checkIsMaintenance", Maintainance.class);
+
+			if (maintainance.getMaintenanceStatus() == 1) {
+
+				model = new ModelAndView("maintainance");
+				 model.addObject("maintainance", maintainance);
+			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -98,32 +113,40 @@ public class CmsController {
 
 		return model;
 	}
-	
+
 	@RequestMapping(value = "/searchData", method = RequestMethod.GET)
 	public ModelAndView searchData(HttpServletRequest request, HttpServletResponse response) {
 
 		ModelAndView model = new ModelAndView("searchData");
 		try {
-		 
+
 			HttpSession session = request.getSession();
-			session.setAttribute("mapping","searchData");
-			 
-			 int langId = (Integer) session.getAttribute("langId");
+			session.setAttribute("mapping", "searchData");
+
+			int langId = (Integer) session.getAttribute("langId");
 			String word = request.getParameter("word");
-			MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
-			map.add("word", word);
-			map.add("langId", langId); 
-			SearchData searchData = rest.postForObject(Constant.url + "/serchWordFromTable",map,  SearchData.class);
-			model.addObject("searchData", searchData);
-		 
+			Maintainance maintainance = rest.getForObject(Constant.url + "/checkIsMaintenance", Maintainance.class);
+
+			if (maintainance.getMaintenanceStatus() == 1) {
+
+				model = new ModelAndView("maintainance");
+				 model.addObject("maintainance", maintainance);
+			}else {
+				
+				MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
+				map.add("word", word);
+				map.add("langId", langId);
+				SearchData searchData = rest.postForObject(Constant.url + "/serchWordFromTable", map, SearchData.class);
+				model.addObject("searchData", searchData);
+				//System.out.println(searchData);
+			}
 			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
 		return model;
 	}
-	
-	
 
 }

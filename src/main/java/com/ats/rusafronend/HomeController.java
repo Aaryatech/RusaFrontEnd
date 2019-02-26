@@ -49,7 +49,7 @@ public class HomeController {
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(HttpServletRequest request, HttpServletResponse response) {
+	public ModelAndView home(HttpServletRequest request, HttpServletResponse response) {
 
 		RestTemplate rest = new RestTemplate();
 		try {
@@ -71,32 +71,36 @@ public class HomeController {
 
 			ImageLink[] image = rest.getForObject(Constant.url + "/getAllImageLinkList", ImageLink[].class);
 			List<ImageLink> imagList = new ArrayList<ImageLink>(Arrays.asList(image));
-			
+
 			MultiValueMap<String, Object> map1 = new LinkedMultiValueMap<String, Object>();
-			map1.add("id", 3); 
-			BannerImages editbanner = rest.postForObject(Constant.url + "/getSliderImagesById", map1, BannerImages.class);
+			map1.add("id", 3);
+			BannerImages editbanner = rest.postForObject(Constant.url + "/getSliderImagesById", map1,
+					BannerImages.class);
 			session.setAttribute("editbanner", editbanner);
 			MultiValueMap<String, Object> map2 = new LinkedMultiValueMap<String, Object>();
 			map2.add("id", 1);
 			Logo logo = rest.postForObject(Constant.url + "/getLogoListById", map2, Logo.class);
-		
-			 
-			GallaryDetail[] galleryDetail = rest.getForObject(Constant.url + "/getLastTenVideos",GallaryDetail[].class);
+
+			GallaryDetail[] galleryDetail = rest.getForObject(Constant.url + "/getLastTenVideos",
+					GallaryDetail[].class);
 			List<GallaryDetail> gerGalleryList = new ArrayList<GallaryDetail>(Arrays.asList(galleryDetail));
-			
-			GallaryDetail[] photoDetail = rest.getForObject(Constant.url + "/getLastTenPhotos",GallaryDetail[].class);
+
+			GallaryDetail[] photoDetail = rest.getForObject(Constant.url + "/getLastTenPhotos", GallaryDetail[].class);
 			List<GallaryDetail> photoList = new ArrayList<GallaryDetail>(Arrays.asList(photoDetail));
-			
-			CmsSearchData[] getCMSDescList = rest.postForObject(Constant.url + "/getCMSDescByExInt1", map,CmsSearchData[].class);
+
+			CmsSearchData[] getCMSDescList = rest.postForObject(Constant.url + "/getCMSDescByExInt1", map,
+					CmsSearchData[].class);
 			List<CmsSearchData> getCMSDesc = new ArrayList<CmsSearchData>(Arrays.asList(getCMSDescList));
-			
-			TestImonial[] testImonialList= rest.getForObject(Constant.url + "/getLastFiveTestImonials",TestImonial[].class);
+
+			TestImonial[] testImonialList = rest.getForObject(Constant.url + "/getLastFiveTestImonials",
+					TestImonial[].class);
 			List<TestImonial> testImonial = new ArrayList<TestImonial>(Arrays.asList(testImonialList));
-			
-			NewsDetails[] getPagesModule = rest.postForObject(Constant.url + "/getLastFourNewsByLangId",map, NewsDetails[].class);			
+
+			NewsDetails[] getPagesModule = rest.postForObject(Constant.url + "/getLastFourNewsByLangId", map,
+					NewsDetails[].class);
 			List<NewsDetails> newsBlogsList = new ArrayList<NewsDetails>(Arrays.asList(getPagesModule));
-			
-			session.setAttribute("newsBlogsList", newsBlogsList);	 
+
+			session.setAttribute("newsBlogsList", newsBlogsList);
 			session.setAttribute("testImonial", testImonial);
 			session.setAttribute("getCMSDesc", getCMSDesc);
 			session.setAttribute("photoList", photoList);
@@ -109,65 +113,84 @@ public class HomeController {
 			session.setAttribute("mapping", "/");
 			session.setAttribute("menuList", sectionTree);
 			session.setAttribute("gallryImageURL", Constant.getGallryImageURL);
-			
+
 			session.setAttribute("siteFrontEndUrl", Constant.siteFrontEndUrl);
 			session.setAttribute("siteDomainUrl", Constant.siteDomainUrl);
-			
-			MetaData metaData = rest.postForObject(Constant.url + "/getHomePageMetaDataByLangId", map,MetaData.class);
+
+			MetaData metaData = rest.postForObject(Constant.url + "/getHomePageMetaDataByLangId", map, MetaData.class);
 			session.setAttribute("homePageMetaData", metaData);
-			
+
 			System.out.println(metaData);
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "home";
+
+		ModelAndView model = new ModelAndView("home");
+
+		Maintainance maintainance = rest.getForObject(Constant.url + "/checkIsMaintenance", Maintainance.class);
+		if (maintainance.getMaintenanceStatus() == 1) {
+			model = new ModelAndView("maintainance");
+			model.addObject("maintainance", maintainance);
+		}
+		return model;
 	}
 
 	@RequestMapping(value = "/changeLangage/{url}", method = RequestMethod.GET)
 	public String changeLangage(@PathVariable("url") String url, HttpServletRequest request,
 			HttpServletResponse response) {
 
-		String[] arry = url.split("-");
+		RestTemplate rest = new RestTemplate();
+		HttpSession session = request.getSession();
 
-		try {
-			System.out.println(url);
-			System.out.println(Arrays.toString(arry));
-
-			HttpSession session = request.getSession();
-			session.setAttribute("langId", Integer.parseInt(arry[0]));
-
-			MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
-			map.add("langId", arry[0]);
-			RestTemplate rest = new RestTemplate();
-			TopMenuList sectionTree = rest.postForObject(Constant.url + "/getTopMenuList", map, TopMenuList.class);
-
-			session.setAttribute("menuList", sectionTree);
-
-			Maintainance maintainance = rest.getForObject(Constant.url + "/checkIsMaintenance", Maintainance.class);
+		Maintainance maintainance = rest.getForObject(Constant.url + "/checkIsMaintenance", Maintainance.class);
+		if (maintainance.getMaintenanceStatus() == 1) {
+			
 			session.setAttribute("maintainance", maintainance);
+			return "maintainance";
+			
+		} else {
 
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
+			String[] arry = url.split("-");
 
-			String ret = new String();
-			ret = arry[1] + "/";
-			for (int i = 2; i < arry.length; i++) {
+			try {
+				System.out.println(url);
+				System.out.println(Arrays.toString(arry));
 
-				if (i == 2) {
-					ret = ret + arry[i];
-				} else {
-					ret = ret + "-" + arry[i];
-				}
+				session.setAttribute("langId", Integer.parseInt(arry[0]));
 
+				MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
+				map.add("langId", arry[0]);
+
+				TopMenuList sectionTree = rest.postForObject(Constant.url + "/getTopMenuList", map, TopMenuList.class);
+
+				session.setAttribute("menuList", sectionTree);
+
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
 
-			return "redirect:/" + ret;
-		} catch (Exception e) {
-			return "redirect:/";
+			try {
+
+				String ret = new String();
+				ret = arry[1] + "/";
+				for (int i = 2; i < arry.length; i++) {
+
+					if (i == 2) {
+						ret = ret + arry[i];
+					} else {
+						ret = ret + "-" + arry[i];
+					}
+
+				}
+
+				return "redirect:/" + ret;
+			} catch (Exception e) {
+				return "redirect:/";
+			}
+
 		}
+
 	}
 
 	@RequestMapping(value = "/checkMaintainance", method = RequestMethod.GET)
@@ -205,80 +228,89 @@ public class HomeController {
 	@RequestMapping(value = "/retriveSession/{url}", method = RequestMethod.GET)
 	public String retriveSession(@PathVariable("url") String url, HttpServletRequest request,
 			HttpServletResponse response) {
-
+		HttpSession session = request.getSession();
 		String[] arry = url.split("-");
+		RestTemplate rest = new RestTemplate();
 
-		try {
-			System.out.println(url);
-			System.out.println(Arrays.toString(arry));
-
-			HttpSession session = request.getSession();
-			session.setAttribute("langId", 1);
-
-			MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
-			map.add("langId", 1);
-			RestTemplate rest = new RestTemplate();
-			TopMenuList sectionTree = rest.postForObject(Constant.url + "/getTopMenuList", map, TopMenuList.class);
-			session.setAttribute("menuList", sectionTree);
-
-			ImageLink[] image = rest.getForObject(Constant.url + "/getAllImageLinkList", ImageLink[].class);
-			List<ImageLink> imagList = new ArrayList<ImageLink>(Arrays.asList(image));
-
-			map = new LinkedMultiValueMap<String, Object>();
-			map.add("id", 1);
-			Logo logo = rest.postForObject(Constant.url + "/getLogoListById", map, Logo.class);
-			session.setAttribute("logo", logo);
-			session.setAttribute("logoUrl", Constant.getLgogImageURL);
-			session.setAttribute("image", imagList);
-			session.setAttribute("url", Constant.getBannerImageURL);
-			
-			session.setAttribute("siteFrontEndUrl", Constant.siteFrontEndUrl);
-			session.setAttribute("siteDomainUrl", Constant.siteDomainUrl);
-			
-			Maintainance maintainance = rest.getForObject(Constant.url + "/checkIsMaintenance", Maintainance.class);
+		Maintainance maintainance = rest.getForObject(Constant.url + "/checkIsMaintenance", Maintainance.class);
+		if (maintainance.getMaintenanceStatus() == 1) {
 			session.setAttribute("maintainance", maintainance);
-			
-			map = new LinkedMultiValueMap<String, Object>();
-			map.add("langId", 1);
-			MetaData metaData = rest.postForObject(Constant.url + "/getHomePageMetaDataByLangId", map,MetaData.class);
-			session.setAttribute("homePageMetaData", metaData);
+			return "maintainance";
+		} else {
 
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
+			try {
+				System.out.println(url);
+				System.out.println(Arrays.toString(arry));
 
-			String ret = new String();
+				session.setAttribute("langId", 1);
 
-			if (ArrayUtils.contains(arry, "info")) {
-				ret = "info" + "/";
-				for (int i = 1; i < arry.length; i++) {
+				MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
+				map.add("langId", 1);
 
-					if (i == 1) {
+				TopMenuList sectionTree = rest.postForObject(Constant.url + "/getTopMenuList", map, TopMenuList.class);
+				session.setAttribute("menuList", sectionTree);
 
-						ret = ret + arry[i];
-					} else {
-						ret = ret + "-" + arry[i];
-					}
+				ImageLink[] image = rest.getForObject(Constant.url + "/getAllImageLinkList", ImageLink[].class);
+				List<ImageLink> imagList = new ArrayList<ImageLink>(Arrays.asList(image));
 
-				}
+				map = new LinkedMultiValueMap<String, Object>();
+				map.add("id", 1);
+				Logo logo = rest.postForObject(Constant.url + "/getLogoListById", map, Logo.class);
+				session.setAttribute("logo", logo);
+				session.setAttribute("logoUrl", Constant.getLgogImageURL);
+				session.setAttribute("image", imagList);
+				session.setAttribute("url", Constant.getBannerImageURL);
 
-			} else {
-				for (int i = 0; i < arry.length; i++) {
+				session.setAttribute("siteFrontEndUrl", Constant.siteFrontEndUrl);
+				session.setAttribute("siteDomainUrl", Constant.siteDomainUrl);
 
-					if (i == 0) {
+				map = new LinkedMultiValueMap<String, Object>();
+				map.add("langId", 1);
+				MetaData metaData = rest.postForObject(Constant.url + "/getHomePageMetaDataByLangId", map,
+						MetaData.class);
+				session.setAttribute("homePageMetaData", metaData);
 
-						ret = ret + arry[i];
-					} else {
-						ret = ret + "-" + arry[i];
-					}
-
-				}
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
-			System.out.println("ret" + ret);
-			return "redirect:/" + ret;
-		} catch (Exception e) {
-			return "redirect:/";
+
+			try {
+
+				String ret = new String();
+
+				if (ArrayUtils.contains(arry, "info")) {
+					ret = "info" + "/";
+					for (int i = 1; i < arry.length; i++) {
+
+						if (i == 1) {
+
+							ret = ret + arry[i];
+						} else {
+							ret = ret + "-" + arry[i];
+						}
+
+					}
+
+				} else {
+					for (int i = 0; i < arry.length; i++) {
+
+						if (i == 0) {
+
+							ret = ret + arry[i];
+						} else {
+							ret = ret + "-" + arry[i];
+						}
+
+					}
+				}
+				System.out.println("ret" + ret);
+
+				return "redirect:/" + ret;
+
+			} catch (Exception e) {
+				return "redirect:/";
+			}
 		}
+
 	}
 }

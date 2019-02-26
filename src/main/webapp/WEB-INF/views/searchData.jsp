@@ -12,33 +12,25 @@
 	if (session.getAttribute("menuList") == null) {
 		String mapping = (String) session.getAttribute("mapping");
 		String contextPath = request.getContextPath();
-		contextPath=contextPath+"/retriveSession/"+mapping;
-		response.sendRedirect(contextPath); 
-	}
-	else{
-		if (session.getAttribute("maintainance") != null) {
-			Maintainance main = (Maintainance) session.getAttribute("maintainance");
-			if (main.getMaintenanceStatus()==1) { 
-				String contextPath = request.getContextPath();
-				contextPath=contextPath+"/siteInMaintainance";
-				response.sendRedirect(contextPath);
-				 
-			}
-		}
+		contextPath = contextPath + "/retriveSession/" + mapping;
+		response.sendRedirect(contextPath);
 	}
 %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-        <meta name="description" content="${sessionScope.homePageMetaData.metaDescription}">
-        <meta name="author" content="${sessionScope.homePageMetaData.metaAuthor}">
-        <link rel="icon" href="../../favicon.ico">
-        <title>${sessionScope.homePageMetaData.siteTitle}</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+<meta name="description"
+	content="${sessionScope.homePageMetaData.metaDescription}">
+<meta name="author"
+	content="${sessionScope.homePageMetaData.metaAuthor}">
+<link rel="icon" href="../../favicon.ico">
+<title>${sessionScope.homePageMetaData.siteTitle}</title>
 <jsp:include page="/WEB-INF/views/include/meta.jsp"></jsp:include>
 </head>
 <body>
@@ -65,12 +57,19 @@
 					<c:forEach items="${searchData.cmsSerchList}" var="cmsSerchList">
 
 						<h2>
-							<a href="${pageContext.request.contextPath}/info/${cmsSerchList.pageSlug}">${cmsSerchList.heading}</a>
+							<a
+								href="${pageContext.request.contextPath}/info/${cmsSerchList.pageSlug}">${cmsSerchList.heading}</a>
 						</h2>
 						<c:set var="string1" value="${cmsSerchList.pageDesc}" />
 						<c:set var="string2" value="${fn:substring(string1, 0, 256)}" />
-                    ${string2}.....
-                    
+						 
+						<c:set var="string4"
+							value="${fn:replace(string2, 'RUSA', '<strong>rusa</strong>')}" />
+							
+							<%-- <c:if test="${fn:containsIgnoreCase(string2, 'rusa')==true}">
+							ahe
+							</c:if> --%>
+      					${string4}.....
                     <br>
 					</c:forEach>
 					<hr>
@@ -84,7 +83,8 @@
 					<c:forEach items="${searchData.faqSerchList}" var="faqSerchList">
 
 						<h2>
-							<a href="${pageContext.request.contextPath}/info/${faqSerchList.pageSlug}">${faqSerchList.faqQue}</a>
+							<a
+								href="${pageContext.request.contextPath}/info/${faqSerchList.pageSlug}">${faqSerchList.faqQue}</a>
 						</h2>
 						<c:set var="string1" value="${faqSerchList.faqAns}" />
 						<c:set var="string2" value="${fn:substring(string1, 0, 256)}" />
@@ -102,7 +102,8 @@
 					<c:forEach items="${searchData.newsSerchList}" var="newsSerchList">
 
 						<h2>
-							<a href="${pageContext.request.contextPath}/info/${newsSerchList.pageSlug}">${newsSerchList.heading}</a>
+							<a
+								href="${pageContext.request.contextPath}/info/${newsSerchList.pageSlug}">${newsSerchList.heading}</a>
 						</h2>
 						<c:set var="string1" value="${newsSerchList.descriptions}" />
 						<c:set var="string2" value="${fn:substring(string1, 0, 256)}" />
@@ -120,7 +121,8 @@
 						var="gallerySerchList">
 
 						<h2>
-							<a href="${pageContext.request.contextPath}/info/${gallerySerchList.pageSlug}">${gallerySerchList.title}</a>
+							<a
+								href="${pageContext.request.contextPath}/info/${gallerySerchList.pageSlug}">${gallerySerchList.title}</a>
 						</h2>
 
 						<br>
@@ -135,7 +137,8 @@
 						var="documentSerchList">
 
 						<h2>
-							<a href="${pageContext.request.contextPath}/info/${documentSerchList.pageSlug}">${documentSerchList.fileName}</a>
+							<a
+								href="${pageContext.request.contextPath}/info/${documentSerchList.pageSlug}">${documentSerchList.fileName}</a>
 						</h2>
 
 						<br>
@@ -144,12 +147,12 @@
 					<c:set var="find" value="1"></c:set>
 				</c:if>
 
-
 				<c:if test="${find==0}">
 					<h2 style="text-align: center;">No Record Found</h2>
 				</c:if>
-
 			</div>
+
+
 
 
 		</div>

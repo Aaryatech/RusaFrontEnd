@@ -14,16 +14,7 @@ String user = null;
 		String contextPath = request.getContextPath();
 		contextPath=contextPath+"/retriveSession/"+mapping;
 		response.sendRedirect(contextPath); 
-	}else{
-		if (session.getAttribute("maintainance") != null) {
-			Maintainance main = (Maintainance) session.getAttribute("maintainance");
-			if (main.getMaintenanceStatus()==1) { 
-				String contextPath = request.getContextPath();
-				contextPath=contextPath+"/siteInMaintainance";
-				response.sendRedirect(contextPath);
-			}
-		}
-	}
+	} 
 %>
  <!DOCTYPE html>
 <html lang="en">
