@@ -84,9 +84,9 @@ String user = null;
                         <br><br>
                         <h2>${image.heading}</h2>
                         <p>${image.descriptions}</p>
-                        <h4>Meta Title :</h4><p> ${image.pageMetaTitle}</p>
-                        <h4>Meta Description :</h4> <p>${image.pageMetaDescription}</p>
-                        <h4>KeyWords :</h4> <p>${image.pageMetaKeyword}</p>
+                        <h5>Meta Title :</h5><p> ${image.pageMetaTitle}</p>
+                        <h5>Meta Description :</h5> <p>${image.pageMetaDescription}</p>
+                        <h5>KeyWords :</h5> <p>${image.pageMetaKeyword}</p>
                      </div> 
                    </div>     
                 </div>

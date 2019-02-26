@@ -75,7 +75,7 @@
 						
 						</p>
 						<div class="more" style="clear:both">
-						<a href="#">more... </a>
+						<a href="${pageContext.request.contextPath}/info/${getCMSDesc.pageSlug}">more... </a>
 						</div>
 					</div>
 

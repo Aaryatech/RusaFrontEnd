@@ -27,6 +27,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.ats.rusafronend.common.Constant;
 import com.ats.rusafronend.model.BannerImages;
 import com.ats.rusafronend.model.CMSPageDescription;
+import com.ats.rusafronend.model.CmsSearchData;
 import com.ats.rusafronend.model.GallaryDetail;
 import com.ats.rusafronend.model.ImageLink;
 import com.ats.rusafronend.model.Logo;
@@ -86,8 +87,8 @@ public class HomeController {
 			GallaryDetail[] photoDetail = rest.getForObject(Constant.url + "/getLastTenPhotos",GallaryDetail[].class);
 			List<GallaryDetail> photoList = new ArrayList<GallaryDetail>(Arrays.asList(photoDetail));
 			
-			CMSPageDescription[] getCMSDescList = rest.postForObject(Constant.url + "/getCMSDescByExInt1", map,CMSPageDescription[].class);
-			List<CMSPageDescription> getCMSDesc = new ArrayList<CMSPageDescription>(Arrays.asList(getCMSDescList));
+			CmsSearchData[] getCMSDescList = rest.postForObject(Constant.url + "/getCMSDescByExInt1", map,CmsSearchData[].class);
+			List<CmsSearchData> getCMSDesc = new ArrayList<CmsSearchData>(Arrays.asList(getCMSDescList));
 			
 			TestImonial[] testImonialList= rest.getForObject(Constant.url + "/getLastFiveTestImonials",TestImonial[].class);
 			List<TestImonial> testImonial = new ArrayList<TestImonial>(Arrays.asList(testImonialList));
