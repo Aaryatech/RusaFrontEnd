@@ -96,8 +96,24 @@ ContactUs contactUs=new ContactUs();
 
 		ModelAndView model = new ModelAndView("content/teamDetails");
 		try {
+				int langId = 1;
+
+				HttpSession session = request.getSession();
+
+				try {
+					langId = (Integer) session.getAttribute("langId");
+				} catch (Exception e) {
+					// e.printStackTrace();
+					session.setAttribute("langId", langId);
+				}
+
+				MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
+				map.add("langId", langId);
+
+				TopMenuList sectionTree = rest.postForObject(Constant.url + "/getTopMenuList", map, TopMenuList.class);
 			
-			HttpSession session = request.getSession();
+			//HttpSession session = request.getSession();
+				session.setAttribute("menuList", sectionTree);
 			session.setAttribute("mapping","teamDetails");
 			
 			TestImonial[] getTeamList= rest.getForObject(Constant.url + "/getTeamDetail",TestImonial[].class);
