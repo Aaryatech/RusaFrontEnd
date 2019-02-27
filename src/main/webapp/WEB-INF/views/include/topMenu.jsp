@@ -17,96 +17,14 @@
 				<form class="form-inline my-2 my-md-0"
 					action="${pageContext.request.contextPath}/searchData" method="get">
 					<input class="form-control" type="text" placeholder="Search"
-						name="word">
+						name="word" value="${seachSentence}">
 					<button type="submit" id="contact-btn" class="btn button search">
 						<span class="icon-search icon"></span>
 					</button>
 				</form>
 			</div>
 		</div>
-
-		<%-- <nav class="navbar navbar-expand-md bg-dark_new">
-			<div class="container">
-				<div class="collapse navbar-collapse" id="navbarsExample01">
-					<ul class="navbar-nav mr-end">
-						<c:forEach items="${sessionScope.menuList}" var="menuList">
-							<li class="nav-item dropdown"><c:choose>
-									<c:when test="${menuList.catList.size()>0}">
-
-										<a
-											href="${pageContext.request.contextPath}/info/${menuList.sectionSlugname}"
-											class="dropdown-toggle nav-link dropdown-toggle"
-											data-toggle="dropdown">${menuList.sectionName} <span
-											class="caret"></span></a>
-										<ul class="dropdown-menu">
-											<c:forEach items="${menuList.catList}" var="catList">
-												<c:choose>
-													<c:when test="${catList.subCatList.size()>0}">
-														<li class="dropdown-submenu">
-														<c:choose>
-																<c:when test="${not empty catList.externalUrl}">
-																	<a class="test" tabindex="-1"
-																		href="${pageContext.request.contextPath}/${catList.externalUrl}">${catList.catName}<span
-																		class="caret"></span></a>
-																</c:when>
-																<c:otherwise>
-																	<a class="test" tabindex="-1"
-																		href="${pageContext.request.contextPath}/info/${catList.slugName}">${catList.catName}<span
-																		class="caret"></span></a>
-																</c:otherwise>
-															</c:choose>
-
-															<ul class="dropdown-menu">
-																<c:forEach items="${catList.subCatList}"
-																	var="subCatList">
-																	<li class="dropdown-item">
-																	<c:choose>
-																			<c:when test="${not empty catList.externalUrl}">
-																				<a class="test"
-																					href="${pageContext.request.contextPath}/${subCatList.externalUrl}">${subCatList.subCatName}
-																				</a>
-																			</c:when>
-																			<c:otherwise>
-																				<a class="test"
-																					href="${pageContext.request.contextPath}/info/${subCatList.subSlugName}">${subCatList.subCatName}
-																				</a>
-																			</c:otherwise>
-																		</c:choose></li>
-																</c:forEach>
-															</ul>
-															
-														</li>
-														
-													</c:when>
-													<c:otherwise>
-														<li class="dropdown-item"><c:choose>
-																<c:when test="${not empty catList.externalUrl}">
-																	<a class="test" tabindex="-1"
-																		href="${pageContext.request.contextPath}/${catList.externalUrl}">${catList.catName}<span
-																		class="caret"></span></a>
-																</c:when>
-																<c:otherwise>
-																	<a class="test" tabindex="-1"
-																		href="${pageContext.request.contextPath}/info/${catList.slugName}">${catList.catName}<span
-																		class="caret"></span></a>
-																</c:otherwise>
-															</c:choose></li>
-													</c:otherwise>
-												</c:choose>
-											</c:forEach>
-										</ul>
-									</c:when>
-									<c:otherwise>
-										<a class="nav-link"
-											href="${pageContext.request.contextPath}/info/${menuList.sectionSlugname}">${menuList.sectionName}</a>
-									</c:otherwise>
-								</c:choose></li>
-						</c:forEach>
-					</ul>
-				</div>
-			</div>
-		</nav>  --%>
-
+ 
 		<nav class="navbar navbar-expand-md bg-dark_new">
 			<div class="container">
 				<div class="collapse navbar-collapse" id="navbarsExample01">

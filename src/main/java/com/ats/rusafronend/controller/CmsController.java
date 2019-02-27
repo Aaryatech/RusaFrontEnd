@@ -122,9 +122,10 @@ public class CmsController {
 
 			HttpSession session = request.getSession();
 			session.setAttribute("mapping", "searchData");
-
+			
 			int langId = (Integer) session.getAttribute("langId");
 			String word = request.getParameter("word");
+			session.setAttribute("seachSentence", word);
 			Maintainance maintainance = rest.getForObject(Constant.url + "/checkIsMaintenance", Maintainance.class);
 
 			if (maintainance.getMaintenanceStatus() == 1) {

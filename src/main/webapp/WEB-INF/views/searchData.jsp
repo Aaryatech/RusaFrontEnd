@@ -33,7 +33,7 @@
 <title>${sessionScope.homePageMetaData.siteTitle}</title>
 <jsp:include page="/WEB-INF/views/include/meta.jsp"></jsp:include>
 </head>
-<body>
+<body onload="clearWordSession()">
 	<jsp:include page="/WEB-INF/views/include/topBar.jsp"></jsp:include>
 	<jsp:include page="/WEB-INF/views/include/topMenu.jsp"></jsp:include>
 	<div class="inner-slider" id="slider">
@@ -60,17 +60,48 @@
 							<a
 								href="${pageContext.request.contextPath}/info/${cmsSerchList.pageSlug}">${cmsSerchList.heading}</a>
 						</h2>
-						<c:set var="string1" value="${cmsSerchList.pageDesc}" />
-						<c:set var="string2" value="${fn:substring(string1, 0, 256)}" />
-						 
-						<c:set var="string4"
-							value="${fn:replace(string2, 'RUSA', '<strong>rusa</strong>')}" />
-							
-							<%-- <c:if test="${fn:containsIgnoreCase(string2, 'rusa')==true}">
-							ahe
-							</c:if> --%>
-      					${string4}.....
-                    <br>
+						<c:set var="string2" value="${cmsSerchList.pageDesc}" />
+						<%-- <c:set var="string2" value="${fn:substring(string1, 0, 256)}" /> --%>
+
+						<%
+							String resp = (String) pageContext.getAttribute("string2"); //No exception.
+									int stringlength = resp.length();
+
+									String finalDesc = ".....";
+						%>
+
+						<c:forEach items="${searchData.searchWorld}" var="searchWorldList">
+
+
+
+							<c:set var="searchWorld" value="${searchWorldList}" />
+
+							<%
+								String searchWorld = (String) pageContext.getAttribute("searchWorld");
+
+											/* resp = resp.replaceAll("(?i)" + searchWorld, "<strong>" + searchWorld + "</strong>");
+											finalDesc = finalDesc+resp.substring(idx, idx+100)+"....."; */
+											try {
+												int idx = resp.toLowerCase().indexOf(searchWorld.toLowerCase());
+												if (finalDesc.toLowerCase().contains(searchWorld.toLowerCase())) {
+													finalDesc = finalDesc.replaceAll("(?i)" + searchWorld,
+															"<strong>" + searchWorld + "</strong>");
+												} else {
+													resp = resp.replaceAll("(?i)" + searchWorld, "<strong>" + searchWorld + "</strong>");
+													finalDesc = finalDesc + resp.substring(idx, idx + 100) + ".....";
+												}
+
+												 
+											} catch (Exception e) {
+
+											}
+							%>
+
+
+						</c:forEach>
+						<%
+							out.println(finalDesc);
+						%>
 					</c:forEach>
 					<hr>
 
@@ -86,11 +117,44 @@
 							<a
 								href="${pageContext.request.contextPath}/info/${faqSerchList.pageSlug}">${faqSerchList.faqQue}</a>
 						</h2>
-						<c:set var="string1" value="${faqSerchList.faqAns}" />
-						<c:set var="string2" value="${fn:substring(string1, 0, 256)}" />
-                    ${string2}.....
-                    
-                    <br>
+						 <c:set var="string1" value="${faqSerchList.faqAns}" />
+						<%--<c:set var="string2" value="${fn:substring(string1, 0, 256)}" />
+                    ${string2}..... --%>
+
+						<%
+							String finalDesc = (String) pageContext.getAttribute("string1"); //No exception.
+									 
+						%>
+						
+						<c:forEach items="${searchData.searchWorld}" var="searchWorldList">
+
+
+
+							<c:set var="searchWorld" value="${searchWorldList}" />
+
+							<%
+								String searchWorld = (String) pageContext.getAttribute("searchWorld");
+
+											/* resp = resp.replaceAll("(?i)" + searchWorld, "<strong>" + searchWorld + "</strong>");
+											finalDesc = finalDesc+resp.substring(idx, idx+100)+"....."; */
+											try {
+												 
+												finalDesc = finalDesc.replaceAll("(?i)" + searchWorld, "<strong>" + searchWorld + "</strong>"); 
+												System.out.println(finalDesc);
+											} catch (Exception e) {
+
+											}
+							%>
+
+
+						</c:forEach>
+						
+						<%
+							out.println(finalDesc);
+						%>
+
+						<br>
+						<br>
 					</c:forEach>
 					<hr>
 					<c:set var="find" value="1"></c:set>
@@ -164,7 +228,13 @@
 	<!-- JavaScript-->
 	<jsp:include page="/WEB-INF/views/include/footerJs.jsp"></jsp:include>
 
-
+<script>
+			function clearWordSession() {
+				
+				<% session.removeAttribute("seachSentence"); %>
+ 
+			}
+		</script>
 
 
 
