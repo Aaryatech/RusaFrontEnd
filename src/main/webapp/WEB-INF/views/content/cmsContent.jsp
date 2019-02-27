@@ -126,7 +126,7 @@
 							<img src="${gallryImageURL}${cmsContentList.featuredImage}"
 								alt=""
 								style="float:${cmsContentList.featuredImageAlignment}; padding-left:20px; padding-right:20px; padding-bottom:20px;"
-								height="500" width="825">
+								height="" width="">
 						</c:if>
 
 						<h2>${cmsContentList.heading}</h2>
