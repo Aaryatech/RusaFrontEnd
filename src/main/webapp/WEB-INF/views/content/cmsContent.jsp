@@ -126,16 +126,16 @@
 							<img src="${gallryImageURL}${cmsContentList.featuredImage}"
 								alt=""
 								style="float:${cmsContentList.featuredImageAlignment}; padding-left:20px; padding-right:20px; padding-bottom:20px;"
-								height="300" width="825">
+								height="500" width="825">
 						</c:if>
 
 						<h2>${cmsContentList.heading}</h2>
                     ${cmsContentList.pageDesc}
                     <c:if test="${not empty cmsContentList.downloadPdf}">
-                   	<h5>Downloads</h5>
-                    <div class="pdfIcon">
-							<a href="${url}${cmsContentList.downloadPdf}" target="_blank">${cmsContentList.downloadPdf} <%-- - ${documentUploadList.fileSize} --%></a>
-						</div>
+                
+                    		<div class="pdfIcon">
+									<a href="${url}${cmsContentList.downloadPdf}" target="_blank">${cmsContentList.downloadPdf} <%-- - ${documentUploadList.fileSize} --%></a>
+							</div>
 						</c:if>
                     <h6 style="text-align: right;">
 							Last Updated on
@@ -172,7 +172,7 @@
 				</c:if>
 
 				<c:if test="${pageContent.documentUploadList.size()>0}">
-					<h2>Downloads</h2>
+					<h5>Downloads</h5>
 
 					<c:forEach items="${pageContent.documentUploadList}"
 						var="documentUploadList">

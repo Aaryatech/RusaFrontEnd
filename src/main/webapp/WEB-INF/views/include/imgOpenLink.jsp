@@ -10,7 +10,7 @@
                 <ul>
               <c:forEach items="${sessionScope.image}" var="imageList" varStatus="count">
               
-			  <li><img src="${sessionScope.url}${imageList.sliderImage}" alt="${imageList.titleName}"   height="51"></li>
+			  <li><a href="${imageList.urlLink}"><img src="${sessionScope.url}${imageList.sliderImage}" alt="${imageList.titleName}" height="20" width="60"></a></li>
 								  
 				</c:forEach>  
               </ul>

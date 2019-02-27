@@ -72,9 +72,8 @@ public class HomeController {
 			ImageLink[] image = rest.getForObject(Constant.url + "/getAllImageLinkList", ImageLink[].class);
 			List<ImageLink> imagList = new ArrayList<ImageLink>(Arrays.asList(image));
 
-			MultiValueMap<String, Object> map1 = new LinkedMultiValueMap<String, Object>();
-			map1.add("id", 3);
-			BannerImages editbanner = rest.postForObject(Constant.url + "/getSliderImagesById", map1,
+			
+			BannerImages editbanner = rest.getForObject(Constant.url + "/getLastSliderImagesByStatus",
 					BannerImages.class);
 			session.setAttribute("editbanner", editbanner);
 			MultiValueMap<String, Object> map2 = new LinkedMultiValueMap<String, Object>();
