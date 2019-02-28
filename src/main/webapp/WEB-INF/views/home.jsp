@@ -43,7 +43,7 @@
 			<h1>${editbanner.sliderName}<br> <span>${editbanner.text1}</span>
 			</h1>
 			<p>${editbanner.text2}</p>
-			<a href="/readMore" class="btn button "><span>${editbanner.linkName}</span></a>
+			<a href="${editbanner.urlLink}" class="btn button "><span>${editbanner.linkName}</span></a>
 		</div>
 	</div>
 
@@ -163,13 +163,13 @@
 			<c:forEach items="${newsBlogsList}" var="newsBlogsList"
 										varStatus="count">
 										<div class="col-12 col-sm-3 col-lg-3">
-				<img src="${sessionScope.gallryImageURL}${newsBlogsList.featuredImage}" width="250" height="228" alt="${newsBlogsList.heading}">
+				<a href="${newsBlogsList.newsSourceUrlName}"><img src="${sessionScope.gallryImageURL}${newsBlogsList.featuredImage}" width="250" height="228" alt="${newsBlogsList.heading}"></a>
 				<h5>${newsBlogsList.heading}</h5>
 				<c:set var="string4" value="${newsBlogsList.descriptions}" />
 				<c:set var="string3" value="${fn:substring(string4, 0, 100)}" />
 				<p>${string3}</p>
 				<a href="${pageContext.request.contextPath}/NewsDetails/${newsBlogsList.languageId}/${newsBlogsList.pageId}/${newsBlogsList.newsblogsId}">more
-								</a>
+				</a>
 		</div>
 		</c:forEach>
 			
