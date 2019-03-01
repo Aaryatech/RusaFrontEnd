@@ -19,20 +19,26 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-
 import com.ats.rusafronend.common.Constant;
-import com.ats.rusafronend.model.ImageLink;
 import com.ats.rusafronend.model.Maintainance;
-import com.ats.rusafronend.model.NewsBlog;
 import com.ats.rusafronend.model.NewsDetails;
 import com.ats.rusafronend.model.PageMetaData;
 import com.ats.rusafronend.model.TestImonial;
 import com.ats.rusafronend.model.TopMenuList;
+import com.ats.rusafronend.validationclass.VerifyRecaptcha;
 import com.ats.rusafronend.model.ContactUs;
+
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @Controller
 @Scope("session")
@@ -83,6 +89,7 @@ public class ImageController {
 	@RequestMapping(value = "/ContactUs", method = RequestMethod.GET)
 	public ModelAndView ContactUs(HttpServletRequest request, HttpServletResponse response) {
 
+		
 		ModelAndView model = new ModelAndView("content/contactUs");
 		try {
 
@@ -165,11 +172,18 @@ public class ImageController {
 	public String insertContactUs(HttpServletRequest request, HttpServletResponse response) {
 
 		try {
+			final long serialVersionUID = -6506682026701304964L;
+
 			String name = request.getParameter("name");
 			String email = request.getParameter("email");
 			String message = request.getParameter("message");
 			String mobileNo = request.getParameter("mobileNo");
 
+			String gRecaptchaResponse = request
+					.getParameter("g-recaptcha-response");
+			boolean verify = VerifyRecaptcha.verify(gRecaptchaResponse);
+
+			
 			Date date = new Date(); // your date
 			SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
 			SimpleDateFormat dateTimeInGMT = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
@@ -178,7 +192,18 @@ public class ImageController {
 			cal.setTime(date);
 
 			// editImageLink.setIsActive(1);
-
+			if (verify) {
+				response.sendRedirect("LoginSuccess.jsp");
+			} else {
+			
+				PrintWriter out = response.getWriter();
+				if (verify) {
+					out.println("<font color=red>Either user name or password is wrong.</font>");
+				} else {
+					out.println("<font color=red>You missed the Captcha.</font>");
+				}
+				//forward.include(request, response);
+			}
 			InetAddress addr = InetAddress.getByName(request.getRemoteAddr());
 			String hostName = addr.getHostName();
 			String userAgent = request.getHeader("User-Agent");

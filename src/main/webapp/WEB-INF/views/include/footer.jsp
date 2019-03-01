@@ -3,7 +3,8 @@
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ page import="com.ats.rusafronend.model.Maintainance"%>
-    
+    <link href="../assets/fonts/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
+    <link rel="shortcut icon" href="../assets/images/favicon.png" type="image/x-icon">
  <footer>
             <div class="container">
                 <div class="row">
@@ -40,14 +41,14 @@
                   			      <c:if test="${socialChannelData[1].isActive==1}">						                     
                     	   <a href="${socialChannelData[1].urllinks}" target="_blank"><span class="icon-twitter"></span></a>
                     		 </c:if>
-                    		   <c:if test="${socialChannelData[2].isActive==1}">
-                       			<a href="${socialChannelData[2].urllinks}" target="_blank"><span class="fa-linkedin-square"></span></a>
+                    	   <c:if test="${socialChannelData[2].isActive==1}">
+                       			<a href="${socialChannelData[2].urllinks}" target="_blank"><span data-class="linkedin"><i class="fa fa-linkedin"></i></span></a>
                        			</c:if>
                        			  <c:if test="${socialChannelData[3].isActive==1}">
-                       			<a href="${socialChannelData[3].urllinks}" target="_blank"><span class="fa-skype"></span></a>
+                       			<a href="${socialChannelData[3].urllinks}" target="_blank"><i class="fa fa-download" aria-hidden="true"></i></a>
                        			</c:if>
                        			  <c:if test="${socialChannelData[4].isActive==1}">
-                       			<a href="${socialChannelData[4].urllinks}" target="_blank"><span class="fa-google-plus"></span></a> 
+                       			<a href="${socialChannelData[4].urllinks}" target="_blank"><span ><i class="fa fa-google-plus"></i><span>fa-google-plus</span></span></a> 
                        			</c:if>
                   
                        <!--  <a href="#"><span class="icon-twitter"></span></a>

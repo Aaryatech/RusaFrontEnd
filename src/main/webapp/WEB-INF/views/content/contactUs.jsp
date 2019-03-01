@@ -137,7 +137,8 @@
 								placeholder="Message"></textarea>
 							<br>
 							<div class="g-recaptcha"
-			data-sitekey="6LdMAgMTAAAAAGYY5PEQeW7b3L3tqACmUcU6alQf"></div>
+			data-sitekey="6Leyx5QUAAAAAAzsnNtkQ6VvEP3kz_jOk3X3gf0W"></div>
+			</br>
 							<button type="submit" id="contact-btn" class="btn btn-primary">
 								<span>Send</span>
 							</button>
