@@ -22,8 +22,8 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<script src="https://www.google.com/recaptcha/api.js"></script>
 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 <c:choose>
 	<c:when test="${not empty pageMetaData.pageMetaTitle}">
@@ -38,6 +38,7 @@
 		<title>${sessionScope.homePageMetaData.siteTitle}</title>
 	</c:otherwise>
 </c:choose>
+
 <jsp:include page="/WEB-INF/views/include/meta.jsp"></jsp:include>
 </head>
 <body>
@@ -125,16 +126,18 @@
 							onsubmit="return confirm('Do you really want to submit the form?');"
 							method="post">
 							<label>Your Name</label> <input type="text" class="form-control"
-								name="name" id="name" placeholder="Name" required=""> <label>Your
+								name="name" id="name" placeholder="Name" required> <label>Your
 								Email</label> <input type="email" class="form-control" name="email"
-								id="email" placeholder="Email" required=""> <label>Phone
+								id="email" placeholder="Email" required> <label>Phone
 								Number</label> <input type="text" class="form-control" name="mobileNo"
-								id="mobileNo" pattern="[7-9]{1}[0-9]{9}"
-								placeholder="Mobile Number" required=""> <label>Your
+								id="mobileNo" pattern="[7-9]{1}[0-9]{9}" maxlength=10
+								placeholder="Mobile Number" required> <label>Your
 								Message</label>
 							<textarea name="message" id="message" class="form-control"
 								placeholder="Message"></textarea>
 							<br>
+							<div class="g-recaptcha"
+			data-sitekey="6LdMAgMTAAAAAGYY5PEQeW7b3L3tqACmUcU6alQf"></div>
 							<button type="submit" id="contact-btn" class="btn btn-primary">
 								<span>Send</span>
 							</button>
