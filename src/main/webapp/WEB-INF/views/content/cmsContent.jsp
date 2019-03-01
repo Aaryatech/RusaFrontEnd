@@ -42,7 +42,7 @@
 <jsp:include page="/WEB-INF/views/include/meta.jsp"></jsp:include>
 </head>
 <body>
-<c:url var="checkMaintainance" value="/checkMaintainance" />
+	<c:url var="checkMaintainance" value="/checkMaintainance" />
 	<jsp:include page="/WEB-INF/views/include/topBar.jsp"></jsp:include>
 	<jsp:include page="/WEB-INF/views/include/topMenu.jsp"></jsp:include>
 	<div class="inner-slider" id="slider">
@@ -74,9 +74,55 @@
 
 										<li><c:choose>
 												<c:when test="${not empty catList.externalUrl}">
-													<a onclick="checkMaintainance()" title="${catList.catName}"
-														href="${pageContext.request.contextPath}/${catList.externalUrl}">${catList.catName}<span
-														class="caret"></span></a>
+
+													<c:set value="${catList.externalUrl}" var="string"></c:set>
+
+													<c:choose>
+														<c:when test="${fn:contains(string, 'http')}">
+															<c:choose>
+																<c:when test="${catList.externalUrlTarget==1}">
+
+																	<a onclick="checkMaintainance()"
+																		title="${catList.catName}"
+																		href="${catList.externalUrl}" target="_blank">${catList.catName}<span
+																		class="caret"></span></a>
+
+																</c:when>
+																<c:otherwise>
+
+																	<a onclick="checkMaintainance()"
+																		title="${catList.catName}"
+																		href="${catList.externalUrl}">${catList.catName}<span
+																		class="caret"></span></a>
+
+
+																</c:otherwise>
+
+															</c:choose>
+
+														</c:when>
+														<c:otherwise>
+															<c:choose>
+																<c:when test="${catList.externalUrlTarget==1}">
+
+																	<a onclick="checkMaintainance()"
+																		title="${catList.catName}"
+																		href="${pageContext.request.contextPath}/${catList.externalUrl}">${catList.catName}<span
+																		class="caret"></span></a>
+
+																</c:when>
+																<c:otherwise>
+																	<a class="test" onclick="checkMaintainance()"
+																		title="${catList.catName}"
+																		href="${pageContext.request.contextPath}/${catList.externalUrl}">${catList.catName}<span
+																		class="caret"></span></a>
+
+																</c:otherwise>
+
+															</c:choose>
+														</c:otherwise>
+													</c:choose>
+
 												</c:when>
 												<c:otherwise>
 													<a onclick="checkMaintainance()" title="${catList.catName}"
@@ -89,19 +135,62 @@
 											var="subCatList">
 											<c:if test="${subCatList.parentId==catList.catId}">
 												<li><c:choose>
-														<c:when test="${not empty catList.externalUrl}">
-															<a  onclick="checkMaintainance()"
-																title="${subCatList.subCatName}"
-																href="${pageContext.request.contextPath}/${subCatList.externalUrl}">${subCatList.subCatName}
-															</a>
+														<c:when test="${not empty subCatList.externalUrl}">
+
+															<c:set value="${subCatList.externalUrl}" var="string"></c:set>
+
+															<c:choose>
+																<c:when test="${fn:contains(string, 'http')}">
+																	<c:choose>
+																		<c:when test="${subCatList.externalUrlTarget==1}">
+
+																			<a onclick="checkMaintainance()"
+																				title="${subCatList.subCatName}"
+																				href="${subCatList.externalUrl}" target="_blank">${subCatList.subCatName}
+																			</a>
+
+																		</c:when>
+																		<c:otherwise>
+																			<a onclick="checkMaintainance()"
+																				title="${subCatList.subCatName}"
+																				href="${subCatList.externalUrl}">${subCatList.subCatName}
+																			</a>
+
+																		</c:otherwise>
+
+																	</c:choose>
+
+																</c:when>
+																<c:otherwise>
+																	<c:choose>
+																		<c:when test="${catList.externalUrlTarget==1}">
+
+																			<a onclick="checkMaintainance()"
+																				title="${subCatList.subCatName}"
+																				href="${pageContext.request.contextPath}/${subCatList.externalUrl}" target="_blank">${subCatList.subCatName}
+																			</a>
+
+																		</c:when>
+																		<c:otherwise>
+																			<a onclick="checkMaintainance()"
+																				title="${subCatList.subCatName}"
+																				href="${pageContext.request.contextPath}/${subCatList.externalUrl}">${subCatList.subCatName}
+																			</a>
+
+																		</c:otherwise>
+
+																	</c:choose>
+																</c:otherwise>
+															</c:choose>
+
 														</c:when>
 														<c:otherwise>
-															<a   onclick="checkMaintainance()"
+															<a onclick="checkMaintainance()"
 																title="${subCatList.subCatName}"
 																href="${pageContext.request.contextPath}/info/${subCatList.subSlugName}">${subCatList.subCatName}
 															</a>
 														</c:otherwise>
-													</c:choose> </li>
+													</c:choose></li>
 											</c:if>
 										</c:forEach>
 
@@ -132,12 +221,14 @@
 						<h2>${cmsContentList.heading}</h2>
                     ${cmsContentList.pageDesc}
                     <c:if test="${not empty cmsContentList.downloadPdf}">
-                
-                    		<div class="pdfIcon">
-									<a href="${url}${cmsContentList.downloadPdf}" target="_blank">${cmsContentList.downloadPdf} <%-- - ${documentUploadList.fileSize} --%></a>
+
+							<div class="pdfIcon">
+								<a href="${url}${cmsContentList.downloadPdf}" target="_blank">${cmsContentList.downloadPdf}
+									<%-- - ${documentUploadList.fileSize} --%>
+								</a>
 							</div>
 						</c:if>
-                    <h6 style="text-align: right;">
+						<h6 style="text-align: right;">
 							Last Updated on
 							<c:choose>
 								<c:when test="${not empty cmsContentList.editDate}">${cmsContentList.editDate}</c:when>
@@ -213,8 +304,10 @@
 							<div class="col-12 col-sm-3 col-lg-3">
 								<a href="${gallryImageURL}${gallaryDetailList.fileName}"
 									data-toggle="lightbox" data-gallery="plan" data-title=""
-									class="thumbnail"> <img src="${gallryImageURL}thumbnail${gallaryDetailList.fileName}" alt="${gallaryDetailList.title}"
-								 title="${gallaryDetailList.title}" class="img-responsive"></a>
+									class="thumbnail"> <img
+									src="${gallryImageURL}thumbnail${gallaryDetailList.fileName}"
+									alt="${gallaryDetailList.title}"
+									title="${gallaryDetailList.title}" class="img-responsive"></a>
 							</div>
 						</c:forEach>
 					</div>
@@ -264,18 +357,19 @@
 				</a>
 				</div>
                 </div> -->
-                
-                <c:if test="${find==1}"> 
-					<a href="javascript:void(0)" onclick="window.print()" style="text-align: right;"> print</a>
+
+				<c:if test="${find==1}">
+					<a href="javascript:void(0)" onclick="window.print()"
+						style="text-align: right;"> print</a>
 				</c:if>
- 
- 
+
+
 				<c:if test="${find==0}">
 
 					<h2 style="text-align: center;">No Record Found</h2>
 				</c:if>
-				</div>
 			</div>
+		</div>
 	</div>
 
 	<jsp:include page="/WEB-INF/views/include/imgOpenLink.jsp"></jsp:include>
@@ -284,11 +378,11 @@
 	<!-- JavaScript-->
 	<jsp:include page="/WEB-INF/views/include/footerJs.jsp"></jsp:include>
 
-<script>
-			function checkMaintainance() {
- 
-			}
-		</script>
+	<script>
+		function checkMaintainance() {
+
+		}
+	</script>
 
 
 
