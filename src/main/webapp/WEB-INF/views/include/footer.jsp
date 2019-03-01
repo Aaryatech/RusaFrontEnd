@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ page import="com.ats.rusafronend.model.Maintainance"%>
+    
  <footer>
             <div class="container">
                 <div class="row">
@@ -26,9 +30,29 @@
                     </div>
                     <div class="col-12 col-sm-3 col-lg-3 social-link">
                         <h6>Follow us on:</h6>
-                        <a href="#"><span class="icon-facebook55"></span></a>
-                        <a href="#"><span class="icon-twitter"></span></a>
-                        <a href="#"><span class="icon-youtube-logo"></span></a>
+                         <%--  <c:forEach items="${socialChannelData}" var="socialChannel"
+								varStatus="count">
+								 --%>
+										
+                      <c:if test="${socialChannelData[0].isActive==1}">
+                  			    <a href="${socialChannelData[0].urllinks}" target="_blank"><span class="icon-facebook55"></span></a>
+                  			    </c:if>		
+                  			      <c:if test="${socialChannelData[1].isActive==1}">						                     
+                    	   <a href="${socialChannelData[1].urllinks}" target="_blank"><span class="icon-twitter"></span></a>
+                    		 </c:if>
+                    		   <c:if test="${socialChannelData[2].isActive==1}">
+                       			<a href="${socialChannelData[2].urllinks}" target="_blank"><span class="fa-linkedin-square"></span></a>
+                       			</c:if>
+                       			  <c:if test="${socialChannelData[3].isActive==1}">
+                       			<a href="${socialChannelData[3].urllinks}" target="_blank"><span class="fa-skype"></span></a>
+                       			</c:if>
+                       			  <c:if test="${socialChannelData[4].isActive==1}">
+                       			<a href="${socialChannelData[4].urllinks}" target="_blank"><span class="fa-google-plus"></span></a> 
+                       			</c:if>
+                  
+                       <!--  <a href="#"><span class="icon-twitter"></span></a>
+                        <a href="#"><span class="icon-youtube-logo"></span></a> -->
+                      <%--   </c:forEach> --%>
                     </div>
                 </div>
             </div>

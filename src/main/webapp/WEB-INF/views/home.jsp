@@ -76,7 +76,7 @@
 			<div class="col-12 col-sm-6 col-lg-6">
 				<ul class="nav nav-tabs" role="tablist">
 					<li class="nav-item nutrition-task-bar-item"><a
-						class="nav-link active" data-toggle="tab" href="#update">Notification</a></li>
+						class="nav-link active" data-toggle="tab" href="#update">News And Notification</a></li>
 
 				</ul>
 				<div class="tab-content">

@@ -34,6 +34,7 @@ import com.ats.rusafronend.model.Logo;
 import com.ats.rusafronend.model.Maintainance;
 import com.ats.rusafronend.model.MetaData;
 import com.ats.rusafronend.model.NewsDetails;
+import com.ats.rusafronend.model.SocialChannels;
 import com.ats.rusafronend.model.TestImonial;
 import com.ats.rusafronend.model.TopMenuList;
 
@@ -98,7 +99,12 @@ public class HomeController {
 			NewsDetails[] getPagesModule = rest.postForObject(Constant.url + "/getLastFourNewsByLangId", map,
 					NewsDetails[].class);
 			List<NewsDetails> newsBlogsList = new ArrayList<NewsDetails>(Arrays.asList(getPagesModule));
-
+			
+			SocialChannels[] socialList = rest.getForObject(Constant.url + "/getAllSocialList",
+					SocialChannels[].class);
+			List<SocialChannels> socialChannelData = new ArrayList<SocialChannels>(Arrays.asList(socialList));
+			System.out.println("List :"+socialChannelData.toString());
+			session.setAttribute("socialChannelData", socialChannelData);
 			session.setAttribute("newsBlogsList", newsBlogsList);
 			session.setAttribute("testImonial", testImonial);
 			session.setAttribute("getCMSDesc", getCMSDesc);
