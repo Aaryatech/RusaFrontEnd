@@ -43,6 +43,13 @@ import javax.servlet.http.HttpServletResponse;
 @Controller
 @Scope("session")
 public class ImageController {
+	
+	/*---Dependency:------
+		<dependency>
+	<groupId>org.glassfish</groupId>
+	<artifactId>javax.json</artifactId>
+	<version>1.0.2</version>
+</dependency>*/
 
 	RestTemplate rest = new RestTemplate();
 	ContactUs contactUs = new ContactUs();
