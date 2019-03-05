@@ -40,6 +40,18 @@
 </c:choose>
 
 <jsp:include page="/WEB-INF/views/include/meta.jsp"></jsp:include>
+
+<style type="text/css">
+msg-error {
+  color: #c65848;
+}
+.g-recaptcha.error {
+  border: solid 2px #c64848;
+  padding: .2em;
+  width: 19em;
+}
+</style>
+
 </head>
 <body>
 <c:url var="checkMaintainance" value="/checkMaintainance" />
@@ -121,6 +133,18 @@
 							Parade,<br> Colaba, Mumbai-400005.<br> Phone: 011 -
 							49725600
 						</p>
+									<c:if test="${flag=='1'}">
+									<div style="color:red;">Please Verify ReCaptcha</div>
+									</c:if>
+						<%-- 	<c:choose>
+								<c:when test="test="${flag=='0'}">
+												
+								</c:when>
+								<c:otherwise>
+								</c:otherwise>
+												
+							</c:choose> --%>
+
 
 						<form action="${pageContext.request.contextPath}/insertContactUs"
 							onsubmit="return confirm('Do you really want to submit the form?');"
@@ -136,10 +160,11 @@
 							<textarea name="message" id="message" class="form-control"
 								placeholder="Message"></textarea>
 							<br>
-							<div class="g-recaptcha"
-			data-sitekey="6Leyx5QUAAAAAAzsnNtkQ6VvEP3kz_jOk3X3gf0W"></div>
+						<span class="msg-error error"></span>
+						<div id="recaptcha" class="g-recaptcha"
+			data-sitekey="${siteKey}" ></div>
 			</br>
-							<button type="submit" id="contact-btn" class="btn btn-primary">
+							<button class="btn" id="btn-validate" type="submit">
 								<span>Send</span>
 							</button>
 						</form>
@@ -154,6 +179,26 @@
 	<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 	<!-- JavaScript-->
 	<jsp:include page="/WEB-INF/views/include/footerJs.jsp"></jsp:include>
+	
+	<script type="text/javascript">
+	$( '#btn-validate' ).click(function(e){
+		  var $captcha = $( '#recaptcha' ),
+		      response = grecaptcha.getResponse();
+		  
+		  if (response.length === 0) {
+		    $( '.msg-error').text( "reCAPTCHA is mandatory" );
+		    if( !$captcha.hasClass( "error" ) ){
+		      $captcha.addClass( "error" );
+		    }
+		    e.preventDefault();
+		  } else {
+		    $( '.msg-error' ).text('');
+		    $captcha.removeClass( "error" );
+		  //  alert( 'reCAPTCHA marked' );
+		  }
+		})
+
+	</script>
 <script>
 			function checkMaintainance() {
  

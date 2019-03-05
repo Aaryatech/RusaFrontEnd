@@ -53,7 +53,7 @@ public class ImageController {
 
 	RestTemplate rest = new RestTemplate();
 	ContactUs contactUs = new ContactUs();
-
+	int flag=0;
 	@RequestMapping(value = "/NewsDetails/{langId}/{pageId}/{newsblogsId}", method = RequestMethod.GET)
 	public ModelAndView getImageLink(@PathVariable int langId, @PathVariable int pageId, @PathVariable int newsblogsId,
 			HttpServletRequest request, HttpServletResponse response) {
@@ -113,7 +113,10 @@ public class ImageController {
 				map.add("slugName", "ContactUs");
 				PageMetaData pageMetaData = rest.postForObject(Constant.url + "/getPageMetaData", map,
 						PageMetaData.class);
-				model.addObject("pageMetaData", pageMetaData);
+				model.addObject("pageMetaData", pageMetaData);				
+				model.addObject("siteKey", Constant.siteKey);
+				model.addObject("flag", flag);
+				flag=0;
 			}
 
 		} catch (Exception e) {
@@ -193,40 +196,31 @@ public class ImageController {
 			
 			Date date = new Date(); // your date
 			SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
-			SimpleDateFormat dateTimeInGMT = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
-
 			Calendar cal = Calendar.getInstance();
 			cal.setTime(date);
 
-			// editImageLink.setIsActive(1);
 			if (verify) {
-				response.sendRedirect("LoginSuccess.jsp");
+				InetAddress addr = InetAddress.getByName(request.getRemoteAddr());
+				String hostName = addr.getHostName();
+				String userAgent = request.getHeader("User-Agent");
+				contactUs.setIpAddress(hostName);
+				contactUs.setUserAgent(userAgent);
+				contactUs.setAddDate(sf.format(date));
+				contactUs.setContactName(name);
+				contactUs.setEmailId(email);
+				contactUs.setMessage(message);
+				contactUs.setMobileNo(mobileNo);
+				contactUs.setStatusByAdmin(0);
+				System.out.println("Verify");
+				// contactUs.setRemark(null);
+
+				ContactUs res = rest.postForObject(Constant.url + "/saveContactUs", contactUs, ContactUs.class);
+
 			} else {
 			
-				PrintWriter out = response.getWriter();
-				if (verify) {
-					out.println("<font color=red>Either user name or password is wrong.</font>");
-				} else {
-					out.println("<font color=red>You missed the Captcha.</font>");
-				}
-				//forward.include(request, response);
+				flag = 1;
 			}
-			InetAddress addr = InetAddress.getByName(request.getRemoteAddr());
-			String hostName = addr.getHostName();
-			String userAgent = request.getHeader("User-Agent");
-			contactUs.setIpAddress(hostName);
-			contactUs.setUserAgent(userAgent);
-			contactUs.setAddDate(sf.format(date));
-			contactUs.setContactName(name);
-			contactUs.setEmailId(email);
-			contactUs.setMessage(message);
-			contactUs.setMobileNo(mobileNo);
-			contactUs.setStatusByAdmin(0);
-			;
-			// contactUs.setRemark(null);
-
-			ContactUs res = rest.postForObject(Constant.url + "/saveContactUs", contactUs, ContactUs.class);
-
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

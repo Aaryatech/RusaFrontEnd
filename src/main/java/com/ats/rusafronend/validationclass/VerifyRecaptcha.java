@@ -12,10 +12,12 @@ import javax.json.JsonObject;
 import javax.json.JsonReader;
 import javax.net.ssl.HttpsURLConnection;
 
+import com.ats.rusafronend.common.Constant;
+
 
 public class VerifyRecaptcha {
 	public static final String url = "https://www.google.com/recaptcha/api/siteverify";
-	public static final String secret = "6LdMAgMTAAAAAJOAqKgjWe9DUujd2iyTmzjXilM7";
+	public static final String secret = Constant.secretKey;
 	private final static String USER_AGENT = "Mozilla/5.0";
 
 	public static boolean verify(String gRecaptchaResponse) throws IOException {
